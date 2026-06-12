@@ -65,7 +65,7 @@ export default function Home() {
       var s7 = useState(null); var copied = s7[0]; var setCopied = s7[1];
       var s8 = useState('English'); var uiLang = s8[0]; var setUiLang = s8[1];
 
-  var t = UI[uiLang] || UI['English'];
+  var t = UI[uiLang] || UI['English'];  useEffect(function() {    if ('serviceWorker' in navigator) {      navigator.serviceWorker.register('/sw.js');  useEffect(function() {
 
   async function handleGenerate() {
           if (!message.trim()) return;
@@ -95,7 +95,7 @@ export default function Home() {
   return (
           <div style={{ minHeight: '100vh', background: BG, fontFamily: "'Inter', system-ui, sans-serif", padding: '0 1rem' }}>
       <Head>
-            <title>EzWrite - AI Message Writer</title>
+            <link rel="manifest" href="/manifest.json" />        <meta name="theme-color" content="#1B4FD8" />
         <meta name="description" content="Write in any language, get 3 polished versions instantly." />
             <link rel="preconnect" href="https://fonts.googleapis.com" />
             <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
