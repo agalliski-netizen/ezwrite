@@ -90,16 +90,14 @@ return;
 }
 var rec = new SR();
 rec.lang = uiLang === 'Espanol' ? 'es-AR' : uiLang === 'Portugues' ? 'pt-BR' : 'en-US';
-rec.interimResults = true;
+rec.interimResults = false;
 rec.continuous = true;
-var finalText = '';
 rec.onresult = function(e) {
-var interim = '';
+var newText = '';
 for (var i = e.resultIndex; i < e.results.length; i++) {
-if (e.results[i].isFinal) { finalText += e.results[i][0].transcript + ' '; }
-else { interim = e.results[i][0].transcript; }
+newText += e.results[i][0].transcript + ' ';
 }
-setMessage(finalText + interim);
+if (newText) { setMessage(function(prev) { return prev + newText; }); }
 };
 rec.onend = function() { setIsListening(false); };
 rec.onerror = function() { setIsListening(false); };
