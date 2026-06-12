@@ -92,10 +92,14 @@ var rec = new SR();
 rec.lang = uiLang === 'Espanol' ? 'es-AR' : uiLang === 'Portugues' ? 'pt-BR' : 'en-US';
 rec.interimResults = true;
 rec.continuous = true;
+var finalText = '';
 rec.onresult = function(e) {
-var transcript = '';
-for (var i = 0; i < e.results.length; i++) { transcript += e.results[i][0].transcript; }
-setMessage(transcript);
+var interim = '';
+for (var i = e.resultIndex; i < e.results.length; i++) {
+if (e.results[i].isFinal) { finalText += e.results[i][0].transcript + ' '; }
+else { interim = e.results[i][0].transcript; }
+}
+setMessage(finalText + interim);
 };
 rec.onend = function() { setIsListening(false); };
 rec.onerror = function() { setIsListening(false); };
