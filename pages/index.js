@@ -19,6 +19,10 @@ connErr: 'Connection error. Please try again.',
 copy: 'Copy', copied: 'Copied!',
 dictate: 'Dictate', stop: 'Stop',
 noVoice: 'Voice not supported. Use Chrome or Edge.',
+limitTitle: 'Daily limit reached',
+limitMsg: 'You\'ve used your 3 free generations for today. Upgrade to keep writing.',
+limitBtn: 'Upgrade → $2.99/mo',
+usageLeft: function(n) { return n + ' generation' + (n === 1 ? '' : 's') + ' left today'; },
 tones: { 'Professional': 'Professional', 'Direct': 'Direct', 'Diplomatic': 'Diplomatic', 'Empathetic': 'Empathetic', 'Firm': 'Firm' },
 langs: { 'Espanol': 'Spanish', 'English': 'English', 'Portugues': 'Portuguese' }
 },
@@ -35,6 +39,10 @@ connErr: 'Error de conexion. Intenta de nuevo.',
 copy: 'Copiar', copied: 'Copiado!',
 dictate: 'Dictar', stop: 'Detener',
 noVoice: 'Dictado no soportado. Usa Chrome o Edge.',
+limitTitle: 'Límite diario alcanzado',
+limitMsg: 'Usaste tus 3 generaciones gratuitas de hoy. Suscribíte para seguir escribiendo.',
+limitBtn: 'Suscribirme → $2.99/mes',
+usageLeft: function(n) { return n + (n === 1 ? ' generación restante' : ' generaciones restantes') + ' hoy'; },
 tones: { 'Professional': 'Profesional', 'Direct': 'Directo', 'Diplomatic': 'Diplomatico', 'Empathetic': 'Empatico', 'Firm': 'Firme' },
 langs: { 'Espanol': 'Espanol', 'English': 'English', 'Portugues': 'Portugues' }
 },
@@ -51,6 +59,10 @@ connErr: 'Erro de conexao. Tente novamente.',
 copy: 'Copiar', copied: 'Copiado!',
 dictate: 'Ditar', stop: 'Parar',
 noVoice: 'Ditado nao suportado. Use Chrome ou Edge.',
+limitTitle: 'Limite diário atingido',
+limitMsg: 'Você usou suas 3 gerações gratuitas de hoje. Assine para continuar escrevendo.',
+limitBtn: 'Assinar → $2.99/mês',
+usageLeft: function(n) { return n + (n === 1 ? ' geração restante' : ' gerações restantes') + ' hoje'; },
 tones: { 'Professional': 'Profissional', 'Direct': 'Direto', 'Diplomatic': 'Diplomatico', 'Empathetic': 'Empatico', 'Firm': 'Firme' },
 langs: { 'Espanol': 'Espanhol', 'English': 'Ingles', 'Portugues': 'Portugues' }
 }
@@ -73,6 +85,10 @@ var s7 = useState(null); var copied = s7[0]; var setCopied = s7[1];
 var s8 = useState('English'); var uiLang = s8[0]; var setUiLang = s8[1];
 var s9 = useState(false); var isListening = s9[0]; var setIsListening = s9[1];
 var recognitionRef = useRef(null);
+var DAILY_LIMIT = 3;
+function getUsage() { try { var u = JSON.parse(localStorage.getItem('ezw_usage') || 'null'); var today = new Date().toDateString(); if (!u || u.date !== today) { return { date: today, count: 0 }; } return u; } catch(e) { return { date: new Date().toDateString(), count: 0 }; } }
+function saveUsage(u) { try { localStorage.setItem('ezw_usage', JSON.stringify(u)); } catch(e) {} }
+var s10 = useState(function() { return DAILY_LIMIT - getUsage().count; }); var usageLeft = s10[0]; var setUsageLeft = s10[1];
 
 var t = UI[uiLang] || UI['English'];
 
@@ -108,6 +124,8 @@ setIsListening(true);
 
 async function handleGenerate() {
 if (!message.trim()) return;
+var usage = getUsage();
+if (usage.count >= DAILY_LIMIT) { setUsageLeft(0); return; }
 setLoading(true); setError(''); setVersions(null);
 try {
 var res = await fetch('/api/write', {
@@ -116,7 +134,12 @@ headers: { 'Content-Type': 'application/json' },
 body: JSON.stringify({ message: message, tone: tone, language: language })
 });
 var data = await res.json();
-if (data.error) { setError(t.err); } else { setVersions(data.versions); }
+if (data.error) { setError(t.err); } else {
+setVersions(data.versions);
+usage.count += 1;
+saveUsage(usage);
+setUsageLeft(DAILY_LIMIT - usage.count);
+}
 } catch (e) { setError(t.connErr); }
 finally { setLoading(false); }
 }
@@ -129,7 +152,7 @@ setTimeout(function() { setCopied(null); }, 2000);
 } catch (e) {}
 }
 
-var isDisabled = !message.trim() || loading;
+var isDisabled = !message.trim() || loading || usageLeft <= 0;
 
 return (
 <div style={{ minHeight: '100vh', background: BG, fontFamily: "'Inter', system-ui, sans-serif", padding: '0 1rem' }}>
@@ -178,7 +201,11 @@ EzWrite
 {LANGUAGES.map(function(l) { var active = language === l; return (<button key={l} onClick={function() { setLanguage(l); }} style={{ padding: '7px 14px', borderRadius: '6px', border: active ? '1.5px solid '+BLUE : '1px solid '+BORDER, background: active ? BLUE_LIGHT : WHITE, color: active ? BLUE : TEXT2, fontSize: '13px', fontWeight: active ? 600 : 400, cursor: 'pointer', fontFamily: "'Inter', system-ui, sans-serif" }}>{t.langs[l] || l}</button>); })}
 </div>
 </div>
-<button style={{ width: '100%', padding: '13px', background: isDisabled ? BORDER : BLUE, color: isDisabled ? TEXT3 : WHITE, border: 'none', borderRadius: '8px', fontSize: '15px', fontWeight: 600, cursor: isDisabled ? 'not-allowed' : 'pointer', fontFamily: "'Inter', system-ui, sans-serif", marginTop: '0.5rem' }} onClick={handleGenerate} disabled={isDisabled}>{loading ? t.writing : t.btn}</button>
+<div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '6px' }}>
+{usageLeft > 0 && usageLeft < DAILY_LIMIT && <span style={{ fontSize: '11px', color: usageLeft === 1 ? RED : TEXT3 }}>{t.usageLeft(usageLeft)}</span>}
+</div>
+<button style={{ width: '100%', padding: '13px', background: isDisabled ? BORDER : BLUE, color: isDisabled ? TEXT3 : WHITE, border: 'none', borderRadius: '8px', fontSize: '15px', fontWeight: 600, cursor: isDisabled ? 'not-allowed' : 'pointer', fontFamily: "'Inter', system-ui, sans-serif", marginTop: '0' }} onClick={handleGenerate} disabled={isDisabled}>{loading ? t.writing : t.btn}</button>
+{usageLeft <= 0 && (<div style={{ background: '#FFF7ED', border: '1px solid #FED7AA', borderRadius: '10px', padding: '20px', marginTop: '1rem', textAlign: 'center' }}><div style={{ fontSize: '15px', fontWeight: 600, color: '#92400E', marginBottom: '6px' }}>{t.limitTitle}</div><div style={{ fontSize: '13px', color: '#B45309', marginBottom: '16px', lineHeight: 1.5 }}>{t.limitMsg}</div><a href="https://buy.stripe.com/PLACEHOLDER" style={{ display: 'inline-block', background: '#F59E0B', color: WHITE, padding: '10px 24px', borderRadius: '8px', fontSize: '14px', fontWeight: 600, textDecoration: 'none' }}>{t.limitBtn}</a></div>)}
 {error && (<div style={{ background: '#FEF2F2', border: '1px solid #FCA5A5', color: '#DC2626', borderRadius: '8px', padding: '12px 14px', fontSize: '13px', marginTop: '1rem' }}>{error}</div>)}
 {versions && (<div><div style={{ height: '1px', background: BORDER, margin: '2rem 0' }}></div>{versions.map(function(v, idx) { var color = VERSION_COLORS[idx] || BLUE; var isCopied = copied === idx; return (<div key={idx} style={{ background: WHITE, border: '1px solid '+BORDER, borderLeft: '3px solid '+color, borderRadius: '10px', padding: '16px', marginBottom: '12px' }}><div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}><span style={{ fontSize: '12px', fontWeight: 700, padding: '3px 8px', borderRadius: '4px', background: color+'18', color: color }}>{v.label}</span><button onClick={function() { handleCopy(v.text, idx); }} style={{ fontSize: '12px', fontWeight: 500, padding: '5px 12px', borderRadius: '6px', border: isCopied ? '1px solid '+GREEN : '1px solid '+BORDER, background: isCopied ? GREEN_LIGHT : WHITE, cursor: 'pointer', color: isCopied ? GREEN : TEXT2, fontFamily: "'Inter', system-ui, sans-serif" }}>{isCopied ? t.copied : t.copy}</button></div><p style={{ fontSize: '14px', lineHeight: 1.7, color: TEXT, margin: 0, whiteSpace: 'pre-wrap' }}>{v.text}</p></div>); })}</div>)}
 <div style={{ marginTop: '3rem', paddingTop: '1.5rem', borderTop: '1px solid '+BORDER, textAlign: 'center', fontSize: '12px', color: TEXT3 }}>Made with <span style={{ color: BLUE, fontFamily: "'DM Serif Display', Georgia, serif" }}>EzWrite</span><span style={{ margin: '0 8px', opacity: 0.4 }}>·</span>Powered by <span style={{ color: '#E86A2D', fontWeight: 600 }}>Claude</span></div>
