@@ -85,7 +85,7 @@ var s7 = useState(null); var copied = s7[0]; var setCopied = s7[1];
 var s8 = useState('English'); var uiLang = s8[0]; var setUiLang = s8[1];
 var s9 = useState(false); var isListening = s9[0]; var setIsListening = s9[1];
 var recognitionRef = useRef(null);
-var DAILY_LIMIT = 3;
+var DAILY_LIMIT = 5;
 function getUsage() { try { var u = JSON.parse(localStorage.getItem('ezw_usage') || 'null'); var today = new Date().toDateString(); if (!u || u.date !== today) { return { date: today, count: 0 }; } return u; } catch(e) { return { date: new Date().toDateString(), count: 0 }; } }
 function saveUsage(u) { try { localStorage.setItem('ezw_usage', JSON.stringify(u)); } catch(e) {} }
 var s10 = useState(function() { return DAILY_LIMIT - getUsage().count; }); var usageLeft = s10[0]; var setUsageLeft = s10[1];
