@@ -21,7 +21,8 @@ dictate: 'Dictate', stop: 'Stop',
 noVoice: 'Voice not supported. Use Chrome or Edge.',
 limitTitle: 'Daily limit reached',
 limitMsg: 'You\'ve used your 3 free generations for today. Upgrade to keep writing.',
-limitBtn: 'Upgrade → $2.99/mo',
+limitBtnMonthly: 'Monthly → $2.99/mo',
+limitBtnAnnual: 'Annual → $1.99/mo',
 usageLeft: function(n) { return n + ' generation' + (n === 1 ? '' : 's') + ' left today'; },
 tones: { 'Professional': 'Professional', 'Direct': 'Direct', 'Diplomatic': 'Diplomatic', 'Empathetic': 'Empathetic', 'Firm': 'Firm' },
 langs: { 'Espanol': 'Spanish', 'English': 'English', 'Portugues': 'Portuguese' }
@@ -41,7 +42,8 @@ dictate: 'Dictar', stop: 'Detener',
 noVoice: 'Dictado no soportado. Usa Chrome o Edge.',
 limitTitle: 'Límite diario alcanzado',
 limitMsg: 'Usaste tus 3 generaciones gratuitas de hoy. Suscribíte para seguir escribiendo.',
-limitBtn: 'Suscribirme → $2.99/mes',
+limitBtnMonthly: 'Mensual → $2.99/mes',
+limitBtnAnnual: 'Anual → $1.99/mes',
 usageLeft: function(n) { return n + (n === 1 ? ' generación restante' : ' generaciones restantes') + ' hoy'; },
 tones: { 'Professional': 'Profesional', 'Direct': 'Directo', 'Diplomatic': 'Diplomatico', 'Empathetic': 'Empatico', 'Firm': 'Firme' },
 langs: { 'Espanol': 'Espanol', 'English': 'English', 'Portugues': 'Portugues' }
@@ -61,7 +63,8 @@ dictate: 'Ditar', stop: 'Parar',
 noVoice: 'Ditado nao suportado. Use Chrome ou Edge.',
 limitTitle: 'Limite diário atingido',
 limitMsg: 'Você usou suas 3 gerações gratuitas de hoje. Assine para continuar escrevendo.',
-limitBtn: 'Assinar → $2.99/mês',
+limitBtnMonthly: 'Mensal → $2.99/mês',
+limitBtnAnnual: 'Anual → $1.99/mês',
 usageLeft: function(n) { return n + (n === 1 ? ' geração restante' : ' gerações restantes') + ' hoje'; },
 tones: { 'Professional': 'Profissional', 'Direct': 'Direto', 'Diplomatic': 'Diplomatico', 'Empathetic': 'Empatico', 'Firm': 'Firme' },
 langs: { 'Espanol': 'Espanhol', 'English': 'Ingles', 'Portugues': 'Portugues' }
@@ -205,7 +208,7 @@ EzWrite
 {usageLeft > 0 && usageLeft < DAILY_LIMIT && <span style={{ fontSize: '11px', color: usageLeft === 1 ? RED : TEXT3 }}>{t.usageLeft(usageLeft)}</span>}
 </div>
 <button style={{ width: '100%', padding: '13px', background: isDisabled ? BORDER : BLUE, color: isDisabled ? TEXT3 : WHITE, border: 'none', borderRadius: '8px', fontSize: '15px', fontWeight: 600, cursor: isDisabled ? 'not-allowed' : 'pointer', fontFamily: "'Inter', system-ui, sans-serif", marginTop: '0' }} onClick={handleGenerate} disabled={isDisabled}>{loading ? t.writing : t.btn}</button>
-{usageLeft <= 0 && (<div style={{ background: '#FFF7ED', border: '1px solid #FED7AA', borderRadius: '10px', padding: '20px', marginTop: '1rem', textAlign: 'center' }}><div style={{ fontSize: '15px', fontWeight: 600, color: '#92400E', marginBottom: '6px' }}>{t.limitTitle}</div><div style={{ fontSize: '13px', color: '#B45309', marginBottom: '16px', lineHeight: 1.5 }}>{t.limitMsg}</div><a href="https://buy.stripe.com/PLACEHOLDER" style={{ display: 'inline-block', background: '#F59E0B', color: WHITE, padding: '10px 24px', borderRadius: '8px', fontSize: '14px', fontWeight: 600, textDecoration: 'none' }}>{t.limitBtn}</a></div>)}
+{usageLeft <= 0 && (<div style={{ background: '#FFF7ED', border: '1px solid #FED7AA', borderRadius: '10px', padding: '20px', marginTop: '1rem', textAlign: 'center' }}><div style={{ fontSize: '15px', fontWeight: 600, color: '#92400E', marginBottom: '6px' }}>{t.limitTitle}</div><div style={{ fontSize: '13px', color: '#B45309', marginBottom: '16px', lineHeight: 1.5 }}>{t.limitMsg}</div><div style={{ display: 'flex', gap: '8px', justifyContent: 'center', flexWrap: 'wrap' }}><a href="https://ezwrite.lemonsqueezy.com/checkout/buy/6442eb2a-a6ef-4149-8c84-cc8749d0b9df" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', background: '#F59E0B', color: WHITE, padding: '10px 20px', borderRadius: '8px', fontSize: '14px', fontWeight: 600, textDecoration: 'none' }}>{t.limitBtnMonthly}</a><a href="https://ezwrite.lemonsqueezy.com/checkout/buy/11bbf4e4-ff26-4e52-946c-f301d7a9fac7" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', background: WHITE, color: '#92400E', border: '1.5px solid #F59E0B', padding: '10px 20px', borderRadius: '8px', fontSize: '14px', fontWeight: 600, textDecoration: 'none' }}>{t.limitBtnAnnual}</a></div></div>)}
 {error && (<div style={{ background: '#FEF2F2', border: '1px solid #FCA5A5', color: '#DC2626', borderRadius: '8px', padding: '12px 14px', fontSize: '13px', marginTop: '1rem' }}>{error}</div>)}
 {versions && (<div><div style={{ height: '1px', background: BORDER, margin: '2rem 0' }}></div>{versions.map(function(v, idx) { var color = VERSION_COLORS[idx] || BLUE; var isCopied = copied === idx; return (<div key={idx} style={{ background: WHITE, border: '1px solid '+BORDER, borderLeft: '3px solid '+color, borderRadius: '10px', padding: '16px', marginBottom: '12px' }}><div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}><span style={{ fontSize: '12px', fontWeight: 700, padding: '3px 8px', borderRadius: '4px', background: color+'18', color: color }}>{v.label}</span><button onClick={function() { handleCopy(v.text, idx); }} style={{ fontSize: '12px', fontWeight: 500, padding: '5px 12px', borderRadius: '6px', border: isCopied ? '1px solid '+GREEN : '1px solid '+BORDER, background: isCopied ? GREEN_LIGHT : WHITE, cursor: 'pointer', color: isCopied ? GREEN : TEXT2, fontFamily: "'Inter', system-ui, sans-serif" }}>{isCopied ? t.copied : t.copy}</button></div><p style={{ fontSize: '14px', lineHeight: 1.7, color: TEXT, margin: 0, whiteSpace: 'pre-wrap' }}>{v.text}</p></div>); })}</div>)}
 <div style={{ marginTop: '3rem', paddingTop: '1.5rem', borderTop: '1px solid '+BORDER, textAlign: 'center', fontSize: '12px', color: TEXT3 }}>Made with <span style={{ color: BLUE, fontFamily: "'DM Serif Display', Georgia, serif" }}>EzWrite</span><span style={{ margin: '0 8px', opacity: 0.4 }}>·</span>Powered by <span style={{ color: '#E86A2D', fontWeight: 600 }}>Claude</span></div>
