@@ -94,7 +94,7 @@ var s4 = useState(false); var loading = s4[0]; var setLoading = s4[1];
 var s5 = useState(null); var versions = s5[0]; var setVersions = s5[1];
 var s6 = useState(''); var error = s6[0]; var setError = s6[1];
 var s7 = useState(null); var copied = s7[0]; var setCopied = s7[1];
-var s8 = useState('English'); var uiLang = s8[0]; var setUiLang = s8[1];
+var s8 = useState(function() { var lang = (navigator.language || navigator.userLanguage || 'en').toLowerCase(); if (lang.startsWith('es')) return 'Espanol'; if (lang.startsWith('pt')) return 'Portugues'; return 'English'; }); var uiLang = s8[0]; var setUiLang = s8[1];
 var s9 = useState(false); var isListening = s9[0]; var setIsListening = s9[1];
 var recognitionRef = useRef(null);
 var DAILY_LIMIT = 5;
