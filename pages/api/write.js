@@ -3,6 +3,7 @@ export default async function handler(req, res) {
     var message = req.body.message;
     var tone = req.body.tone;
     var language = req.body.language;
+var recipient = req.body.recipient || '';
     if (!message || !tone || !language) return res.status(400).json({ error: 'Missing fields' });
 
   var toneMap = {
@@ -19,7 +20,7 @@ export default async function handler(req, res) {
     };
     var toneDesc = toneMap[tone] || tone;
     var langName = langMap[language] || language;
-    var system = 'You are EzWrite, an expert communication assistant. The user gives you a raw message or idea. Rewrite it into 3 distinct polished versions with a ' + toneDesc + ' tone, written in ' + langName + '. Each version should vary in sentence structure, opening, or phrasing but all must share the same tone and target language. Return ONLY valid JSON: {"versions":[{"label":"Version A","text":"..."},{"label":"Version B","text":"..."},{"label":"Version C","text":"..."}]}. No markdown, no preamble, just the JSON object.';
+    var system = 'You are EzWrite, an expert communication assistant. The user gives you a raw message or idea. Rewrite it into 3 distinct polished versions with a ' + toneDesc + ' tone, written in ' + langName + ' + (recipient ? '. The message is addressed to: ' + recipient + '.' : '') + '. Each version should vary in sentence structure, opening, or phrasing but all must share the same tone and target language. Return ONLY valid JSON: {"versions":[{"label":"Version A","text":"..."},{"label":"Version B","text":"..."},{"label":"Version C","text":"..."}]}. No markdown, no preamble, just the JSON object.';
 
   try {
         var r = await fetch('https://api.anthropic.com/v1/messages', {
