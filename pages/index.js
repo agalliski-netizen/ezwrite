@@ -20,10 +20,13 @@ copy: 'Copy', copied: 'Copied!',
 dictate: 'Dictate', stop: 'Stop',
 noVoice: 'Voice not supported. Use Chrome or Edge.',
 limitTitle: 'Daily limit reached',
-limitMsg: 'You\'ve used your 3 free generations for today. Upgrade to keep writing.',
+limitMsg: 'You\'ve used your 5 free generations for today. Upgrade to keep writing.',
 limitBtnMonthly: 'Monthly → $2.99/mo',
 limitBtnAnnual: 'Annual → $1.99/mo',
 usageLeft: function(n) { return n + ' generation' + (n === 1 ? '' : 's') + ' left today'; },
+recipientLabel: 'Recipient (optional)',
+recipientOtherPlaceholder: 'Describe the relationship...',
+recipientOptions: ['Boss', 'Client', 'Colleague', 'Friend', 'Partner', 'Other'],
 tones: { 'Professional': 'Professional', 'Direct': 'Direct', 'Diplomatic': 'Diplomatic', 'Empathetic': 'Empathetic', 'Firm': 'Firm' },
 langs: { 'Espanol': 'Spanish', 'English': 'English', 'Portugues': 'Portuguese' }
 },
@@ -41,10 +44,13 @@ copy: 'Copiar', copied: 'Copiado!',
 dictate: 'Dictar', stop: 'Detener',
 noVoice: 'Dictado no soportado. Usa Chrome o Edge.',
 limitTitle: 'Límite diario alcanzado',
-limitMsg: 'Usaste tus 3 generaciones gratuitas de hoy. Suscribíte para seguir escribiendo.',
+limitMsg: 'Usaste tus 5 generaciones gratuitas de hoy. Suscribíte para seguir escribiendo.',
 limitBtnMonthly: 'Mensual → $2.99/mes',
 limitBtnAnnual: 'Anual → $1.99/mes',
 usageLeft: function(n) { return n + (n === 1 ? ' generación restante' : ' generaciones restantes') + ' hoy'; },
+recipientLabel: 'Destinatario (opcional)',
+recipientOtherPlaceholder: 'Describi la relación...',
+recipientOptions: ['Jefe/a', 'Cliente', 'Colega', 'Amigo/a', 'Pareja', 'Otro'],
 tones: { 'Professional': 'Profesional', 'Direct': 'Directo', 'Diplomatic': 'Diplomatico', 'Empathetic': 'Empatico', 'Firm': 'Firme' },
 langs: { 'Espanol': 'Espanol', 'English': 'English', 'Portugues': 'Portugues' }
 },
@@ -62,10 +68,13 @@ copy: 'Copiar', copied: 'Copiado!',
 dictate: 'Ditar', stop: 'Parar',
 noVoice: 'Ditado nao suportado. Use Chrome ou Edge.',
 limitTitle: 'Limite diário atingido',
-limitMsg: 'Você usou suas 3 gerações gratuitas de hoje. Assine para continuar escrevendo.',
+limitMsg: 'Você usou suas 5 gerações gratuitas de hoje. Assine para continuar escrevendo.',
 limitBtnMonthly: 'Mensal → $2.99/mês',
 limitBtnAnnual: 'Anual → $1.99/mês',
 usageLeft: function(n) { return n + (n === 1 ? ' geração restante' : ' gerações restantes') + ' hoje'; },
+recipientLabel: 'Destinatário (opcional)',
+recipientOtherPlaceholder: 'Descreva o relacionamento...',
+recipientOptions: ['Chefe', 'Cliente', 'Colega', 'Amigo/a', 'Parceiro/a', 'Outro'],
 tones: { 'Professional': 'Profissional', 'Direct': 'Direto', 'Diplomatic': 'Diplomatico', 'Empathetic': 'Empatico', 'Firm': 'Firme' },
 langs: { 'Espanol': 'Espanhol', 'English': 'Ingles', 'Portugues': 'Portugues' }
 }
@@ -92,6 +101,8 @@ var DAILY_LIMIT = 5;
 function getUsage() { try { var u = JSON.parse(localStorage.getItem('ezw_usage') || 'null'); var today = new Date().toDateString(); if (!u || u.date !== today) { return { date: today, count: 0 }; } return u; } catch(e) { return { date: new Date().toDateString(), count: 0 }; } }
 function saveUsage(u) { try { localStorage.setItem('ezw_usage', JSON.stringify(u)); } catch(e) {} }
 var s10 = useState(function() { return DAILY_LIMIT - getUsage().count; }); var usageLeft = s10[0]; var setUsageLeft = s10[1];
+var s11 = useState(''); var recipient = s11[0]; var setRecipient = s11[1];
+var s12 = useState(''); var recipientOther = s12[0]; var setRecipientOther = s12[1];
 
 var t = UI[uiLang] || UI['English'];
 
@@ -134,7 +145,7 @@ try {
 var res = await fetch('/api/write', {
 method: 'POST',
 headers: { 'Content-Type': 'application/json' },
-body: JSON.stringify({ message: message, tone: tone, language: language })
+body: JSON.stringify({ message: message, tone: tone, language: language, recipient: recipient === 'Other' || recipient === 'Otro' || recipient === 'Outro' ? recipientOther : recipient })
 });
 var data = await res.json();
 if (data.error) { setError(t.err); } else {
@@ -191,6 +202,13 @@ EzWrite
 </button>
 </div>
 <textarea style={{ width: '100%', minHeight: '120px', padding: '12px 14px', border: isListening ? '1.5px solid '+RED : '1px solid '+BORDER, borderRadius: '8px', fontSize: '14px', color: TEXT, background: isListening ? RED_LIGHT : WHITE, resize: 'vertical', fontFamily: "'Inter', system-ui, sans-serif", lineHeight: 1.6, boxSizing: 'border-box' }} placeholder={t.placeholder} value={message} onChange={function(e) { setMessage(e.target.value); }} />
+</div>
+<div style={{ marginBottom: '1.5rem' }}>
+<span style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.07em', textTransform: 'uppercase', color: TEXT3, marginBottom: '8px', display: 'block' }}>{t.recipientLabel}</span>
+<div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', marginBottom: recipient === 'Other' || recipient === 'Otro' || recipient === 'Outro' ? '8px' : '0' }}>
+{t.recipientOptions.map(function(r) { var active = recipient === r; return (<button key={r} onClick={function() { setRecipient(active ? '' : r); if (!active) setRecipientOther(''); }} style={{ padding: '7px 14px', borderRadius: '6px', border: active ? '1.5px solid '+BLUE : '1px solid '+BORDER, background: active ? BLUE_LIGHT : WHITE, color: active ? BLUE : TEXT2, fontSize: '13px', fontWeight: active ? 600 : 400, cursor: 'pointer', fontFamily: "'Inter', system-ui, sans-serif" }}>{r}</button>); })}
+</div>
+{(recipient === 'Other' || recipient === 'Otro' || recipient === 'Outro') && (<input type="text" value={recipientOther} onChange={function(e) { setRecipientOther(e.target.value); }} placeholder={t.recipientOtherPlaceholder} style={{ width: '100%', padding: '10px 14px', border: '1px solid '+BORDER, borderRadius: '8px', fontSize: '14px', color: TEXT, fontFamily: "'Inter', system-ui, sans-serif", boxSizing: 'border-box', outline: 'none' }} />)}
 </div>
 <div style={{ marginBottom: '1.5rem' }}>
 <span style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.07em', textTransform: 'uppercase', color: TEXT3, marginBottom: '8px', display: 'block' }}>{t.toneLabel}</span>
