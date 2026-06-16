@@ -132,6 +132,8 @@ var s16 = useState(false); var showIosSteps = s16[0]; var setShowIosSteps = s16[
 var t = UI[uiLang] || UI['English'];
 
 useEffect(function() {
+var isSamsung = /SamsungBrowser/i.test(window.navigator.userAgent || '');
+if (isSamsung) return;
 if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/sw.js'); }
 }, []);
 
@@ -225,11 +227,12 @@ setTimeout(function() { setCopied(null); }, 2000);
 }
 
 var isDisabled = !message.trim() || loading || usageLeft <= 0;
+var showManifest = typeof navigator === 'undefined' ? true : !/SamsungBrowser/i.test(navigator.userAgent || '');
 
 return (
 <div style={{ minHeight: '100vh', background: BG, fontFamily: "'Inter', system-ui, sans-serif", padding: '0 1rem' }}>
 <Head>
-<link rel="manifest" href="/manifest.json" />
+{showManifest && <link rel="manifest" href="/manifest.json" />}
 <meta name="theme-color" content="#1B4FD8" />
 <meta name="description" content="Write in any language, get 3 polished versions instantly." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
