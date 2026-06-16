@@ -19,6 +19,13 @@ connErr: 'Connection error. Please try again.',
 copy: 'Copy', copied: 'Copied!',
 dictate: 'Dictate', stop: 'Stop',
 noVoice: 'Voice not supported. Use Chrome or Edge.',
+installTitle: 'Get quick access from your home screen',
+installBtn: 'Install app',
+installBtnIos: 'Add to Home Screen',
+iosStep1: 'Tap the Share icon',
+iosStep2: 'Scroll down and tap "Add to Home Screen"',
+iosStep3: 'Tap "Add" to confirm',
+installDismiss: 'Not now',
 limitTitle: 'Daily limit reached',
 limitMsg: 'You\'ve used your 5 free generations for today. Upgrade to keep writing.',
 limitBtnMonthly: 'Monthly → $2.99/mo',
@@ -43,6 +50,13 @@ connErr: 'Error de conexion. Intenta de nuevo.',
 copy: 'Copiar', copied: 'Copiado!',
 dictate: 'Dictar', stop: 'Detener',
 noVoice: 'Dictado no soportado. Usa Chrome o Edge.',
+installTitle: 'Acceso rápido desde tu pantalla de inicio',
+installBtn: 'Instalar app',
+installBtnIos: 'Agregar a inicio',
+iosStep1: 'Tocá el ícono de compartir',
+iosStep2: 'Deslizá y tocá "Agregar a pantalla de inicio"',
+iosStep3: 'Tocá "Agregar" para confirmar',
+installDismiss: 'Ahora no',
 limitTitle: 'Límite diario alcanzado',
 limitMsg: 'Usaste tus 5 generaciones gratuitas de hoy. Suscribíte para seguir escribiendo.',
 limitBtnMonthly: 'Mensual → $2.99/mes',
@@ -67,6 +81,13 @@ connErr: 'Erro de conexao. Tente novamente.',
 copy: 'Copiar', copied: 'Copiado!',
 dictate: 'Ditar', stop: 'Parar',
 noVoice: 'Ditado nao suportado. Use Chrome ou Edge.',
+installTitle: 'Acesso rápido pela tela inicial',
+installBtn: 'Instalar app',
+installBtnIos: 'Adicionar à tela inicial',
+iosStep1: 'Toque no ícone de compartilhar',
+iosStep2: 'Deslize e toque em "Adicionar à Tela de Início"',
+iosStep3: 'Toque em "Adicionar" para confirmar',
+installDismiss: 'Agora não',
 limitTitle: 'Limite diário atingido',
 limitMsg: 'Você usou suas 5 gerações gratuitas de hoje. Assine para continuar escrevendo.',
 limitBtnMonthly: 'Mensal → $2.99/mês',
@@ -103,11 +124,34 @@ function saveUsage(u) { try { localStorage.setItem('ezw_usage', JSON.stringify(u
 var s10 = useState(function() { return DAILY_LIMIT - getUsage().count; }); var usageLeft = s10[0]; var setUsageLeft = s10[1];
 var s11 = useState(''); var recipient = s11[0]; var setRecipient = s11[1];
 var s12 = useState(''); var recipientOther = s12[0]; var setRecipientOther = s12[1];
+var s13 = useState(null); var deferredInstallPrompt = s13[0]; var setDeferredInstallPrompt = s13[1];
+var s14 = useState(false); var showInstallBanner = s14[0]; var setShowInstallBanner = s14[1];
+var s15 = useState(false); var isIos = s15[0]; var setIsIos = s15[1];
+var s16 = useState(false); var showIosSteps = s16[0]; var setShowIosSteps = s16[1];
 
 var t = UI[uiLang] || UI['English'];
 
 useEffect(function() {
 if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/sw.js'); }
+}, []);
+
+useEffect(function() {
+var ua = window.navigator.userAgent || '';
+var iosDevice = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+var standalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+if (standalone) return;
+var dismissed = false;
+try { dismissed = localStorage.getItem('ezw_install_dismissed') === '1'; } catch(e) {}
+if (dismissed) return;
+if (iosDevice) { setIsIos(true); setShowInstallBanner(true); return; }
+function handleBeforeInstall(e) { e.preventDefault(); setDeferredInstallPrompt(e); setShowInstallBanner(true); }
+function handleInstalled() { setShowInstallBanner(false); setDeferredInstallPrompt(null); }
+window.addEventListener('beforeinstallprompt', handleBeforeInstall);
+window.addEventListener('appinstalled', handleInstalled);
+return function() {
+window.removeEventListener('beforeinstallprompt', handleBeforeInstall);
+window.removeEventListener('appinstalled', handleInstalled);
+};
 }, []);
 
 function toggleListening() {
@@ -134,6 +178,20 @@ rec.onerror = function() { setIsListening(false); };
 recognitionRef.current = rec;
 rec.start();
 setIsListening(true);
+}
+
+function handleInstallClick() {
+if (deferredInstallPrompt) {
+deferredInstallPrompt.prompt();
+deferredInstallPrompt.userChoice.then(function() { setDeferredInstallPrompt(null); setShowInstallBanner(false); });
+return;
+}
+setShowIosSteps(true);
+}
+
+function handleInstallDismiss() {
+setShowInstallBanner(false);
+try { localStorage.setItem('ezw_install_dismissed', '1'); } catch(e) {}
 }
 
 async function handleGenerate() {
@@ -192,6 +250,18 @@ EzWrite
 </div>
 <p style={{ fontSize: '14px', color: TEXT2, marginTop: '8px' }}>{t.tagline}</p>
 </div>
+{showInstallBanner && (<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px', background: BLUE_LIGHT, border: '1px solid '+BLUE, borderRadius: '10px', padding: '12px 14px', marginBottom: '1.5rem', flexWrap: 'wrap' }}>
+<span style={{ fontSize: '13px', color: TEXT, fontWeight: 500 }}>{t.installTitle}</span>
+<div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+<button onClick={handleInstallClick} style={{ background: BLUE, color: WHITE, border: 'none', borderRadius: '6px', padding: '8px 14px', fontSize: '13px', fontWeight: 600, cursor: 'pointer', fontFamily: "'Inter', system-ui, sans-serif" }}>{isIos ? t.installBtnIos : t.installBtn}</button>
+<button onClick={handleInstallDismiss} style={{ background: 'transparent', color: TEXT3, border: 'none', fontSize: '13px', cursor: 'pointer', fontFamily: "'Inter', system-ui, sans-serif" }}>{t.installDismiss}</button>
+</div>
+{isIos && showIosSteps && (<ol style={{ width: '100%', margin: '8px 0 0 0', paddingLeft: '20px', fontSize: '13px', color: TEXT2, lineHeight: 1.6 }}>
+<li>{t.iosStep1}</li>
+<li>{t.iosStep2}</li>
+<li>{t.iosStep3}</li>
+</ol>)}
+</div>)}
 <div style={{ marginBottom: '1.5rem' }}>
 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
 <span style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.07em', textTransform: 'uppercase', color: TEXT3 }}>{t.messageLabel}</span>
