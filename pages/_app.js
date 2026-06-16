@@ -1,13 +1,12 @@
-import { Analytics } from '@vercel/analytics/react';
+import { Analytics } from '@vercel/analytics/next';
 
 function MyApp({ Component, pageProps }) {
   return (
-      <>
-            <Component {...pageProps} />
-                  <Analytics />
-                      </>
-                        );
-                        }
+    <>
+    <Component {...pageProps} />
+  <Analytics />
+    </>
+  );
+}
 
-                        export default MyApp;
-                        
+export default MyApp;
