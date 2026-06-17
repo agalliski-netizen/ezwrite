@@ -3,6 +3,7 @@ import Head from 'next/head';
 
 var TONES = ['Professional', 'Direct', 'Diplomatic', 'Empathetic', 'Firm'];
 var LANGUAGES = ['Espanol', 'English', 'Portugues'];
+var OUTPUT_LANGUAGES_EXTRA = ['French', 'Italian', 'German', 'Dutch', 'Russian', 'Chinese', 'Japanese', 'Korean', 'Arabic', 'Hindi', 'Turkish', 'Polish', 'Ukrainian', 'Greek', 'Hebrew', 'Swedish', 'Norwegian', 'Danish', 'Finnish', 'Czech', 'Romanian', 'Hungarian', 'Vietnamese', 'Thai', 'Indonesian', 'Filipino'];
 var UI_CODES = { 'Espanol': 'ES', 'English': 'EN', 'Portugues': 'PT' };
 
 var UI = {
@@ -12,6 +13,8 @@ messageLabel: 'Your message',
 placeholder: 'Write what you want to say, as rough as you like...',
 toneLabel: 'Tone',
 langLabel: 'Output language',
+moreLanguages: 'More languages',
+searchLanguagePlaceholder: 'Search language...',
 btn: 'Generate 3 versions',
 writing: 'Writing...',
 err: 'Something went wrong. Please try again.',
@@ -43,6 +46,8 @@ messageLabel: 'Tu mensaje',
 placeholder: 'Escribi lo que queres decir, tan en bruto como quieras...',
 toneLabel: 'Tono',
 langLabel: 'Idioma del resultado',
+moreLanguages: 'Más idiomas',
+searchLanguagePlaceholder: 'Buscar idioma...',
 btn: 'Generar 3 versiones',
 writing: 'Escribiendo...',
 err: 'Algo salio mal. Intenta de nuevo.',
@@ -66,7 +71,7 @@ recipientLabel: 'Destinatario (opcional)',
 recipientOtherPlaceholder: 'Describi la relación...',
 recipientOptions: ['Jefe/a', 'Cliente', 'Colega', 'Amigo/a', 'Pareja', 'Otro'],
 tones: { 'Professional': 'Profesional', 'Direct': 'Directo', 'Diplomatic': 'Diplomatico', 'Empathetic': 'Empatico', 'Firm': 'Firme' },
-langs: { 'Espanol': 'Espanol', 'English': 'English', 'Portugues': 'Portugues' }
+langs: { 'Espanol': 'Espanol', 'English': 'English', 'Portugues': 'Portugues', 'French': 'Frances', 'Italian': 'Italiano', 'German': 'Aleman', 'Dutch': 'Holandes', 'Russian': 'Ruso', 'Chinese': 'Chino', 'Japanese': 'Japones', 'Korean': 'Coreano', 'Arabic': 'Arabe', 'Hindi': 'Hindi', 'Turkish': 'Turco', 'Polish': 'Polaco', 'Ukrainian': 'Ucraniano', 'Greek': 'Griego', 'Hebrew': 'Hebreo', 'Swedish': 'Sueco', 'Norwegian': 'Noruego', 'Danish': 'Danes', 'Finnish': 'Finlandes', 'Czech': 'Checo', 'Romanian': 'Rumano', 'Hungarian': 'Hungaro', 'Vietnamese': 'Vietnamita', 'Thai': 'Tailandes', 'Indonesian': 'Indonesio', 'Filipino': 'Filipino' }
 },
 'Portugues': {
 tagline: 'Escreva sua mensagem. Escolha o tom e o idioma. Obtenha 3 versoes refinadas.',
@@ -74,6 +79,8 @@ messageLabel: 'Sua mensagem',
 placeholder: 'Escreva o que voce quer dizer, tao bruto quanto quiser...',
 toneLabel: 'Tom',
 langLabel: 'Idioma do resultado',
+moreLanguages: 'Mais idiomas',
+searchLanguagePlaceholder: 'Buscar idioma...',
 btn: 'Gerar 3 versoes',
 writing: 'Escrevendo...',
 err: 'Algo deu errado. Tente novamente.',
@@ -97,7 +104,7 @@ recipientLabel: 'Destinatário (opcional)',
 recipientOtherPlaceholder: 'Descreva o relacionamento...',
 recipientOptions: ['Chefe', 'Cliente', 'Colega', 'Amigo/a', 'Parceiro/a', 'Outro'],
 tones: { 'Professional': 'Profissional', 'Direct': 'Direto', 'Diplomatic': 'Diplomatico', 'Empathetic': 'Empatico', 'Firm': 'Firme' },
-langs: { 'Espanol': 'Espanhol', 'English': 'Ingles', 'Portugues': 'Portugues' }
+langs: { 'Espanol': 'Espanhol', 'English': 'Ingles', 'Portugues': 'Portugues', 'French': 'Frances', 'Italian': 'Italiano', 'German': 'Alemao', 'Dutch': 'Holandes', 'Russian': 'Russo', 'Chinese': 'Chines', 'Japanese': 'Japones', 'Korean': 'Coreano', 'Arabic': 'Arabe', 'Hindi': 'Hindi', 'Turkish': 'Turco', 'Polish': 'Polones', 'Ukrainian': 'Ucraniano', 'Greek': 'Grego', 'Hebrew': 'Hebraico', 'Swedish': 'Sueco', 'Norwegian': 'Norueguês', 'Danish': 'Dinamarques', 'Finnish': 'Finlandes', 'Czech': 'Tcheco', 'Romanian': 'Romeno', 'Hungarian': 'Hungaro', 'Vietnamese': 'Vietnamita', 'Thai': 'Tailandes', 'Indonesian': 'Indonesio', 'Filipino': 'Filipino' }
 }
 };
 
@@ -128,6 +135,8 @@ var s13 = useState(null); var deferredInstallPrompt = s13[0]; var setDeferredIns
 var s14 = useState(false); var showInstallBanner = s14[0]; var setShowInstallBanner = s14[1];
 var s15 = useState(false); var isIos = s15[0]; var setIsIos = s15[1];
 var s16 = useState(false); var showIosSteps = s16[0]; var setShowIosSteps = s16[1];
+var s17 = useState(false); var showMoreLanguages = s17[0]; var setShowMoreLanguages = s17[1];
+var s18 = useState(''); var langSearch = s18[0]; var setLangSearch = s18[1];
 
 var t = UI[uiLang] || UI['English'];
 
@@ -295,8 +304,15 @@ EzWrite
 <div style={{ marginBottom: '1.5rem' }}>
 <span style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.07em', textTransform: 'uppercase', color: TEXT3, marginBottom: '8px', display: 'block' }}>{t.langLabel}</span>
 <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
-{LANGUAGES.map(function(l) { var active = language === l; return (<button key={l} onClick={function() { setLanguage(l); }} style={{ padding: '7px 14px', borderRadius: '6px', border: active ? '1.5px solid '+BLUE : '1px solid '+BORDER, background: active ? BLUE_LIGHT : WHITE, color: active ? BLUE : TEXT2, fontSize: '13px', fontWeight: active ? 600 : 400, cursor: 'pointer', fontFamily: "'Inter', system-ui, sans-serif" }}>{t.langs[l] || l}</button>); })}
+{LANGUAGES.map(function(l) { var active = language === l; return (<button key={l} onClick={function() { setLanguage(l); setShowMoreLanguages(false); }} style={{ padding: '7px 14px', borderRadius: '6px', border: active ? '1.5px solid '+BLUE : '1px solid '+BORDER, background: active ? BLUE_LIGHT : WHITE, color: active ? BLUE : TEXT2, fontSize: '13px', fontWeight: active ? 600 : 400, cursor: 'pointer', fontFamily: "'Inter', system-ui, sans-serif" }}>{t.langs[l] || l}</button>); })}
+{(function() { var isExtraActive = OUTPUT_LANGUAGES_EXTRA.indexOf(language) !== -1; return (<button onClick={function() { setShowMoreLanguages(!showMoreLanguages); }} style={{ padding: '7px 14px', borderRadius: '6px', border: isExtraActive ? '1.5px solid '+BLUE : '1px dashed '+BORDER, background: isExtraActive ? BLUE_LIGHT : WHITE, color: isExtraActive ? BLUE : TEXT2, fontSize: '13px', fontWeight: isExtraActive ? 600 : 400, cursor: 'pointer', fontFamily: "'Inter', system-ui, sans-serif" }}>{isExtraActive ? (t.langs[language] || language) : t.moreLanguages}</button>); })()}
 </div>
+{showMoreLanguages && (<div style={{ marginTop: '10px', padding: '12px', border: '1px solid '+BORDER, borderRadius: '8px', background: BG }}>
+<input type="text" value={langSearch} onChange={function(e) { setLangSearch(e.target.value); }} placeholder={t.searchLanguagePlaceholder} style={{ width: '100%', padding: '8px 10px', border: '1px solid '+BORDER, borderRadius: '6px', fontSize: '13px', color: TEXT, fontFamily: "'Inter', system-ui, sans-serif", boxSizing: 'border-box', outline: 'none', marginBottom: '10px' }} />
+<div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', maxHeight: '180px', overflowY: 'auto' }}>
+{OUTPUT_LANGUAGES_EXTRA.filter(function(l) { return (t.langs[l] || l).toLowerCase().indexOf(langSearch.toLowerCase()) !== -1; }).map(function(l) { var active = language === l; return (<button key={l} onClick={function() { setLanguage(l); setShowMoreLanguages(false); setLangSearch(''); }} style={{ padding: '6px 12px', borderRadius: '6px', border: active ? '1.5px solid '+BLUE : '1px solid '+BORDER, background: active ? BLUE_LIGHT : WHITE, color: active ? BLUE : TEXT2, fontSize: '13px', fontWeight: active ? 600 : 400, cursor: 'pointer', fontFamily: "'Inter', system-ui, sans-serif" }}>{t.langs[l] || l}</button>); })}
+</div>
+</div>)}
 </div>
 <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '6px' }}>
 {usageLeft > 0 && usageLeft < DAILY_LIMIT && <span style={{ fontSize: '11px', color: usageLeft === 1 ? RED : TEXT3 }}>{t.usageLeft(usageLeft)}</span>}
