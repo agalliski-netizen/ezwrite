@@ -15,7 +15,7 @@ export default async function handler(req, res) {
 
     if (req.method === 'GET') {
           var uid = (req.query || {}).uid;
-          if (!uid || !kv) return res.status(200).json({ referralCount: 0, bonusGenerations: 0 });
+          if (!uid || !kv) return res.status(200).json({ referralCount: 0, bonusGenerations: 0, isSubscribed: false });
           try {
                   var count = (await kv.scard('refs:' + uid)) || 0;
                   var bonus = Math.floor(count / 5) * 5;
