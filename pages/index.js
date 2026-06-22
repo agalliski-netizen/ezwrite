@@ -8,7 +8,7 @@ var OUTPUT_LANGUAGES_EXTRA = ['French', 'Italian', 'German', 'Dutch', 'Russian',
 var UI_CODES = { 'Espanol': 'ES', 'English': 'EN', 'Portugues': 'PT' };
 
 var UI = {
-'English': {h
+'English': {
 tagline: 'Write your message. Choose a tone and language. Get 3 polished versions.',
 messageLabel: 'Your message',
 placeholder: 'Write what you want to say, as rough as you like...',
