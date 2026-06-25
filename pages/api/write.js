@@ -1,3 +1,5 @@
+export const config = { maxDuration: 30 };
+
 export default async function handler(req, res) {
     if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
     var message = req.body.message;
@@ -37,7 +39,7 @@ export default async function handler(req, res) {
     var langName = langMap[language] || language;
     var recipientContext = recipientToneMap[recipient] ? ' ' + recipientToneMap[recipient] : (recipient ? ' The message is addressed to: ' + recipient + '.' : '');
 
-  var system = 'You are EzWrite, an AI communication assistant. The user gives you a raw message or idea. Rewrite it into 3 distinct polished versions with a ' + toneDesc + ' tone, written in ' + langName + '.' + recipientContext + ' Important guidelines: Keep each version concise and natural — 2 to 4 sentences is ideal, never more than 5. Use everyday language; avoid flowery, pompous, overly formal or exaggerated phrasing. Write the way a real person would. Each version should vary in structure, opening or phrasing while keeping the same tone and language. Return ONLY valid JSON: {"versions":[{"label":"Version A","text":"..."},{"label":"Version B","text":"..."},{"label":"Version C","text":"..."}]}. No markdown, no preamble, just the JSON object.';
+  var system = 'You are EzWrite, an AI communication assistant. The user gives you a raw message or idea. Rewrite it into 3 distinct polished versions with a ' + toneDesc + ' tone, written in ' + langName + '.' + recipientContext + ' Important guidelines: Keep each version concise and natural — 2 to 4 sentences is ideal, never more than 5. Use everyday language; avoid flowery, pompous, overly formal or exaggerated phrasing. Write the way a real person would. Each version should vary in structure, opening or phrasing while keeping the same tone and language. Return ONLY valid JSON: {"versions":[{"label":"A","text":"..."},{"label":"B","text":"..."},{"label":"C","text":"..."}]}. No markdown, no preamble, just the JSON object.';
 
   try {
         var r = await fetch('https://api.anthropic.com/v1/messages', {
