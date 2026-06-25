@@ -46,7 +46,7 @@ tones: { 'Professional': 'Professional', 'Direct': 'Direct', 'Diplomatic': 'Dipl
 langs: { 'Espanol': 'Spanish', 'English': 'English', 'Portugues': 'Portuguese' }
 },
 'Espanol': {
-tagline: 'Escribi tu mensaje. Elegi el tono y el idioma. Obtene 3 versiones pulidas.',
+tagline: 'Escribí tu mensaje. Elegí el tono y el idioma. Obtené 3 versiones pulidas.',
 messageLabel: 'Tu mensaje',
 placeholder: 'Escribi lo que queres decir, tan en bruto como quieras...',
 toneLabel: 'Tono',
@@ -79,7 +79,7 @@ shareProgress: function(n) { return n + ' de 5'; },
 recipientLabel: 'Destinatario (opcional)',
 recipientOtherPlaceholder: 'Describi la relación...',
 recipientOptions: ['Jefe/a', 'Cliente', 'Colega', 'Amigo/a', 'Pareja', 'Otro'],
-tones: { 'Professional': 'Profesional', 'Direct': 'Directo', 'Diplomatic': 'Diplomatico', 'Empathetic': 'Empatico', 'Firm': 'Firme' },
+tones: { 'Professional': 'Profesional', 'Direct': 'Directo', 'Diplomatic': 'Diplomático', 'Empathetic': 'Empático', 'Firm': 'Firme' },
 langs: { 'Espanol': 'Espanol', 'English': 'English', 'Portugues': 'Portugues', 'French': 'Frances', 'Italian': 'Italiano', 'German': 'Aleman', 'Dutch': 'Holandes', 'Russian': 'Ruso', 'Chinese': 'Chino', 'Japanese': 'Japones', 'Korean': 'Coreano', 'Arabic': 'Arabe', 'Hindi': 'Hindi', 'Turkish': 'Turco', 'Polish': 'Polaco', 'Ukrainian': 'Ucraniano', 'Greek': 'Griego', 'Hebrew': 'Hebreo', 'Swedish': 'Sueco', 'Norwegian': 'Noruego', 'Danish': 'Danes', 'Finnish': 'Finlandes', 'Czech': 'Checo', 'Romanian': 'Rumano', 'Hungarian': 'Hungaro', 'Vietnamese': 'Vietnamita', 'Thai': 'Tailandes', 'Indonesian': 'Indonesio', 'Filipino': 'Filipino' }
 },
 'Portugues': {
@@ -116,7 +116,7 @@ shareProgress: function(n) { return n + ' de 5'; },
 recipientLabel: 'Destinatário (opcional)',
 recipientOtherPlaceholder: 'Descreva o relacionamento...',
 recipientOptions: ['Chefe', 'Cliente', 'Colega', 'Amigo/a', 'Parceiro/a', 'Outro'],
-tones: { 'Professional': 'Profissional', 'Direct': 'Direto', 'Diplomatic': 'Diplomatico', 'Empathetic': 'Empatico', 'Firm': 'Firme' },
+tones: { 'Professional': 'Profissional', 'Direct': 'Direto', 'Diplomatic': 'Diplomático', 'Empathetic': 'Empático', 'Firm': 'Firme' },
 langs: { 'Espanol': 'Espanhol', 'English': 'Ingles', 'Portugues': 'Portugues', 'French': 'Frances', 'Italian': 'Italiano', 'German': 'Alemao', 'Dutch': 'Holandes', 'Russian': 'Russo', 'Chinese': 'Chines', 'Japanese': 'Japones', 'Korean': 'Coreano', 'Arabic': 'Arabe', 'Hindi': 'Hindi', 'Turkish': 'Turco', 'Polish': 'Polones', 'Ukrainian': 'Ucraniano', 'Greek': 'Grego', 'Hebrew': 'Hebraico', 'Swedish': 'Sueco', 'Norwegian': 'Norueguês', 'Danish': 'Dinamarques', 'Finnish': 'Finlandes', 'Czech': 'Tcheco', 'Romanian': 'Romeno', 'Hungarian': 'Hungaro', 'Vietnamese': 'Vietnamita', 'Thai': 'Tailandes', 'Indonesian': 'Indonesio', 'Filipino': 'Filipino' }
 }
 };
@@ -241,12 +241,16 @@ var usage = getUsage();
 if (!isSubscribed && usage.count >= DAILY_LIMIT + bonusGen) { setUsageLeft(0); return; }
 if (posthog) posthog.capture('generate_clicked', { tone: tone, language: language, recipient: recipient, message_length: message.trim().length });
 setLoading(true); setError(''); setVersions(null);
-try {
+var _ctrl = new AbortController();
+    var _tout = setTimeout(function() { _ctrl.abort(); }, 25000);
+    try {
 var res = await fetch('/api/write', {
 method: 'POST',
 headers: { 'Content-Type': 'application/json' },
 body: JSON.stringify({ message: message, tone: tone, language: language, recipient: recipient === 'Other' || recipient === 'Otro' || recipient === 'Outro' ? recipientOther : recipient })
-});
+,
+        signal: _ctrl.signal
+      });
 var data = await res.json();
 if (data.error) { setError(t.err); } else {
 setVersions(data.versions);
@@ -254,8 +258,8 @@ usage.count += 1;
 saveUsage(usage);
 setUsageLeft((DAILY_LIMIT + bonusGen) - usage.count);
 }
-} catch (e) { setError(t.connErr); }
-finally { setLoading(false); }
+} catch (e) { clearTimeout(_tout); setError(e.name === 'AbortError' ? t.err : t.connErr); }
+finally { clearTimeout(_tout); setLoading(false); }
 }
 
 async function handleCopy(text, idx) {
