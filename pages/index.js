@@ -49,7 +49,7 @@ langs: { 'Espanol': 'Spanish', 'English': 'English', 'Portugues': 'Portuguese' }
 'Espanol': {
 tagline: 'Escribí tu mensaje. Elegí el tono y el idioma. Obtené 3 versiones pulidas.',
 messageLabel: 'Tu mensaje',
-placeholder: 'Escribi lo que queres decir, tan en bruto como quieras...',
+placeholder: 'Escribí lo que querés decir, tan en bruto como quieras...',
 toneLabel: 'Tono',
 langLabel: 'Idioma del resultado',
 moreLanguages: 'Más idiomas',
@@ -82,7 +82,7 @@ recipientOtherPlaceholder: 'Describi la relación...',
 recipientOptions: ['Jefe/a', 'Cliente', 'Colega', 'Amigo/a', 'Pareja', 'Otro'],
 tones: { 'Professional': 'Profesional', 'Direct': 'Directo', 'Diplomatic': 'Diplomático', 'Empathetic': 'Empático', 'Firm': 'Firme' },
   versionLabel: 'Versión',
-langs: { 'Espanol': 'Espanol', 'English': 'English', 'Portugues': 'Portugues', 'French': 'Frances', 'Italian': 'Italiano', 'German': 'Aleman', 'Dutch': 'Holandes', 'Russian': 'Ruso', 'Chinese': 'Chino', 'Japanese': 'Japones', 'Korean': 'Coreano', 'Arabic': 'Arabe', 'Hindi': 'Hindi', 'Turkish': 'Turco', 'Polish': 'Polaco', 'Ukrainian': 'Ucraniano', 'Greek': 'Griego', 'Hebrew': 'Hebreo', 'Swedish': 'Sueco', 'Norwegian': 'Noruego', 'Danish': 'Danes', 'Finnish': 'Finlandes', 'Czech': 'Checo', 'Romanian': 'Rumano', 'Hungarian': 'Hungaro', 'Vietnamese': 'Vietnamita', 'Thai': 'Tailandes', 'Indonesian': 'Indonesio', 'Filipino': 'Filipino' }
+langs: { 'Espanol': 'Español', 'English': 'English', 'Portugues': 'Portugués', 'French': 'Francés', 'Italian': 'Italiano', 'German': 'Alemán', 'Dutch': 'Holandés', 'Russian': 'Ruso', 'Chinese': 'Chino', 'Japanese': 'Japonés', 'Korean': 'Coreano', 'Arabic': 'Árabe', 'Hindi': 'Hindi', 'Turkish': 'Turco', 'Polish': 'Polaco', 'Ukrainian': 'Ucraniano', 'Greek': 'Griego', 'Hebrew': 'Hebreo', 'Swedish': 'Sueco', 'Norwegian': 'Noruego', 'Danish': 'Danés', 'Finnish': 'Finlandés', 'Czech': 'Checo', 'Romanian': 'Rumano', 'Hungarian': 'Húngaro', 'Vietnamese': 'Vietnamita', 'Thai': 'Tailandés', 'Indonesian': 'Indonesio', 'Filipino': 'Filipino' }
 },
 'Portugues': {
 tagline: 'Escreva sua mensagem. Escolha o tom e o idioma. Obtenha 3 versoes refinadas.',
