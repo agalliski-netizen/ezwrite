@@ -1,51 +1,53 @@
 import crypto from 'crypto';
 
-export const config = { api: { bodyParser: false } };
-
-function getRawBody(req) {
-  return new Promise(function(resolve, reject) {
-    var data = '';
-    req.on('data', function(chunk) { data += chunk; });
-    req.on('end', function() { resolve(data); });
-    req.on('error', reject);
-  });
-}
-
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).end();
 
-  var rawBody = await getRawBody(req);
-  var secret = process.env.LEMON_SQUEEZY_WEBHOOK_SECRET;
-  var signature = req.headers['x-signature'];
+  const secret = process.env.LEMON_SQUEEZY_WEBHOOK_SECRET;
+  const rawBody = JSON.stringify(req.body);
+  const signature = req.headers['x-signature'];
 
-  if (secret && signature) {
-    var hmac = crypto.createHmac('sha256', secret).update(rawBody).digest('hex');
-    if (hmac !== signature) return res.status(401).json({ error: 'Invalid signature' });
+  const hmac = crypto.createHmac('sha256', secret);
+  const digest = Buffer.from(hmac.update(rawBody).digest('hex'), 'utf8');
+  const sig = Buffer.from(signature || '', 'utf8');
+  if (digest.length !== sig.length || !crypto.timingSafeEqual(digest, sig)) {
+    return res.status(401).json({ error: 'Invalid signature' });
   }
 
-  var data;
-  try { data = JSON.parse(rawBody); } catch(e) { return res.status(400).json({ error: 'Invalid JSON' }); }
+  const payload = req.body;
+  const eventName = payload?.meta?.event_name;
+  const userId = payload?.meta?.custom_data?.user_id;
 
-  var event = req.headers['x-event-name'];
-  var userId = (data.meta && data.meta.custom_data) ? data.meta.custom_data.user_id : null;
+  async function kvSet(key, value) {
+    const url = process.env.KV_REST_API_URL + '/set/' + key;
+    const r = await fetch(url, {
+      method: 'POST',
+      headers: {
+        Authorization: 'Bearer ' + process.env.KV_REST_API_TOKEN,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(value)
+    });
+    return r.json();
+  }
 
-  if (userId) {
-    var kv = null;
-    try { var m = require('@vercel/kv'); kv = m.kv; } catch(e) {}
-    if (kv) {
-      try {
-        if (event === 'subscription_created' || event === 'subscription_activated' || event === 'subscription_updated') {
-          var status = (data.data && data.data.attributes) ? data.data.attributes.status : 'active';
-          if (status === 'active') {
-            await kv.set('subscriber:' + userId, '1');
-          } else {
-            await kv.del('subscriber:' + userId);
-          }
-        } else if (event === 'subscription_cancelled' || event === 'subscription_expired') {
-          await kv.del('subscriber:' + userId);
-        }
-      } catch(e) {}
+  async function kvDel(key) {
+    const url = process.env.KV_REST_API_URL + '/del/' + key;
+    const r = await fetch(url, {
+      method: 'POST',
+      headers: { Authorization: 'Bearer ' + process.env.KV_REST_API_TOKEN }
+    });
+    return r.json();
+  }
+
+  try {
+    if (userId && (eventName === 'subscription_created' || eventName === 'subscription_activated')) {
+      await kvSet('subscriber:' + userId, '1');
+    } else if (userId && (eventName === 'subscription_cancelled' || eventName === 'subscription_expired')) {
+      await kvDel('subscriber:' + userId);
     }
+  } catch (e) {
+    console.error('KV error:', e.message);
   }
 
   return res.status(200).json({ ok: true });
