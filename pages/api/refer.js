@@ -19,9 +19,11 @@ export default async function handler(req, res) {
           try {
                   var count = (await kv.scard('refs:' + uid)) || 0;
                   var bonus = Math.floor(count / 5) * 5;
-                  return res.status(200).json({ referralCount: count, bonusGenerations: bonus });
+                  var subVal = await kv.get('subscriber:' + uid);
+                  var isSubscribed = !!subVal;
+                  return res.status(200).json({ referralCount: count, bonusGenerations: bonus, isSubscribed: isSubscribed });
                 } catch(e) {
-                  return res.status(200).json({ referralCount: 0, bonusGenerations: 0 });
+                  return res.status(200).json({ referralCount: 0, bonusGenerations: 0, isSubscribed: false });
                 }
         }
 
