@@ -285,10 +285,10 @@ setTimeout(function() { setCopied(null); }, 2000);
 } catch (e) {}
 }
 
-var isDisabled = !message.trim() || loading || (usageLeft <= 0 && !isSub);
+var isDisabled = !message.trim() || loading || (usageLeft <= 0 && !isSubscribed);
 var showManifest = typeof navigator === 'undefined' ? true : !/SamsungBrowser/i.test(navigator.userAgent || '');
 
-  var showPaywall = !isSub && usageLeft <= 0;
+  var showPaywall = !isSubscribed && usageLeft <= 0;
 return (
 <div style={{ minHeight: '100vh', background: BG, fontFamily: "'Inter', system-ui, sans-serif", padding: '0 1rem' }}>
 <Head>
