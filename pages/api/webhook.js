@@ -1,10 +1,18 @@
 import crypto from 'crypto';
 
+export const config = { api: { bodyParser: false } };
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).end();
 
+  const rawBody = await new Promise((resolve, reject) => {
+    let data = '';
+    req.on('data', chunk => { data += chunk.toString(); });
+    req.on('end', () => resolve(data));
+    req.on('error', reject);
+  });
+
   const secret = process.env.LEMON_SQUEEZY_WEBHOOK_SECRET;
-  const rawBody = JSON.stringify(req.body);
   const signature = req.headers['x-signature'];
 
   const hmac = crypto.createHmac('sha256', secret);
@@ -14,7 +22,7 @@ export default async function handler(req, res) {
     return res.status(401).json({ error: 'Invalid signature' });
   }
 
-  const payload = req.body;
+  const payload = JSON.parse(rawBody);
   const eventName = payload?.meta?.event_name;
   const userId = payload?.meta?.custom_data?.user_id;
 
@@ -51,4 +59,3 @@ export default async function handler(req, res) {
   }
 
   return res.status(200).json({ ok: true });
-}
