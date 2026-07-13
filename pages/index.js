@@ -215,18 +215,7 @@ var newText = '';
 for (var i = e.resultIndex; i < e.results.length; i++) {
 newText += e.results[i][0].transcript + ' ';
 }
-if (newText) { setMessage(function(prev) { return prev + newText; })
-
-  useEffect(function() {
-    var uid = localStorage.getItem('ezw_uid');
-    if (!uid) return;
-    var params = new URLSearchParams(window.location.search);
-    if (params.get('activated')) window.history.replaceState({}, '', '/');
-    fetch('/api/check-sub?uid=' + uid)
-      .then(function(r) { return r.json(); })
-      .then(function(d) { if (d.sub) setIsSub(true); })
-      .catch(function() {});
-  }, []);; }
+if (newText) { setMessage(function(prev) { return prev + newText; }); }
 };
 rec.onend = function() { setIsListening(false); };
 rec.onerror = function() { setIsListening(false); };
