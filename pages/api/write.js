@@ -4,13 +4,13 @@ export default async function handler(req, res) {
 if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 var message = req.body.message;
 var tone = req.body.tone;
+var customTone = req.body.customTone;
 var language = req.body.language;
 var recipient = req.body.recipient || '';
 if (!message || !tone || !language) return res.status(400).json({ error: 'Missing fields' });
 
 var toneMap = {
 'Professional': 'professional yet approachable — clear and well-structured without being stiff or bureaucratic',
-'Direct': 'direct and concise with no unnecessary filler or padding',
 'Diplomatic': 'diplomatic and tactful, careful with wording without being vague',
 'Empathetic': 'empathetic and warm — genuine and human, without being condescending, patronizing or overly effusive. Keep it brief and natural, like a real person would write it.',
 'Firm': 'firm and assertive, holding a clear position without being aggressive or cold'
@@ -35,7 +35,12 @@ var langMap = {
 'Portugues': 'Brazilian Portuguese'
 };
 
-var toneDesc = toneMap[tone] || tone;
+var toneDesc;
+if (tone === 'Custom' && customTone && customTone.trim()) {
+  toneDesc = customTone.trim() + ' (this is a custom tone description given directly by the user — follow it closely)';
+} else {
+  toneDesc = toneMap[tone] || tone;
+}
 var langName = langMap[language] || language;
 var recipientContext = recipientToneMap[recipient] ? ' ' + recipientToneMap[recipient] : (recipient ? ' The message is addressed to: ' + recipient + '.' : '');
 
