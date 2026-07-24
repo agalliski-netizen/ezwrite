@@ -3,8 +3,8 @@ import Head from 'next/head';
 import { usePostHog } from 'posthog-js/react';
 import { Inter, DM_Serif_Display } from 'next/font/google';
 
-var inter = Inter({ subsets: ['latin'], weight: ['400', '500', '600', '700'], display: 'swap' });
-var dmSerif = DM_Serif_Display({ subsets: ['latin'], weight: '400', display: 'swap' });
+const inter = Inter({ subsets: ['latin'], weight: ['400', '500', '600', '700'], display: 'swap' });
+const dmSerif = DM_Serif_Display({ subsets: ['latin'], weight: '400', display: 'swap' });
 
 var TONES = ['Professional', 'Direct', 'Diplomatic', 'Empathetic', 'Firm'];
 var LANGUAGES = ['Espanol', 'English', 'Portugues'];
