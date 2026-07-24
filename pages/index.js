@@ -208,6 +208,7 @@ var s24 = useState(false); var themeLoaded = s24[0]; var setThemeLoaded = s24[1]
 var s25 = useState(''); var customTone = s25[0]; var setCustomTone = s25[1];
 var s26 = useState(function() { try { return JSON.parse(localStorage.getItem('ezw_history') || '[]'); } catch(e) { return []; } }); var history = s26[0]; var setHistory = s26[1];
 var s27 = useState(false); var showHistory = s27[0]; var setShowHistory = s27[1];
+var s28 = useState(function() { try { return JSON.parse(localStorage.getItem('ezw_custom_tones') || '[]'); } catch(e) { return []; } }); var recentCustomTones = s28[0]; var setRecentCustomTones = s28[1];
 
 var posthog = usePostHog();
 var t = UI[uiLang] || UI['English'];
@@ -309,14 +310,14 @@ setHistory(h);
 } catch(e) {}
 }
 
-async function runGenerate(msgOverride, toneOverride, recipientOverride) {
+async function runGenerate(msgOverride, toneOverride, recipientOverride, isExample) {
 var msg = msgOverride !== undefined ? msgOverride : message;
 if (!msg.trim()) return;
 var effectiveTone = toneOverride || tone;
 if ((effectiveTone === 'Custom') && !customTone.trim()) return;
 var usage = getUsage();
-if (!isSubscribed && usage.count >= DAILY_LIMIT + bonusGen) { setUsageLeft(0); return; }
-if (posthog) posthog.capture('generate_clicked', { tone: effectiveTone, language: language, recipient: recipientOverride !== undefined ? recipientOverride : recipient, message_length: msg.trim().length });
+if (!isExample && !isSubscribed && usage.count >= DAILY_LIMIT + bonusGen) { setUsageLeft(0); return; }
+if (posthog) posthog.capture('generate_clicked', { tone: effectiveTone, language: language, recipient: recipientOverride !== undefined ? recipientOverride : recipient, message_length: msg.trim().length, is_example: !!isExample });
 setLoading(true); setError(''); setVersions(null);
 var _ctrl = new AbortController();
 var _tout = setTimeout(function() { _ctrl.abort(); }, 25000);
@@ -332,10 +333,13 @@ signal: _ctrl.signal
 var data = await res.json();
 if (data.error) { setError(t.err); } else {
 setVersions(data.versions);
+if (!isExample) {
 usage.count += 1;
 saveUsage(usage);
 setUsageLeft((DAILY_LIMIT + bonusGen) - usage.count);
+}
 addToHistory({ id: Date.now(), message: msg, tone: effectiveTone, customTone: effectiveTone === 'Custom' ? customTone.trim() : '', language: language, recipient: effectiveRecipient, versions: data.versions });
+if (effectiveTone === 'Custom' && customTone.trim()) { addCustomToneToRecent(customTone.trim()); }
 }
 } catch (e) { clearTimeout(_tout); setError(e.name === 'AbortError' ? t.err : t.connErr); }
 finally { clearTimeout(_tout); setLoading(false); }
@@ -364,7 +368,18 @@ setMessage(ex.text);
 setTone(ex.tone);
 setRecipient(ex.recipient);
 if (posthog) posthog.capture('example_clicked', { label: ex.label });
-runGenerate(ex.text, ex.tone, ex.recipient);
+runGenerate(ex.text, ex.tone, ex.recipient, true);
+}
+
+function addCustomToneToRecent(toneText) {
+try {
+var arr = JSON.parse(localStorage.getItem('ezw_custom_tones') || '[]');
+arr = arr.filter(function(x) { return x.toLowerCase() !== toneText.toLowerCase(); });
+arr.unshift(toneText);
+if (arr.length > 5) arr = arr.slice(0, 5);
+localStorage.setItem('ezw_custom_tones', JSON.stringify(arr));
+setRecentCustomTones(arr);
+} catch(e) {}
 }
 
 async function handleCopy(text, idx) {
@@ -492,6 +507,9 @@ EzWrite
 {tone === 'Custom' && (<div style={{ marginTop: '10px' }}>
 <div style={{ fontSize: '12px', color: C.TEXT3, marginBottom: '6px' }}>{t.customToneHint}</div>
 <input type="text" value={customTone} onChange={function(e) { setCustomTone(e.target.value); }} placeholder={t.customTonePlaceholder} style={{ width: '100%', padding: '10px 14px', border: '1px solid '+C.BORDER, borderRadius: '8px', fontSize: '13.5px', color: C.TEXT, background: C.SURFACE, fontFamily: inter.style.fontFamily, boxSizing: 'border-box', outline: 'none' }} />
+{recentCustomTones.length > 0 && (<div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', marginTop: '8px' }}>
+{recentCustomTones.map(function(ct, i) { return (<button key={i} onClick={function() { setCustomTone(ct); }} style={{ padding: '5px 11px', borderRadius: '6px', border: '1px solid '+C.BORDER, background: 'transparent', color: C.TEXT2, fontSize: '12px', cursor: 'pointer', fontFamily: inter.style.fontFamily, maxWidth: '180px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{ct}</button>); })}
+</div>)}
 </div>)}
 </div>
 <div style={{ marginBottom: '1.75rem' }}>
