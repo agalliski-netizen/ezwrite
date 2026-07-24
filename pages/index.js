@@ -5,7 +5,7 @@ import { Inter } from 'next/font/google';
 
 const inter = Inter({ subsets: ['latin'], weight: ['400', '500', '600', '700', '800'], display: 'swap' });
 
-var TONES = ['Professional', 'Direct', 'Diplomatic', 'Empathetic', 'Firm'];
+var TONES = ['Professional', 'Diplomatic', 'Empathetic', 'Firm', 'Custom'];
 var LANGUAGES = ['Espanol', 'English', 'Portugues'];
 var OUTPUT_LANGUAGES_EXTRA = ['French', 'Italian', 'German', 'Dutch', 'Russian', 'Chinese', 'Japanese', 'Korean', 'Arabic', 'Hindi', 'Turkish', 'Polish', 'Ukrainian', 'Greek', 'Hebrew', 'Swedish', 'Norwegian', 'Danish', 'Finnish', 'Czech', 'Romanian', 'Hungarian', 'Vietnamese', 'Thai', 'Indonesian', 'Filipino'];
 var UI_CODES = { 'Espanol': 'ES', 'English': 'EN', 'Portugues': 'PT' };
@@ -65,7 +65,13 @@ shareProgress: function(n) { return n + ' of 5'; },
 recipientLabel: 'Recipient (optional)',
 recipientOtherPlaceholder: 'Describe the relationship...',
 recipientOptions: ['Boss', 'Client', 'Colleague', 'Friend', 'Partner', 'Other'],
-tones: { 'Professional': 'Professional', 'Direct': 'Direct', 'Diplomatic': 'Diplomatic', 'Empathetic': 'Empathetic', 'Firm': 'Firm' },
+tones: { 'Professional': 'Professional', 'Diplomatic': 'Diplomatic', 'Empathetic': 'Empathetic', 'Firm': 'Firm', 'Custom': 'Custom' },
+customTonePlaceholder: 'e.g. "like writing to my grandma" or "lawyer, but not stiff"',
+customToneHint: 'Describe the tone in your own words — EzWrite will follow it.',
+historyLabel: 'History',
+historyEmpty: 'No messages yet',
+historyUse: 'View again',
+historyClear: 'Clear history',
 versionLabel: 'Version',
 langs: { 'Espanol': 'Spanish', 'English': 'English', 'Portugues': 'Portuguese' }
 },
@@ -105,7 +111,13 @@ shareProgress: function(n) { return n + ' de 5'; },
 recipientLabel: 'Destinatario (opcional)',
 recipientOtherPlaceholder: 'Describi la relación...',
 recipientOptions: ['Jefe/a', 'Cliente', 'Colega', 'Amigo/a', 'Pareja', 'Otro'],
-tones: { 'Professional': 'Profesional', 'Direct': 'Directo', 'Diplomatic': 'Diplomático', 'Empathetic': 'Empático', 'Firm': 'Firme' },
+tones: { 'Professional': 'Profesional', 'Diplomatic': 'Diplomático', 'Empathetic': 'Empático', 'Firm': 'Firme', 'Custom': 'Personalizado' },
+customTonePlaceholder: 'ej: "como si le escribiera a mi abuela" o "tono de abogado pero sin ser pesado"',
+customToneHint: 'Describí el tono con tus propias palabras — EzWrite lo va a seguir.',
+historyLabel: 'Historial',
+historyEmpty: 'Todavía no hay mensajes',
+historyUse: 'Ver de nuevo',
+historyClear: 'Borrar historial',
 versionLabel: 'Versión',
 langs: { 'Espanol': 'Español', 'English': 'English', 'Portugues': 'Portugués', 'French': 'Francés', 'Italian': 'Italiano', 'German': 'Alemán', 'Dutch': 'Holandés', 'Russian': 'Ruso', 'Chinese': 'Chino', 'Japanese': 'Japonés', 'Korean': 'Coreano', 'Arabic': 'Árabe', 'Hindi': 'Hindi', 'Turkish': 'Turco', 'Polish': 'Polaco', 'Ukrainian': 'Ucraniano', 'Greek': 'Griego', 'Hebrew': 'Hebreo', 'Swedish': 'Sueco', 'Norwegian': 'Noruego', 'Danish': 'Danés', 'Finnish': 'Finlandés', 'Czech': 'Checo', 'Romanian': 'Rumano', 'Hungarian': 'Húngaro', 'Vietnamese': 'Vietnamita', 'Thai': 'Tailandés', 'Indonesian': 'Indonesio', 'Filipino': 'Filipino' }
 },
@@ -145,7 +157,13 @@ shareProgress: function(n) { return n + ' de 5'; },
 recipientLabel: 'Destinatário (opcional)',
 recipientOtherPlaceholder: 'Descreva o relacionamento...',
 recipientOptions: ['Chefe', 'Cliente', 'Colega', 'Amigo/a', 'Parceiro/a', 'Outro'],
-tones: { 'Professional': 'Profissional', 'Direct': 'Direto', 'Diplomatic': 'Diplomático', 'Empathetic': 'Empático', 'Firm': 'Firme' },
+tones: { 'Professional': 'Profissional', 'Diplomatic': 'Diplomático', 'Empathetic': 'Empático', 'Firm': 'Firme', 'Custom': 'Personalizado' },
+customTonePlaceholder: 'ex: "como se estivesse escrevendo pra minha avo" ou "tom de advogado mas sem ser chato"',
+customToneHint: 'Descreva o tom com suas proprias palavras — o EzWrite vai seguir.',
+historyLabel: 'Historico',
+historyEmpty: 'Ainda nao ha mensagens',
+historyUse: 'Ver novamente',
+historyClear: 'Limpar historico',
 versionLabel: 'Versão',
 langs: { 'Espanol': 'Espanhol', 'English': 'Ingles', 'Portugues': 'Portugues', 'French': 'Frances', 'Italian': 'Italiano', 'German': 'Alemao', 'Dutch': 'Holandes', 'Russian': 'Russo', 'Chinese': 'Chines', 'Japanese': 'Japones', 'Korean': 'Coreano', 'Arabic': 'Arabe', 'Hindi': 'Hindi', 'Turkish': 'Turco', 'Polish': 'Polones', 'Ukrainian': 'Ucraniano', 'Greek': 'Grego', 'Hebrew': 'Hebraico', 'Swedish': 'Sueco', 'Norwegian': 'Norueguês', 'Danish': 'Dinamarques', 'Finnish': 'Finlandes', 'Czech': 'Tcheco', 'Romanian': 'Romeno', 'Hungarian': 'Hungaro', 'Vietnamese': 'Vietnamita', 'Thai': 'Tailandes', 'Indonesian': 'Indonesio', 'Filipino': 'Filipino' }
 }
@@ -187,6 +205,9 @@ var s21 = useState(0); var bonusGen = s21[0]; var setBonusGen = s21[1];
 var s22 = useState(false); var isSubscribed = s22[0]; var setIsSubscribed = s22[1];
 var s23 = useState(true); var isDark = s23[0]; var setIsDark = s23[1];
 var s24 = useState(false); var themeLoaded = s24[0]; var setThemeLoaded = s24[1];
+var s25 = useState(''); var customTone = s25[0]; var setCustomTone = s25[1];
+var s26 = useState(function() { try { return JSON.parse(localStorage.getItem('ezw_history') || '[]'); } catch(e) { return []; } }); var history = s26[0]; var setHistory = s26[1];
+var s27 = useState(false); var showHistory = s27[0]; var setShowHistory = s27[1];
 
 var posthog = usePostHog();
 var t = UI[uiLang] || UI['English'];
@@ -278,20 +299,33 @@ setShowInstallBanner(false);
 try { localStorage.setItem('ezw_install_dismissed', '1'); } catch(e) {}
 }
 
+function addToHistory(entry) {
+try {
+var h = JSON.parse(localStorage.getItem('ezw_history') || '[]');
+h.unshift(entry);
+if (h.length > 10) h = h.slice(0, 10);
+localStorage.setItem('ezw_history', JSON.stringify(h));
+setHistory(h);
+} catch(e) {}
+}
+
 async function runGenerate(msgOverride, toneOverride, recipientOverride) {
 var msg = msgOverride !== undefined ? msgOverride : message;
 if (!msg.trim()) return;
+var effectiveTone = toneOverride || tone;
+if ((effectiveTone === 'Custom') && !customTone.trim()) return;
 var usage = getUsage();
 if (!isSubscribed && usage.count >= DAILY_LIMIT + bonusGen) { setUsageLeft(0); return; }
-if (posthog) posthog.capture('generate_clicked', { tone: toneOverride || tone, language: language, recipient: recipientOverride !== undefined ? recipientOverride : recipient, message_length: msg.trim().length });
+if (posthog) posthog.capture('generate_clicked', { tone: effectiveTone, language: language, recipient: recipientOverride !== undefined ? recipientOverride : recipient, message_length: msg.trim().length });
 setLoading(true); setError(''); setVersions(null);
 var _ctrl = new AbortController();
 var _tout = setTimeout(function() { _ctrl.abort(); }, 25000);
 try {
+var effectiveRecipient = (function() { var r = recipientOverride !== undefined ? recipientOverride : recipient; return r === 'Other' || r === 'Otro' || r === 'Outro' ? recipientOther : r; })();
 var res = await fetch('/api/write', {
 method: 'POST',
 headers: { 'Content-Type': 'application/json' },
-body: JSON.stringify({ message: msg, tone: toneOverride || tone, language: language, recipient: (function() { var r = recipientOverride !== undefined ? recipientOverride : recipient; return r === 'Other' || r === 'Otro' || r === 'Outro' ? recipientOther : r; })() })
+body: JSON.stringify({ message: msg, tone: effectiveTone, customTone: effectiveTone === 'Custom' ? customTone.trim() : undefined, language: language, recipient: effectiveRecipient })
 ,
 signal: _ctrl.signal
 });
@@ -301,9 +335,26 @@ setVersions(data.versions);
 usage.count += 1;
 saveUsage(usage);
 setUsageLeft((DAILY_LIMIT + bonusGen) - usage.count);
+addToHistory({ id: Date.now(), message: msg, tone: effectiveTone, customTone: effectiveTone === 'Custom' ? customTone.trim() : '', language: language, recipient: effectiveRecipient, versions: data.versions });
 }
 } catch (e) { clearTimeout(_tout); setError(e.name === 'AbortError' ? t.err : t.connErr); }
 finally { clearTimeout(_tout); setLoading(false); }
+}
+
+function handleHistoryClick(entry) {
+setMessage(entry.message);
+setTone(entry.tone);
+if (entry.tone === 'Custom') setCustomTone(entry.customTone || '');
+setLanguage(entry.language);
+setRecipient(entry.recipient || '');
+setVersions(entry.versions);
+setShowHistory(false);
+if (posthog) posthog.capture('history_item_viewed');
+}
+
+function handleClearHistory() {
+try { localStorage.removeItem('ezw_history'); } catch(e) {}
+setHistory([]);
 }
 
 function handleGenerate() { runGenerate(); }
@@ -371,6 +422,10 @@ return (
 EzWrite
 </div>
 <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
+<button onClick={function() { setShowHistory(!showHistory); }} aria-label="History" style={{ width: '30px', height: '30px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '6px', border: showHistory ? '1.5px solid '+C.ACCENT_BORDER : '1px solid '+C.BORDER, background: showHistory ? C.ACCENT_SOFT : 'transparent', cursor: 'pointer', color: showHistory ? C.ACCENT : C.TEXT2, position: 'relative' }}>
+<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+{history.length > 0 && <span style={{ position: 'absolute', top: '-3px', right: '-3px', width: '7px', height: '7px', borderRadius: '50%', background: C.ACCENT }}></span>}
+</button>
 <button onClick={toggleTheme} className="ez-theme-toggle" data-dark={isDark} aria-label="Toggle theme" style={{ width: '30px', height: '30px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '6px', border: '1px solid '+C.BORDER, background: 'transparent', cursor: 'pointer', color: C.TEXT2 }}>
 {isDark ? (<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3a9 9 0 109 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 01-4.4 2.26 5.403 5.403 0 01-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/></svg>) : (<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 7a5 5 0 100 10 5 5 0 000-10zm0-5a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm0 18a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM4.22 4.22a1 1 0 011.42 0l.7.7a1 1 0 11-1.42 1.42l-.7-.7a1 1 0 010-1.42zm14.14 14.14a1 1 0 011.42 0l.7.7a1 1 0 01-1.42 1.42l-.7-.7a1 1 0 010-1.42zM2 12a1 1 0 011-1h1a1 1 0 110 2H3a1 1 0 01-1-1zm18 0a1 1 0 011-1h1a1 1 0 110 2h-1a1 1 0 01-1-1zM4.22 19.78a1 1 0 010-1.42l.7-.7a1 1 0 111.42 1.42l-.7.7a1 1 0 01-1.42 0zM18.36 5.64a1 1 0 010-1.42l.7-.7a1 1 0 111.42 1.42l-.7.7a1 1 0 01-1.42 0z"/></svg>)}
 </button>
@@ -381,6 +436,18 @@ EzWrite
 </div>
 <h1 className="ez-headline" style={{ fontSize: '20px', fontWeight: 700, color: C.TEXT, marginTop: '14px', lineHeight: 1.4, letterSpacing: '-0.015em', maxWidth: '480px' }}>{t.tagline}</h1>
 </div>
+{showHistory && (<div className="ez-card" style={{ background: C.SURFACE, border: '1px solid '+C.BORDER, borderRadius: '14px', padding: '16px', marginBottom: '1.75rem', boxShadow: C.SHADOW }}>
+<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: history.length ? '12px' : '0' }}>
+<span style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.09em', textTransform: 'uppercase', color: C.TEXT3 }}>{t.historyLabel}</span>
+{history.length > 0 && <button onClick={handleClearHistory} style={{ background: 'transparent', border: 'none', color: C.TEXT3, fontSize: '12px', cursor: 'pointer', fontFamily: inter.style.fontFamily }}>{t.historyClear}</button>}
+</div>
+{history.length === 0 ? (<div style={{ fontSize: '13px', color: C.TEXT3, textAlign: 'center', padding: '8px 0' }}>{t.historyEmpty}</div>) : (<div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+{history.map(function(h) { return (<button key={h.id} onClick={function() { handleHistoryClick(h); }} style={{ textAlign: 'left', padding: '10px 12px', borderRadius: '8px', border: '1px solid '+C.BORDER, background: 'transparent', cursor: 'pointer', fontFamily: inter.style.fontFamily }}>
+<div style={{ fontSize: '13px', color: C.TEXT, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{h.message}</div>
+<div style={{ fontSize: '11px', color: C.TEXT3, marginTop: '3px' }}>{t.tones[h.tone] || h.tone}{h.recipient ? ' · ' + h.recipient : ''}</div>
+</button>); })}
+</div>)}
+</div>)}
 {showInstallBanner && (<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px', background: C.ACCENT_SOFT, border: '1px solid '+C.ACCENT, borderRadius: '10px', padding: '12px 14px', marginBottom: '1.5rem', flexWrap: 'wrap' }}>
 <span style={{ fontSize: '13px', color: C.TEXT, fontWeight: 500 }}>{t.installTitle}</span>
 <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
@@ -422,6 +489,10 @@ EzWrite
 <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
 {TONES.map(function(tk) { var active = tone === tk; return (<button key={tk} onClick={function() { setTone(tk); }} style={{ padding: '8px 15px', borderRadius: '8px', border: active ? '1.5px solid '+C.ACCENT_BORDER : '1px solid '+C.BORDER, background: active ? C.ACCENT_SOFT : 'transparent', color: active ? C.ACCENT : C.TEXT2, fontSize: '13.5px', fontWeight: active ? 600 : 500, cursor: 'pointer', fontFamily: inter.style.fontFamily, transition: 'all .15s ease' }}>{t.tones[tk] || tk}</button>); })}
 </div>
+{tone === 'Custom' && (<div style={{ marginTop: '10px' }}>
+<div style={{ fontSize: '12px', color: C.TEXT3, marginBottom: '6px' }}>{t.customToneHint}</div>
+<input type="text" value={customTone} onChange={function(e) { setCustomTone(e.target.value); }} placeholder={t.customTonePlaceholder} style={{ width: '100%', padding: '10px 14px', border: '1px solid '+C.BORDER, borderRadius: '8px', fontSize: '13.5px', color: C.TEXT, background: C.SURFACE, fontFamily: inter.style.fontFamily, boxSizing: 'border-box', outline: 'none' }} />
+</div>)}
 </div>
 <div style={{ marginBottom: '1.75rem' }}>
 <span style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.09em', textTransform: 'uppercase', color: C.TEXT3, marginBottom: '10px', display: 'block' }}>{t.langLabel}</span>
