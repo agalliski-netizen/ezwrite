@@ -42,6 +42,7 @@ freeNote: 'Free, no credit card',
 tryExample: 'Or try an example',
 writing: 'Writing',
 err: 'Something went wrong. Please try again.',
+overloadedErr: 'High demand right now — try again in a few seconds.',
 connErr: 'Connection error. Please try again.',
 copy: 'Copy', copied: 'Copied',
 dictate: 'Dictate', stop: 'Stop',
@@ -88,6 +89,7 @@ freeNote: 'Gratis, sin tarjeta',
 tryExample: 'O probá con un ejemplo',
 writing: 'Escribiendo',
 err: 'Algo salio mal. Intenta de nuevo.',
+overloadedErr: 'Mucha demanda ahora mismo — probá de nuevo en unos segundos.',
 connErr: 'Error de conexion. Intenta de nuevo.',
 copy: 'Copiar', copied: 'Copiado',
 dictate: 'Dictar', stop: 'Detener',
@@ -134,6 +136,7 @@ freeNote: 'Gratis, sem cartao',
 tryExample: 'Ou experimente um exemplo',
 writing: 'Escrevendo',
 err: 'Algo deu errado. Tente novamente.',
+overloadedErr: 'Muita demanda agora — tente novamente em alguns segundos.',
 connErr: 'Erro de conexao. Tente novamente.',
 copy: 'Copiar', copied: 'Copiado',
 dictate: 'Ditar', stop: 'Parar',
@@ -331,7 +334,7 @@ body: JSON.stringify({ message: msg, tone: effectiveTone, customTone: effectiveT
 signal: _ctrl.signal
 });
 var data = await res.json();
-if (data.error) { setError(t.err); } else {
+if (data.error) { setError(data.overloaded ? t.overloadedErr : t.err); } else {
 setVersions(data.versions);
 if (!isExample) {
 usage.count += 1;
