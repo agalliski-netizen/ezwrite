@@ -56,8 +56,9 @@ iosStep3: 'Tap "Add" to confirm',
 installDismiss: 'Not now',
 limitTitle: 'Daily limit reached',
 limitMsg: 'You\'ve used your 5 free generations for today. Upgrade to keep writing.',
-limitBtnMonthly: 'Monthly → $2.99/mo',
-limitBtnAnnual: 'Annual → $1.99/mo',
+limitBtnMonthlyLabel: 'Monthly',
+limitBtnAnnualLabel: 'Annual',
+perMonth: 'mo',
 usageLeft: function(n) { return n + ' generation' + (n === 1 ? '' : 's') + ' left today'; },
 shareMsg: 'Invite 5 friends → 5 extra generations',
 shareBtn: '📲 Share EzWrite',
@@ -103,8 +104,9 @@ iosStep3: 'Tocá "Agregar" para confirmar',
 installDismiss: 'Ahora no',
 limitTitle: 'Límite diario alcanzado',
 limitMsg: 'Usaste tus 5 generaciones gratuitas de hoy. Suscribíte para seguir escribiendo.',
-limitBtnMonthly: 'Mensual → $2.99/mes',
-limitBtnAnnual: 'Anual → $1.99/mes',
+limitBtnMonthlyLabel: 'Mensual',
+limitBtnAnnualLabel: 'Anual',
+perMonth: 'mes',
 usageLeft: function(n) { return n + (n === 1 ? ' generación restante' : ' generaciones restantes') + ' hoy'; },
 shareMsg: 'Invitá 5 amigos → 5 generaciones extra',
 shareBtn: '📲 Compartir EzWrite',
@@ -150,8 +152,9 @@ iosStep3: 'Toque em "Adicionar" para confirmar',
 installDismiss: 'Agora não',
 limitTitle: 'Limite diário atingido',
 limitMsg: 'Você usou suas 5 gerações gratuitas de hoje. Assine para continuar escrevendo.',
-limitBtnMonthly: 'Mensal → $2.99/mês',
-limitBtnAnnual: 'Anual → $1.99/mês',
+limitBtnMonthlyLabel: 'Mensal',
+limitBtnAnnualLabel: 'Anual',
+perMonth: 'mês',
 usageLeft: function(n) { return n + (n === 1 ? ' geração restante' : ' gerações restantes') + ' hoje'; },
 shareMsg: 'Convide 5 amigos → 5 gerações extras',
 shareBtn: '📲 Compartilhar EzWrite',
@@ -177,6 +180,15 @@ dark: { BG: '#08090C', SURFACE: '#101216', SURFACE2: '#16181D', BORDER: '#1F2228
 light: { BG: '#FAFAFB', SURFACE: '#FFFFFF', SURFACE2: '#F3F4F6', BORDER: '#E5E7EB', BORDER_STRONG: '#D1D5DB', TEXT: '#0B0D12', TEXT2: '#565C66', TEXT3: '#9CA3AF', ACCENT: '#4C6EF5', ACCENT_HOVER: '#3F5FE0', ACCENT_ACTIVE: '#3651C9', ACCENT_SOFT: 'rgba(76,110,245,0.08)', ACCENT_BORDER: 'rgba(76,110,245,0.4)', FOCUS_RING: '0 0 0 3px rgba(76,110,245,0.20)', SHADOW: '0 1px 2px rgba(16,24,40,.04), 0 1px 3px rgba(16,24,40,.06)', SHADOW_HOVER: '0 4px 12px rgba(16,24,40,.08)', GLOW: '0 4px 16px rgba(76,110,245,.28)', GREEN: '#12B76A', GREEN_LIGHT: '#DCFCE7', RED: '#E5484D', RED_LIGHT: '#FEF2F2' }
 };
 var VERSION_COLORS_DARK = ['#647EFF', '#8A7CFF', '#B07CFF'];
+var LATAM_COUNTRIES = ['AR','BO','BR','CL','CO','CR','CU','DO','EC','SV','GT','HN','MX','NI','PA','PY','PE','PR','UY','VE'];
+var CHECKOUT_IDS = {
+latam: { monthly: '301906ea-f048-4b2b-a72d-0734e8869e4a', annual: 'fbe2aa91-d13b-4663-a043-f73b95f0884d' },
+global: { monthly: '4605bddd-3541-4f1a-8d00-63987a9bf08f', annual: '7dc0b435-d472-4520-92b3-b30c6312a995' }
+};
+var PRICES = {
+latam: { monthly: '3.99', annual: '2.99' },
+global: { monthly: '6.99', annual: '4.99' }
+};
 var VERSION_COLORS_LIGHT = ['#4C6EF5', '#7048E8', '#9C36B5'];
 
 export default function Home() {
@@ -212,11 +224,19 @@ var s25 = useState(''); var customTone = s25[0]; var setCustomTone = s25[1];
 var s26 = useState(function() { try { return JSON.parse(localStorage.getItem('ezw_history') || '[]'); } catch(e) { return []; } }); var history = s26[0]; var setHistory = s26[1];
 var s27 = useState(false); var showHistory = s27[0]; var setShowHistory = s27[1];
 var s28 = useState(function() { try { return JSON.parse(localStorage.getItem('ezw_custom_tones') || '[]'); } catch(e) { return []; } }); var recentCustomTones = s28[0]; var setRecentCustomTones = s28[1];
+var s29 = useState('latam'); var pricingTier = s29[0]; var setPricingTier = s29[1];
 
 var posthog = usePostHog();
 var t = UI[uiLang] || UI['English'];
 var C = isDark ? THEME.dark : THEME.light;
 var VERSION_COLORS = isDark ? VERSION_COLORS_DARK : VERSION_COLORS_LIGHT;
+
+useEffect(function() {
+fetch('/api/geo').then(function(r) { return r.json(); }).then(function(d) {
+var country = (d.country || '').toUpperCase();
+if (country && LATAM_COUNTRIES.indexOf(country) === -1) { setPricingTier('global'); }
+}).catch(function() {});
+}, []);
 
 useEffect(function() {
 try { var saved = localStorage.getItem('ezw_theme'); setIsDark(saved ? saved === 'dark' : true); } catch(e) {}
@@ -535,7 +555,7 @@ EzWrite
 {loading ? (<span>{t.writing}<span className="loading-dots"><span style={{ display: 'inline-block', width: '4px', height: '4px', borderRadius: '50%', background: 'currentColor', margin: '0 1px', animation: 'dot-bounce 1.1s infinite ease-in-out' }}></span><span style={{ display: 'inline-block', width: '4px', height: '4px', borderRadius: '50%', background: 'currentColor', margin: '0 1px', animation: 'dot-bounce 1.1s infinite ease-in-out .15s' }}></span><span style={{ display: 'inline-block', width: '4px', height: '4px', borderRadius: '50%', background: 'currentColor', margin: '0 1px', animation: 'dot-bounce 1.1s infinite ease-in-out .3s' }}></span></span></span>) : t.btn}
 </button>
 <div style={{ textAlign: 'center', marginTop: '10px', fontSize: '12px', fontWeight: 500, color: C.TEXT3 }}>{t.freeNote}</div>
-{showPaywall && (<div style={{ background: isDark ? 'rgba(245,158,11,0.1)' : '#FFF7ED', border: '1px solid '+(isDark ? 'rgba(245,158,11,0.35)' : '#FED7AA'), borderRadius: '10px', padding: '20px', marginTop: '1rem', textAlign: 'center' }}><div style={{ fontSize: '15px', fontWeight: 600, color: isDark ? '#FBBF24' : '#92400E', marginBottom: '6px' }}>{t.limitTitle}</div><div style={{ fontSize: '13px', color: isDark ? '#FCD34D' : '#B45309', marginBottom: '16px', lineHeight: 1.5 }}>{t.limitMsg}</div><div style={{ display: 'flex', gap: '8px', justifyContent: 'center', flexWrap: 'wrap' }}><a href={`https://ezwrite.lemonsqueezy.com/checkout/buy/301906ea-f048-4b2b-a72d-0734e8869e4a${userId ? "?checkout%5Bcustom%5D%5Buser_id%5D=" + encodeURIComponent(userId) : ""}&checkout%5Bredirect_url%5D=https://ezwrite.app/?activated=1`} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', background: '#F59E0B', color: '#fff', padding: '10px 20px', borderRadius: '8px', fontSize: '14px', fontWeight: 600, textDecoration: 'none' }}>{t.limitBtnMonthly}</a><a href={`https://ezwrite.lemonsqueezy.com/checkout/buy/fbe2aa91-d13b-4663-a043-f73b95f0884d${userId ? "?checkout%5Bcustom%5D%5Buser_id%5D=" + encodeURIComponent(userId) : ""}&checkout%5Bredirect_url%5D=https://ezwrite.app/?activated=1`} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', background: 'transparent', color: isDark ? '#FBBF24' : '#92400E', border: '1.5px solid #F59E0B', padding: '10px 20px', borderRadius: '8px', fontSize: '14px', fontWeight: 600, textDecoration: 'none' }}>{t.limitBtnAnnual}</a></div></div>)}
+{showPaywall && (<div style={{ background: isDark ? 'rgba(245,158,11,0.1)' : '#FFF7ED', border: '1px solid '+(isDark ? 'rgba(245,158,11,0.35)' : '#FED7AA'), borderRadius: '10px', padding: '20px', marginTop: '1rem', textAlign: 'center' }}><div style={{ fontSize: '15px', fontWeight: 600, color: isDark ? '#FBBF24' : '#92400E', marginBottom: '6px' }}>{t.limitTitle}</div><div style={{ fontSize: '13px', color: isDark ? '#FCD34D' : '#B45309', marginBottom: '16px', lineHeight: 1.5 }}>{t.limitMsg}</div><div style={{ display: 'flex', gap: '8px', justifyContent: 'center', flexWrap: 'wrap' }}><a href={`https://ezwrite.lemonsqueezy.com/checkout/buy/${CHECKOUT_IDS[pricingTier].monthly}${userId ? "?checkout%5Bcustom%5D%5Buser_id%5D=" + encodeURIComponent(userId) : ""}&checkout%5Bredirect_url%5D=https://ezwrite.app/?activated=1`} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', background: '#F59E0B', color: '#fff', padding: '10px 20px', borderRadius: '8px', fontSize: '14px', fontWeight: 600, textDecoration: 'none' }}>{t.limitBtnMonthlyLabel} → ${PRICES[pricingTier].monthly}/{t.perMonth}</a><a href={`https://ezwrite.lemonsqueezy.com/checkout/buy/${CHECKOUT_IDS[pricingTier].annual}${userId ? "?checkout%5Bcustom%5D%5Buser_id%5D=" + encodeURIComponent(userId) : ""}&checkout%5Bredirect_url%5D=https://ezwrite.app/?activated=1`} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', background: 'transparent', color: isDark ? '#FBBF24' : '#92400E', border: '1.5px solid #F59E0B', padding: '10px 20px', borderRadius: '8px', fontSize: '14px', fontWeight: 600, textDecoration: 'none' }}>{t.limitBtnAnnualLabel} → ${PRICES[pricingTier].annual}/{t.perMonth}</a></div></div>)}
 {error && (<div style={{ background: C.RED_LIGHT, border: '1px solid '+C.RED, color: C.RED, borderRadius: '8px', padding: '12px 14px', fontSize: '13px', marginTop: '1rem' }}>{error}</div>)}
 {versions && (<div className="ph-no-capture"><div style={{ height: '1px', background: C.BORDER, margin: '2rem 0' }}></div>{versions.map(function(v, idx) { var color = VERSION_COLORS[idx] || C.ACCENT; var isCopied = copied === idx; return (<div key={idx} className="ez-card ez-result-card" style={{ background: C.SURFACE, border: '1px solid '+C.BORDER, borderLeft: '3px solid '+color, borderRadius: '14px', padding: '18px', marginBottom: '14px', boxShadow: C.SHADOW, animationDelay: (idx*80)+'ms' }}><div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}><span style={{ fontSize: '12px', fontWeight: 700, padding: '3px 8px', borderRadius: '4px', background: color+'22', color: color }}>{t.versionLabel} {v.label}</span><button className="ez-copy-btn" data-copied={isCopied} onClick={function() { handleCopy(v.text, idx); }} style={{ fontSize: '12px', fontWeight: 500, padding: '5px 12px', borderRadius: '6px', border: isCopied ? '1px solid '+C.GREEN : '1px solid '+C.BORDER, background: isCopied ? C.GREEN_LIGHT : 'transparent', cursor: 'pointer', color: isCopied ? C.GREEN : C.TEXT2, fontFamily: inter.style.fontFamily, display: 'flex', alignItems: 'center', gap: '4px' }}>{isCopied && <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M20 6L9 17l-5-5"/></svg>}{isCopied ? t.copied : t.copy}</button></div><p style={{ fontSize: '15px', lineHeight: 1.7, color: isDark ? C.TEXT2 : C.TEXT, margin: 0, whiteSpace: 'pre-wrap' }}>{v.text}</p></div>); })}</div>)}
 {userId && (<div style={{ marginTop: '2rem', paddingTop: '1.5rem', borderTop: '1px solid '+C.BORDER, textAlign: 'center' }}><div style={{ fontSize: '13px', fontWeight: 600, color: C.TEXT, marginBottom: '6px' }}>{t.shareMsg}</div><div style={{ marginBottom: '14px' }}>{[0,1,2,3,4].map(function(i) { var filled = referralCount > 0 && (i < referralCount % 5 || (referralCount % 5 === 0 && i < 5)); return (<span key={i} style={{ fontSize: '22px', color: filled ? C.GREEN : C.TEXT3 }}>{filled ? '●' : '○'}</span>); })}<span style={{ fontSize: '12px', color: C.TEXT2, marginLeft: '10px' }}>{t.shareProgress(referralCount % 5 === 0 && referralCount > 0 ? 5 : referralCount % 5)}</span></div><button onClick={function() { var url = 'https://ezwrite.app?ref='+userId; var msg = 'Probá EzWrite gratis — la IA que te da 3 versiones pulidas de cualquier mensaje: ' + url; if (posthog) posthog.capture('referral_shared');
