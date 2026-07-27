@@ -30,6 +30,7 @@ var EXAMPLES = {
 
 var UI = {
 'English': {
+headline: 'Stop rewriting. Start sending.',
 tagline: 'Write your message. Choose a tone and language. Get 3 polished versions.',
 messageLabel: 'Your message',
 placeholder: 'Write your message exactly as it comes to mind...',
@@ -78,6 +79,7 @@ versionLabel: 'Version',
 langs: { 'Espanol': 'Spanish', 'English': 'English', 'Portugues': 'Portuguese' }
 },
 'Espanol': {
+headline: 'Dejá de reescribir. Empezá a enviar.',
 tagline: 'Escribí tu mensaje. Elegí el tono y el idioma. Obtené 3 versiones pulidas.',
 messageLabel: 'Tu mensaje',
 placeholder: 'Escribí tu mensaje tal como te sale… (por más crudo que sea)',
@@ -126,6 +128,7 @@ versionLabel: 'Versión',
 langs: { 'Espanol': 'Español', 'English': 'English', 'Portugues': 'Portugués', 'French': 'Francés', 'Italian': 'Italiano', 'German': 'Alemán', 'Dutch': 'Holandés', 'Russian': 'Ruso', 'Chinese': 'Chino', 'Japanese': 'Japonés', 'Korean': 'Coreano', 'Arabic': 'Árabe', 'Hindi': 'Hindi', 'Turkish': 'Turco', 'Polish': 'Polaco', 'Ukrainian': 'Ucraniano', 'Greek': 'Griego', 'Hebrew': 'Hebreo', 'Swedish': 'Sueco', 'Norwegian': 'Noruego', 'Danish': 'Danés', 'Finnish': 'Finlandés', 'Czech': 'Checo', 'Romanian': 'Rumano', 'Hungarian': 'Húngaro', 'Vietnamese': 'Vietnamita', 'Thai': 'Tailandés', 'Indonesian': 'Indonesio', 'Filipino': 'Filipino' }
 },
 'Portugues': {
+headline: 'Pare de reescrever. Comece a enviar.',
 tagline: 'Escreva sua mensagem. Escolha o tom e o idioma. Obtenha 3 versoes refinadas.',
 messageLabel: 'Sua mensagem',
 placeholder: 'Escreva sua mensagem exatamente como vem à mente…',
@@ -423,7 +426,7 @@ if (!themeLoaded) return null;
 return (
 <div style={{ minHeight: '100vh', background: C.BG, fontFamily: inter.style.fontFamily, padding: '0 1rem', transition: 'background 0.2s ease' }}>
 <Head>
-<title>EzWrite</title>
+<title>{'EzWrite — ' + t.headline}</title>
 <link rel="icon" href="/icon.svg" type="image/svg+xml" />
 {showManifest && <link rel="manifest" href="/manifest.json" />}
 <meta name="theme-color" content={isDark ? '#08090C' : '#FAFAFB'} />
@@ -450,7 +453,7 @@ return (
 .ez-copy-btn[data-copied="true"] svg { animation: check-pop .25s ease; }
 .ez-result-card { opacity: 0; transform: translateY(6px); animation: card-in .3s ease forwards; }
 .ez-wordmark { letter-spacing: -0.03em; }
-@media (max-width: 480px) { .ez-wordmark { letter-spacing: -0.02em; } h1.ez-headline { font-size: 18px; } }
+@media (max-width: 480px) { .ez-wordmark { letter-spacing: -0.02em; } h1.ez-headline { font-size: 22px; } .ez-subheadline { font-size: 14px; } }
 `}</style>
 <div style={{ maxWidth: '640px', margin: '0 auto', paddingTop: '3.5rem', paddingBottom: '4.5rem' }}>
 <div style={{ marginBottom: '2.75rem' }}>
@@ -472,7 +475,8 @@ EzWrite
 </div>
 </div>
 </div>
-<h1 className="ez-headline" style={{ fontSize: '20px', fontWeight: 700, color: C.TEXT, marginTop: '14px', lineHeight: 1.4, letterSpacing: '-0.015em', maxWidth: '480px' }}>{t.tagline}</h1>
+<h1 className="ez-headline" style={{ fontSize: '28px', fontWeight: 800, color: C.TEXT, marginTop: '14px', lineHeight: 1.25, letterSpacing: '-0.02em', maxWidth: '520px' }}>{t.headline}</h1>
+<p className="ez-subheadline" style={{ fontSize: '15px', fontWeight: 500, color: C.TEXT2, marginTop: '10px', lineHeight: 1.5, letterSpacing: '-0.005em', maxWidth: '480px' }}>{t.tagline}</p>
 </div>
 {showHistory && (<div className="ez-card" style={{ background: C.SURFACE, border: '1px solid '+C.BORDER, borderRadius: '14px', padding: '16px', marginBottom: '1.75rem', boxShadow: C.SHADOW }}>
 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: history.length ? '12px' : '0' }}>
