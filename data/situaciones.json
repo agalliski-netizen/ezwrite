@@ -1,0 +1,902 @@
+[
+  {
+    "id": "pedir-aumento",
+    "category": "Laboral",
+    "es": {
+      "slug": "pedir-aumento-de-sueldo-por-email",
+      "title": "Cómo pedir un aumento de sueldo por email | EzWrite",
+      "meta": "¿No sabés cómo pedirle un aumento a tu jefe sin sonar agresivo ni inseguro? Generá 3 versiones pulidas de tu mensaje, gratis y sin crear cuenta.",
+      "h1": "Cómo pedir un aumento de sueldo por email (sin sonar agresivo ni inseguro)",
+      "intro": "Sabés que te lo merecés, pero escribir el mensaje es otra historia: te queda muy tímido o directamente agresivo, y terminás borrando y reescribiendo veinte veces. No hace falta ser un genio de la redacción para pedir lo que corresponde.",
+      "raw": "hola jefe queria hablar del tema sueldo, hace 2 años que estoy y la verdad creo que ya me merezco un ajuste, decime cuando podemos hablar gracias",
+      "versions": [
+        {
+          "tone": "Firme",
+          "text": "Hola [Nombre], quería conversar sobre mi salario. Llevo dos años en el equipo y en ese tiempo asumí más responsabilidades y logré resultados concretos. Creo que es momento de actualizar mi sueldo en función de ese aporte. ¿Podemos coordinar una reunión esta semana para hablarlo?"
+        },
+        {
+          "tone": "Profesional",
+          "text": "Hola [Nombre], quería pedirte unos minutos para conversar sobre mi situación salarial. En estos dos años sumé nuevas responsabilidades y me gustaría revisar juntos si corresponde un ajuste acorde a ese crecimiento. Quedo atento a cuándo te quede cómodo charlarlo."
+        },
+        {
+          "tone": "Diplomático",
+          "text": "Hola [Nombre], espero que estés bien. Quería consultarte si en algún momento podríamos charlar sobre mi sueldo actual. Después de estos dos años me gustaría entender cómo se evalúan los ajustes y si es un buen momento para revisar el mío. Gracias por tu tiempo."
+        }
+      ],
+      "cta": "Probá con tu propio mensaje en EzWrite: pegás lo que quieras decir, elegís el tono y en segundos tenés 3 versiones listas para enviar. Gratis, sin registrarte."
+    },
+    "en": {
+      "slug": "how-to-ask-for-a-raise-email",
+      "title": "How to Ask for a Raise via Email | EzWrite",
+      "meta": "Not sure how to ask your boss for a raise without sounding pushy or unsure? Get 3 polished message versions in seconds — free, no signup needed.",
+      "h1": "How to Ask for a Raise via Email (Without Sounding Pushy or Insecure)",
+      "intro": "You know you've earned it, but writing the actual email is a different problem — it either comes out too timid or too aggressive, and you end up rewriting it ten times. You don't need to be a great writer to ask for what you deserve.",
+      "raw": "hey boss so ive been here almost 2 years now and i think i deserve a raise, can we talk about it sometime this week thanks",
+      "versions": [
+        {
+          "tone": "Assertive",
+          "text": "Hi [Name], I'd like to talk about my compensation. Over the past two years I've taken on more responsibility and delivered solid results for the team. I believe it's a fair time to revisit my salary based on that. Could we set up time this week to discuss it?"
+        },
+        {
+          "tone": "Professional",
+          "text": "Hi [Name], could we find some time to discuss my salary? Over the past couple of years my role has grown, and I'd like to review whether an adjustment makes sense given that growth. Let me know what works for your schedule."
+        },
+        {
+          "tone": "Diplomatic",
+          "text": "Hi [Name], hope you're doing well. I wanted to ask if we could chat at some point about my current salary. After two years here, I'd love to understand how raises are typically evaluated and whether now might be a good time to review mine. Thanks for your time."
+        }
+      ],
+      "cta": "Try it with your own message on EzWrite: paste what you want to say, pick a tone, and get 3 ready-to-send versions in seconds. Free, no account needed."
+    }
+  },
+  {
+    "id": "renunciar-trabajo",
+    "category": "Laboral",
+    "es": {
+      "slug": "como-renunciar-a-un-trabajo-mensaje",
+      "title": "Cómo escribir un mensaje de renuncia | EzWrite",
+      "meta": "Escribí tu renuncia sin quemar puentes. Generá 3 versiones pulidas —profesional, breve o agradecida— gratis y sin crear cuenta.",
+      "h1": "Cómo escribir un mensaje de renuncia (sin quemar puentes)",
+      "intro": "Ya tomaste la decisión, lo difícil es ponerla por escrito. Querés ser claro, no sonar resentido y dejar todo prolijo, pero las palabras no salen. Un buen mensaje de renuncia te ahorra ese momento incómodo y te deja tranquilo con cómo te fuiste.",
+      "raw": "hola queria avisar que renuncio, ya no doy mas con este trabajo, mi ultimo dia va a ser en dos semanas gracias",
+      "versions": [
+        {
+          "tone": "Profesional",
+          "text": "Hola [Nombre], quiero comunicarte formalmente mi renuncia al puesto, efectiva a partir de dentro de dos semanas, respetando el período de preaviso. Quedo a disposición para ordenar la transición de mis tareas de la mejor manera posible. Gracias por la oportunidad."
+        },
+        {
+          "tone": "Diplomático",
+          "text": "Hola [Nombre], después de pensarlo, decidí dar este paso y presentar mi renuncia. Mi último día será en dos semanas. Quiero agradecerte el tiempo en el equipo y dejar todo lo mejor organizado posible antes de irme. Cualquier cosa que necesites, contá conmigo."
+        },
+        {
+          "tone": "Directo",
+          "text": "Hola [Nombre], te escribo para avisarte que renuncio. Mi último día va a ser en dos semanas, según corresponde por el preaviso. Quedo disponible para coordinar la entrega de mis tareas pendientes."
+        }
+      ],
+      "cta": "Probá con tu propio mensaje en EzWrite: pegá lo que querés decir, elegí el tono y obtené 3 versiones pulidas al instante. Gratis, sin necesidad de crear cuenta."
+    },
+    "en": {
+      "slug": "how-to-write-a-resignation-letter",
+      "title": "How to Write a Resignation Letter | EzWrite",
+      "meta": "Need to quit your job without burning bridges? Get 3 polished resignation messages —professional, brief, grateful— free, no signup.",
+      "h1": "How to Write a Resignation Letter (Without Burning Bridges)",
+      "intro": "You've made the decision — putting it into words is the hard part. You want to be clear, not sound bitter, and leave things tidy, but the wording never comes out right. A well-written resignation message saves you that awkward moment and lets you leave on good terms.",
+      "raw": "hi so i wanted to let you know im quitting, i cant do this job anymore, my last day will be in two weeks thanks",
+      "versions": [
+        {
+          "tone": "Professional",
+          "text": "Hi [Name], I'm writing to formally submit my resignation, effective two weeks from today, in line with the standard notice period. I'm happy to help however I can to make the transition of my responsibilities as smooth as possible. Thank you for the opportunity."
+        },
+        {
+          "tone": "Diplomatic",
+          "text": "Hi [Name], after a lot of thought, I've decided to move on and am submitting my resignation. My last day will be in two weeks. I'm grateful for my time here and want to leave things as organized as possible before I go. Please let me know how I can help during the transition."
+        },
+        {
+          "tone": "Direct",
+          "text": "Hi [Name], I'm writing to let you know I'm resigning, effective in two weeks per the standard notice period. I'm available to help hand off my current tasks."
+        }
+      ],
+      "cta": "Try it with your own message on EzWrite: paste what you want to say, pick a tone, and get 3 polished versions instantly. Free, no account needed."
+    }
+  },
+  {
+    "id": "extension-de-plazo",
+    "category": "Laboral",
+    "es": {
+      "slug": "pedir-extension-de-plazo",
+      "title": "Cómo pedir una extensión de plazo | EzWrite",
+      "meta": "¿No vas a llegar con la entrega? Pedí más tiempo sin quedar mal parado. Generá 3 versiones pulidas gratis, sin crear cuenta.",
+      "h1": "Cómo pedir una extensión de plazo (a tu jefe o cliente) sin quedar mal",
+      "intro": "Te diste cuenta de que no vas a llegar y ahora hay que avisar. El mensaje mal escrito puede sonar a excusa o a que no tenés el trabajo bajo control, aunque no sea así. Un buen aviso a tiempo genera mucha más confianza que el silencio.",
+      "raw": "hola no voy a llegar con la fecha de entrega, necesito unos dias mas, perdon por avisar tan tarde",
+      "versions": [
+        {
+          "tone": "Profesional",
+          "text": "Hola [Nombre], te escribo para avisarte que no voy a llegar con la fecha de entrega acordada. Necesito unos días adicionales para poder entregarlo con la calidad esperada. Puedo comprometerme a tenerlo listo para [nueva fecha]. Disculpá el aviso a último momento."
+        },
+        {
+          "tone": "Diplomático",
+          "text": "Hola [Nombre], quería contarte que voy a necesitar un poco más de tiempo del previsto para la entrega. Prefiero avisarte ahora antes que entregar algo apurado. ¿Te parece bien si lo cerramos para [nueva fecha]? Perdón por el corrimiento."
+        },
+        {
+          "tone": "Directo",
+          "text": "Hola [Nombre], no voy a llegar con la fecha original. Necesito [X] días más y puedo entregarlo el [nueva fecha]. Avisame si eso te complica algo."
+        }
+      ],
+      "cta": "Probá con tu propio mensaje en EzWrite: pegá lo que querés decir, elegí el tono y en segundos tenés 3 versiones listas para enviar. Gratis, sin crear cuenta."
+    },
+    "en": {
+      "slug": "how-to-ask-for-a-deadline-extension",
+      "title": "How to Ask for a Deadline Extension | EzWrite",
+      "meta": "Not going to make the deadline? Ask for more time without looking unprofessional. Get 3 polished message versions free, no signup.",
+      "h1": "How to Ask for a Deadline Extension (to Your Boss or Client)",
+      "intro": "You've realized you're not going to make it, and now you have to say something. A poorly worded message can sound like an excuse or make it seem like you're not on top of things, even when you are. A clear, timely heads-up builds a lot more trust than staying quiet.",
+      "raw": "hey i dont think im gonna make the deadline, need a few more days, sorry for the late notice",
+      "versions": [
+        {
+          "tone": "Professional",
+          "text": "Hi [Name], I wanted to let you know I won't be able to meet the agreed deadline. I need a few extra days to deliver it at the quality level you're expecting. I can commit to having it ready by [new date]. Apologies for the short notice."
+        },
+        {
+          "tone": "Diplomatic",
+          "text": "Hi [Name], I wanted to flag that I'll need a bit more time than planned to finish this. I'd rather tell you now than rush and hand over something incomplete. Would [new date] work on your end? Sorry for the shift."
+        },
+        {
+          "tone": "Direct",
+          "text": "Hi [Name], I won't make the original deadline. I need [X] more days and can deliver by [new date]. Let me know if that's a problem on your end."
+        }
+      ],
+      "cta": "Try it with your own message on EzWrite: paste what you want to say, pick a tone, and get 3 ready-to-send versions in seconds. Free, no account needed."
+    }
+  },
+  {
+    "id": "mala-noticia-empleado",
+    "category": "Laboral",
+    "es": {
+      "slug": "como-comunicar-una-mala-noticia-a-un-empleado",
+      "title": "Cómo comunicar una mala noticia a un empleado | EzWrite",
+      "meta": "Dar malas noticias en el trabajo es difícil. Generá un mensaje claro, humano y sin rodeos en segundos, gratis y sin crear cuenta.",
+      "h1": "Cómo comunicarle una mala noticia a un empleado (sin sonar frío ni evasivo)",
+      "intro": "Tenés que avisarle a alguien de tu equipo algo que no quiere escuchar —no hay aumento, se cae un proyecto, cambia su rol— y no sabés por dónde arrancar. El desafío es ser claro sin sonar despersonalizado, y empático sin dar vueltas eternas.",
+      "raw": "juan te aviso que este año no va a haber aumento por el tema de los costos, se que no es lo que esperabas pero es lo que hay por ahora",
+      "versions": [
+        {
+          "tone": "Empático",
+          "text": "Hola Juan, quería hablarte de algo que sé que no es la noticia que esperabas: este año no vamos a poder otorgar el aumento que veníamos charlando, por el contexto de costos que estamos atravesando. Entiendo que puede ser una frustración y quiero que sepas que tu trabajo se sigue valorando igual. Hablemos cuando quieras si tenés preguntas."
+        },
+        {
+          "tone": "Profesional",
+          "text": "Hola Juan, te escribo para informarte que, debido al contexto actual de costos, no vamos a poder implementar el ajuste salarial este año. Sé que veníamos conversando el tema y quería comunicártelo con tiempo. Quedo a disposición para charlarlo con más detalle cuando lo necesites."
+        },
+        {
+          "tone": "Directo",
+          "text": "Hola Juan, te aviso que este año no va a haber aumento por el tema de costos. Sé que no es la respuesta que esperabas. Si querés que hablemos del tema, avisame y coordinamos."
+        }
+      ],
+      "cta": "Probá con tu propio mensaje en EzWrite: pegá lo que necesitás comunicar, elegí el tono y obtené 3 versiones pulidas al instante. Gratis, sin necesidad de cuenta."
+    },
+    "en": {
+      "slug": "how-to-deliver-bad-news-to-an-employee",
+      "title": "How to Deliver Bad News to an Employee | EzWrite",
+      "meta": "Delivering bad news at work is hard. Generate a clear, human message in seconds — free, no signup required.",
+      "h1": "How to Deliver Bad News to an Employee (Without Sounding Cold or Evasive)",
+      "intro": "You have to tell someone on your team something they don't want to hear — no raise this year, a project got cut, their role is changing — and you're not sure where to start. The challenge is staying clear without sounding detached, and being empathetic without dragging it out.",
+      "raw": "hey john just wanted to let you know theres no raise this year because of budget stuff, i know its not what you wanted to hear but thats where we are",
+      "versions": [
+        {
+          "tone": "Empathetic",
+          "text": "Hi John, I need to share something I know isn't the news you were hoping for: we won't be able to move forward with the raise we discussed this year, given the budget situation we're navigating. I understand this may be frustrating, and I want you to know your work is still valued just as much. Happy to talk if you have questions."
+        },
+        {
+          "tone": "Professional",
+          "text": "Hi John, I wanted to let you know that, due to the current budget situation, we won't be implementing the salary adjustment this year. I know we'd been discussing this, so I wanted to give you the update with enough notice. I'm available to talk through it in more detail whenever works for you."
+        },
+        {
+          "tone": "Direct",
+          "text": "Hi John, wanted to let you know there won't be a raise this year due to budget constraints. I know that's not the answer you were hoping for. Let me know if you'd like to talk it through."
+        }
+      ],
+      "cta": "Try it with your own message on EzWrite: paste what you need to say, pick a tone, and get 3 polished versions instantly. Free, no account needed."
+    }
+  },
+  {
+    "id": "mensaje-despido",
+    "category": "Laboral",
+    "es": {
+      "slug": "como-redactar-un-mensaje-de-despido",
+      "title": "Cómo redactar un mensaje de despido | EzWrite",
+      "meta": "¿Tenés que despedir a alguien y no sabés cómo decirlo? Generá un mensaje claro y respetuoso en segundos, gratis y sin crear cuenta.",
+      "h1": "Cómo escribir un mensaje de despido (claro, respetuoso y sin vueltas)",
+      "intro": "Es una de las conversaciones más difíciles de cualquier rol de liderazgo. Necesitás ser claro y directo —nada de mensajes ambiguos que generen falsas esperanzas— pero también humano, porque del otro lado hay una persona a la que le estás cambiando el día.",
+      "raw": "maria te tengo que avisar que hoy es tu ultimo dia, la decision ya esta tomada, cualquier cosa hablamos",
+      "versions": [
+        {
+          "tone": "Empático",
+          "text": "Hola María, necesito comunicarte algo difícil: hoy es tu último día en la empresa. Es una decisión ya tomada y no da marcha atrás, y sé que no es fácil de recibir. Quiero agradecerte todo lo aportado en este tiempo y estoy disponible para hablar de los próximos pasos, cuando lo necesites."
+        },
+        {
+          "tone": "Profesional",
+          "text": "Hola María, te escribo para informarte formalmente que tu relación laboral con la empresa finaliza hoy. Esta decisión ya fue tomada. Vamos a coordinar los detalles administrativos correspondientes en los próximos días. Quedo disponible para cualquier consulta que tengas al respecto."
+        },
+        {
+          "tone": "Firme",
+          "text": "Hola María, te informo que hoy finaliza tu relación laboral con la empresa. Es una decisión definitiva. Vamos a coordinar los pasos administrativos que correspondan. Cualquier duda, estoy disponible para hablarlo."
+        }
+      ],
+      "cta": "Probá con tu propio mensaje en EzWrite: pegá lo que necesitás comunicar, elegí el tono y obtené 3 versiones pulidas al instante. Gratis, sin necesidad de cuenta."
+    },
+    "en": {
+      "slug": "how-to-write-a-termination-message",
+      "title": "How to Write a Termination Message | EzWrite",
+      "meta": "Need to let someone go and don't know how to say it? Generate a clear, respectful message in seconds — free, no signup.",
+      "h1": "How to Write a Termination Message (Clear, Respectful, No Fluff)",
+      "intro": "It's one of the hardest conversations in any leadership role. You need to be clear and direct — no vague wording that leaves room for false hope — but also human, because on the other end is a person whose day you're about to change.",
+      "raw": "maria i have to let you know today is your last day, the decision has already been made, we can talk if you need to",
+      "versions": [
+        {
+          "tone": "Empathetic",
+          "text": "Hi Maria, I need to share something difficult: today is your last day with the company. This decision has already been made and is final, and I know it's not easy to hear. I want to acknowledge everything you've contributed during your time here, and I'm available to talk through next steps whenever you're ready."
+        },
+        {
+          "tone": "Professional",
+          "text": "Hi Maria, I'm writing to formally let you know that your employment with the company ends today. This decision has already been finalized. We'll coordinate the relevant administrative details over the next few days. I'm available for any questions you may have."
+        },
+        {
+          "tone": "Firm",
+          "text": "Hi Maria, I'm letting you know that your employment with the company ends today. This is a final decision. We'll coordinate the necessary administrative steps. Let me know if you'd like to discuss anything."
+        }
+      ],
+      "cta": "Try it with your own message on EzWrite: paste what you need to say, pick a tone, and get 3 polished versions instantly. Free, no account needed."
+    }
+  },
+  {
+    "id": "disculpa-cliente",
+    "category": "Cliente",
+    "es": {
+      "slug": "pedir-disculpas-a-un-cliente",
+      "title": "Cómo pedirle disculpas a un cliente | EzWrite",
+      "meta": "Pedí disculpas a un cliente sin sonar débil ni exagerado. Escribí tu mensaje como salga y EzWrite te da 3 versiones pulidas, gratis.",
+      "h1": "Cómo pedirle disculpas a un cliente sin quedar mal parado",
+      "intro": "Te equivocaste, se atrasó un pedido, mandaste algo mal. Ahora tenés que escribirle al cliente y el mensaje tiene que sonar sincero, profesional y que no suene ni a excusa berreta ni a que te estás arrastrando. No es fácil encontrar el tono justo cuando encima estás con la cabeza caliente.",
+      "raw": "hola perdon el pedido llego tarde de nuevo fue un quilombo con el proveedor, se que ya paso otra vez, no se que mas decirte la verdad",
+      "versions": [
+        {
+          "tone": "Empático",
+          "text": "Hola, quería escribirte personalmente para pedirte disculpas por la demora en tu pedido. Sé que no es la primera vez y entiendo perfectamente tu frustración. Estamos revisando el problema con nuestro proveedor para que no vuelva a pasar. Gracias por tu paciencia, de verdad la valoro."
+        },
+        {
+          "tone": "Profesional",
+          "text": "Le escribo para disculparme por el retraso en la entrega de su pedido. El inconveniente se originó por una demora con uno de nuestros proveedores, situación que ya estamos corrigiendo para evitar que se repita. Le agradezco la comprensión y quedo a disposición por cualquier consulta."
+        },
+        {
+          "tone": "Directo",
+          "text": "Perdón por la demora, sé que ya pasó antes. El problema fue con un proveedor y ya estamos resolviéndolo para que no se repita. Gracias por bancarnos."
+        }
+      ],
+      "cta": "¿Tenés que mandar una disculpa parecida ahora mismo? Escribí tu mensaje tal cual te sale y probá EzWrite gratis, sin necesidad de crear cuenta."
+    },
+    "en": {
+      "slug": "how-to-apologize-to-a-client",
+      "title": "How to Apologize to a Client (With Examples) | EzWrite",
+      "meta": "Need to apologize to a client without sounding weak or over-the-top? Type it rough and get 3 polished versions free, no account needed.",
+      "h1": "How to Apologize to a Client Without Sounding Weak (or Fake)",
+      "intro": "You messed up, missed a deadline, or shipped something wrong, and now you have to write the apology. You want it to sound sincere and professional, not like a lame excuse and not like you're groveling either. Finding that balance is hard when you're already stressed about the mistake.",
+      "raw": "hey so sorry the order was late again, was a mess with our supplier, i know this happened before too, not sure what else to say honestly",
+      "versions": [
+        {
+          "tone": "Empathetic",
+          "text": "I wanted to personally apologize for the delay with your order. I know this isn't the first time, and I completely understand your frustration. We're addressing the issue with our supplier so it doesn't happen again. Thank you for your patience, I really appreciate it."
+        },
+        {
+          "tone": "Professional",
+          "text": "I'm writing to apologize for the delay in delivering your order. The issue stemmed from a supplier delay, which we're actively working to resolve so it doesn't happen again. I appreciate your understanding and I'm available for any questions."
+        },
+        {
+          "tone": "Direct",
+          "text": "Sorry for the delay, I know this has happened before. It was a supplier issue and we're fixing it so it won't happen again. Thanks for bearing with us."
+        }
+      ],
+      "cta": "Got a similar apology to write right now? Type your message just as it comes out and try EzWrite free, no account required."
+    }
+  },
+  {
+    "id": "cliente-enojado",
+    "category": "Cliente",
+    "es": {
+      "slug": "responder-a-un-cliente-enojado",
+      "title": "Cómo responder a un cliente enojado | EzWrite",
+      "meta": "Un cliente te escribió furioso y no sabés cómo responder sin empeorar todo. Pegá el mensaje en EzWrite y recibí 3 respuestas listas, gratis.",
+      "h1": "Cómo responder a un cliente enojado sin que la situación empeore",
+      "intro": "Te llegó un mensaje con mayúsculas, signos de exclamación y reclamos, y necesitás responder ya. El problema es que si contestás en caliente podés empeorar todo, y si tardás mucho en responder también. Necesitás algo que baje la tensión y muestre que te importa resolverlo.",
+      "raw": "el cliente me puso ESTO ES UNA VERGUENZA llevo 3 dias esperando respuesta y nadie me contesta nada, no se que ponerle sin que se enoje mas",
+      "versions": [
+        {
+          "tone": "Diplomático",
+          "text": "Entiendo tu enojo y tenés razón en reclamar, tres días sin respuesta no es lo que queremos para vos. Te pido disculpas por la demora. Ya estoy revisando tu caso y te escribo hoy mismo con una solución concreta."
+        },
+        {
+          "tone": "Empático",
+          "text": "Perdón por la demora y por lo que estás pasando, sé que es realmente molesto no recibir respuesta. Quiero resolverlo cuanto antes: estoy revisando tu caso ahora mismo y te confirmo una solución hoy."
+        },
+        {
+          "tone": "Firme",
+          "text": "Lamento la demora en responderte, no debería haber pasado. Ya tomé tu caso y te voy a dar una respuesta concreta hoy mismo, sin más vueltas."
+        }
+      ],
+      "cta": "Si tenés un mensaje tenso esperando respuesta, pegalo en EzWrite tal cual llegó y en segundos tenés 3 formas de responder, gratis y sin crear cuenta."
+    },
+    "en": {
+      "slug": "how-to-respond-to-an-angry-customer",
+      "title": "How to Respond to an Angry Customer | EzWrite",
+      "meta": "An angry customer emailed you and you don't know how to reply without making it worse. Paste it into EzWrite and get 3 ready replies, free.",
+      "h1": "How to Respond to an Angry Customer Without Making It Worse",
+      "intro": "You just got a message in all caps, full of exclamation points and complaints, and you need to reply now. Answer while you're rattled and you might make it worse. Wait too long and that's also a problem. You need something that de-escalates and shows you actually care about fixing it.",
+      "raw": "customer wrote THIS IS RIDICULOUS ive been waiting 3 days for a response and nobody is answering me, dont know what to say without making them angrier",
+      "versions": [
+        {
+          "tone": "Diplomatic",
+          "text": "I completely understand your frustration, and you're right to be upset, three days without a response isn't the experience we want for you. I apologize for the delay. I'm looking into your case right now and will follow up today with a concrete solution."
+        },
+        {
+          "tone": "Empathetic",
+          "text": "I'm sorry for the delay and for what you've been dealing with, I know how frustrating it is not to get a response. I want to fix this right away: I'm reviewing your case now and will have an answer for you today."
+        },
+        {
+          "tone": "Firm",
+          "text": "I apologize for the delay in getting back to you, that shouldn't have happened. I've taken over your case and will give you a concrete answer today, no more delays."
+        }
+      ],
+      "cta": "Got a tense message sitting in your inbox? Paste it into EzWrite just as it came in and get 3 ways to respond in seconds, free, no account needed."
+    }
+  },
+  {
+    "id": "factura-impaga",
+    "category": "Cliente",
+    "es": {
+      "slug": "reclamar-una-factura-impaga",
+      "title": "Cómo reclamar una factura impaga | EzWrite",
+      "meta": "Necesitás reclamar una factura vencida sin sonar desesperado ni arruinar la relación comercial. Probá EzWrite y obtené 3 mensajes listos, gratis.",
+      "h1": "Cómo reclamar una factura impaga sin que suene incómodo",
+      "intro": "Ya pasó la fecha de pago y el cliente no dice nada. Tenés que reclamar, pero es un cliente que querés conservar y no querés sonar desesperado ni agresivo. El mensaje tiene que ser claro sobre lo que se debe, sin perder la relación.",
+      "raw": "hola la factura 0045 vence hace 10 dias y todavia no vi el pago, necesito que me digan algo porque asi no puedo seguir laburando",
+      "versions": [
+        {
+          "tone": "Firme",
+          "text": "Te escribo porque la factura N.º 0045 venció hace 10 días y todavía no registramos el pago. Te pido que la regularices a la brevedad para poder seguir trabajando con normalidad. Cualquier duda sobre el comprobante, quedo a disposición."
+        },
+        {
+          "tone": "Profesional",
+          "text": "Le escribo para informarle que la factura N.º 0045, con vencimiento hace 10 días, aún figura pendiente de pago. Le agradecería que pueda regularizar la situación a la brevedad. Quedo atento por si necesita el comprobante nuevamente."
+        },
+        {
+          "tone": "Diplomático",
+          "text": "Quería consultarte por la factura N.º 0045, que venció hace 10 días y todavía no vemos el pago acreditado. Capaz se traspapeló, así que te la reenvío por las dudas. Cualquier cosa, contame."
+        }
+      ],
+      "cta": "Si tenés que reclamar un pago pendiente ahora, escribí tu mensaje tal como te sale y EzWrite te da 3 formas de decirlo, gratis y sin cuenta."
+    },
+    "en": {
+      "slug": "how-to-follow-up-on-an-unpaid-invoice",
+      "title": "How to Follow Up on an Unpaid Invoice | EzWrite",
+      "meta": "Chasing an overdue invoice without sounding desperate or damaging the relationship? Try EzWrite and get 3 ready-to-send messages, free.",
+      "h1": "How to Follow Up on an Unpaid Invoice Without It Getting Awkward",
+      "intro": "The due date passed and the client hasn't said a word. You need to follow up, but it's a client you want to keep, so you don't want to sound desperate or aggressive. The message needs to be clear about what's owed without torching the relationship.",
+      "raw": "hey invoice 0045 was due 10 days ago and still havent seen the payment, need to hear something because i cant keep working like this",
+      "versions": [
+        {
+          "tone": "Firm",
+          "text": "I'm reaching out because invoice #0045 was due 10 days ago and we still haven't received payment. Please arrange payment as soon as possible so we can continue working together smoothly. Let me know if you need the invoice resent."
+        },
+        {
+          "tone": "Professional",
+          "text": "I'm writing to let you know that invoice #0045, due 10 days ago, still shows as outstanding. I'd appreciate it if you could settle it at your earliest convenience. I'm happy to resend the invoice if that helps."
+        },
+        {
+          "tone": "Diplomatic",
+          "text": "Just wanted to check in on invoice #0045, which was due 10 days ago and doesn't seem to have gone through yet. It may have slipped through, so I'm resending it just in case. Let me know if anything's needed on my end."
+        }
+      ],
+      "cta": "Need to chase a payment right now? Type your message just as it comes out and EzWrite gives you 3 ways to say it, free, no account needed."
+    }
+  },
+  {
+    "id": "recordatorio-pago",
+    "category": "Cliente",
+    "es": {
+      "slug": "recordatorio-de-pago-sin-sonar-agresivo",
+      "title": "Recordatorio de pago sin sonar agresivo | EzWrite",
+      "meta": "Mandá un recordatorio de pago amable pero claro. Escribí tu mensaje tal cual y EzWrite te da 3 versiones pulidas, gratis y sin cuenta.",
+      "h1": "Cómo mandar un recordatorio de pago sin sonar agresivo",
+      "intro": "No es una factura vencida todavía, es solo un recordatorio antes de que se pase la fecha. Pero cuesta encontrar el tono: si es muy suave parece que no importa, si es muy directo parece un reclamo que todavía no corresponde. Necesitás algo amable pero que quede clarísimo.",
+      "raw": "che te queria acordar que la factura vence el viernes, no es apuro pero bue avisando por las dudas se te pase",
+      "versions": [
+        {
+          "tone": "Empático",
+          "text": "Te escribo solo para recordarte que la factura vence este viernes. Sé que estás con mil cosas, así que te lo aviso por si se te pasa. Cualquier duda que tengas, contame sin problema."
+        },
+        {
+          "tone": "Profesional",
+          "text": "Le escribo para recordarle que la fecha de vencimiento de la factura es este viernes. Quedo a disposición ante cualquier consulta relacionada con el pago."
+        },
+        {
+          "tone": "Directo",
+          "text": "Te aviso que la factura vence este viernes, para que lo tengas presente. Cualquier consulta, decime."
+        }
+      ],
+      "cta": "¿Tenés que mandar un recordatorio de pago ahora? Escribí tu mensaje como te salga y probá EzWrite gratis, sin necesidad de cuenta."
+    },
+    "en": {
+      "slug": "friendly-payment-reminder-message",
+      "title": "How to Write a Payment Reminder (Not Pushy) | EzWrite",
+      "meta": "Send a payment reminder that's friendly but clear. Type your message as-is and EzWrite gives you 3 polished versions, free, no account.",
+      "h1": "How to Send a Payment Reminder Without Sounding Pushy",
+      "intro": "The invoice isn't overdue yet, it's just a heads-up before the due date. But the tone is tricky: too soft and it feels optional, too direct and it feels like a complaint that hasn't happened yet. You need something friendly that still lands clearly.",
+      "raw": "hey just wanted to remind you the invoice is due friday, no rush just flagging in case it slips your mind",
+      "versions": [
+        {
+          "tone": "Empathetic",
+          "text": "Just a quick reminder that the invoice is due this Friday. I know things get busy, so I wanted to flag it in case it slips your mind. Let me know if you have any questions."
+        },
+        {
+          "tone": "Professional",
+          "text": "I'm writing to remind you that the invoice payment is due this Friday. Please let me know if you have any questions regarding the payment."
+        },
+        {
+          "tone": "Direct",
+          "text": "Quick heads-up, the invoice is due this Friday. Let me know if anything comes up."
+        }
+      ],
+      "cta": "Need to send a payment reminder right now? Type your message as it comes out and try EzWrite free, no account needed."
+    }
+  },
+  {
+    "id": "aumento-precios",
+    "category": "Cliente",
+    "es": {
+      "slug": "comunicar-un-aumento-de-precios-a-clientes",
+      "title": "Cómo comunicar un aumento de precios | EzWrite",
+      "meta": "Avisale a tus clientes que suben los precios sin que se sientan estafados. Escribí tu mensaje en bruto y EzWrite te da 3 versiones pulidas, gratis.",
+      "h1": "Cómo comunicar un aumento de precios sin perder clientes",
+      "intro": "Tenés que subir precios, es una decisión de negocio normal, pero comunicarlo da miedo: no querés sonar como que estás pidiendo perdón ni tampoco como que no te importa el bolsillo del cliente. El mensaje tiene que ser claro, justificado y sin vueltas.",
+      "raw": "tengo que avisar a los clientes que desde el mes que viene subo los precios un 15%, aumentaron todos los insumos y no doy mas, no se como decirlo sin que se enojen",
+      "versions": [
+        {
+          "tone": "Profesional",
+          "text": "Te escribo para informarte que a partir del próximo mes actualizaremos nuestros precios en un 15%. Este ajuste responde al aumento sostenido en los costos de insumos. Agradecemos mucho tu confianza y seguimos comprometidos con la misma calidad de siempre."
+        },
+        {
+          "tone": "Empático",
+          "text": "Quería avisarte con anticipación que desde el mes que viene vamos a actualizar los precios un 15%. Sabemos que no es una noticia agradable, pero los costos de los insumos subieron muchísimo y ya no podíamos sostener los valores actuales. Gracias por acompañarnos siempre."
+        },
+        {
+          "tone": "Directo",
+          "text": "Te aviso que desde el mes que viene los precios suben un 15% por el aumento de insumos. Cualquier consulta, estoy para lo que necesites."
+        }
+      ],
+      "cta": "Si tenés que avisar un aumento de precios y no sabés cómo arrancar, escribí tu mensaje tal cual y EzWrite te da 3 versiones pulidas, gratis y sin cuenta."
+    },
+    "en": {
+      "slug": "how-to-announce-a-price-increase-to-customers",
+      "title": "How to Announce a Price Increase to Customers | EzWrite",
+      "meta": "Tell customers about a price increase without sounding sorry or careless. Type your message rough and EzWrite gives you 3 polished versions, free.",
+      "h1": "How to Announce a Price Increase Without Losing Customers",
+      "intro": "You have to raise your prices, it's a normal business call, but announcing it feels risky: you don't want to sound apologetic, and you don't want to sound like you don't care what it means for your customers' budget. The message needs to be clear, justified, and to the point.",
+      "raw": "need to tell customers prices go up 15% starting next month, all our supplies got way more expensive and i cant absorb it anymore, dont know how to say it without them getting mad",
+      "versions": [
+        {
+          "tone": "Professional",
+          "text": "I'm writing to let you know that starting next month, we'll be updating our prices by 15%. This adjustment reflects the sustained rise in supply costs. We truly appreciate your trust and remain committed to the same quality you've always received."
+        },
+        {
+          "tone": "Empathetic",
+          "text": "I wanted to give you a heads-up that starting next month, we'll be increasing our prices by 15%. I know this isn't great news, but our supply costs have gone up significantly and we can no longer sustain current pricing. Thank you for sticking with us."
+        },
+        {
+          "tone": "Direct",
+          "text": "Just a heads-up that prices are going up 15% starting next month due to rising supply costs. Let me know if you have any questions."
+        }
+      ],
+      "cta": "Need to announce a price increase and don't know where to start? Type your message just as it comes out and EzWrite gives you 3 polished versions, free, no account needed."
+    }
+  },
+  {
+    "id": "rechazar-propuesta",
+    "category": "Rechazos",
+    "es": {
+      "slug": "como-rechazar-una-propuesta-laboral-educadamente",
+      "title": "Cómo rechazar una propuesta laboral sin quemar el puente",
+      "meta": "¿Te ofrecieron un trabajo o proyecto y no te interesa? Te mostramos cómo decir que no de forma profesional, en segundos y gratis, con EzWrite.",
+      "h1": "Cómo rechazar una propuesta comercial o laboral sin sonar grosero",
+      "intro": "Te llegó una propuesta —un trabajo, un proyecto, una sociedad— y por la razón que sea, no te sirve. El problema no es decir que no: es decir que no sin cerrar la puerta ni quedar mal, sobre todo si es alguien con quien podés cruzarte de nuevo.",
+      "raw": "hola perdon la demora en contestar. la verdad lei la propuesta y no me cierra el numero, ademas no tengo tiempo ahora con todo lo que tengo. gracias igual pero no puedo",
+      "versions": [
+        {
+          "tone": "Diplomático",
+          "text": "Hola, gracias por pensar en mí para esto y disculpá la demora en responder. Analicé la propuesta con atención, pero en este momento no encaja con mis prioridades ni con la disponibilidad que tengo. Te agradezco mucho la confianza y quedo en contacto para futuras oportunidades."
+        },
+        {
+          "tone": "Profesional",
+          "text": "Gracias por el tiempo dedicado a armar esta propuesta. Después de evaluarla, decidí no avanzar en esta ocasión, ya que no se ajusta a mis objetivos actuales. Quedo abierto a otras posibilidades más adelante."
+        },
+        {
+          "tone": "Empático",
+          "text": "Primero que nada, gracias por confiar en mí para esto, lo valoro de verdad. Le di varias vueltas pero no es el momento indicado para mí, así que prefiero ser sincero antes que dejarte esperando. Espero que encuentres a la persona ideal para el proyecto."
+        }
+      ],
+      "cta": "¿Tenés que rechazar algo y no sabés cómo empezar? Escribí tu mensaje tal cual te sale y dejá que EzWrite te dé 3 versiones pulidas en segundos, gratis y sin necesidad de crear cuenta."
+    },
+    "en": {
+      "slug": "how-to-decline-a-business-proposal-politely",
+      "title": "How to Decline a Business Proposal Politely (With Examples)",
+      "meta": "Need to turn down a job offer or business proposal without burning bridges? Get polite, professional wording in seconds — free, no account needed.",
+      "h1": "How to Decline a Business or Job Proposal Without Sounding Rude",
+      "intro": "Someone offered you a job, a partnership, or a project — and it's just not right for you. Saying no isn't the hard part; saying no without closing a door you might want open later is.",
+      "raw": "hey sorry for the late reply. looked over the offer and honestly the numbers dont work for me and im swamped rn anyway. appreciate it tho but gonna pass",
+      "versions": [
+        {
+          "tone": "Diplomatic",
+          "text": "Thank you for thinking of me for this, and apologies for the delayed response. I gave the proposal careful consideration, but it doesn't align with my current priorities and availability. I really appreciate the opportunity and would welcome staying in touch for the future."
+        },
+        {
+          "tone": "Professional",
+          "text": "Thank you for putting this proposal together. After reviewing it, I've decided not to move forward at this time, as it doesn't align with my current goals. I'm open to revisiting this down the line if circumstances change."
+        },
+        {
+          "tone": "Empathetic",
+          "text": "First off, thank you for trusting me with this — I really do appreciate it. I went back and forth, but this isn't the right time for me, and I'd rather be upfront than leave you waiting. I hope you find the right fit for the project."
+        }
+      ],
+      "cta": "Got something awkward to decline? Type your message exactly as it comes to mind and let EzWrite turn it into 3 polished versions in seconds — free, no account required."
+    }
+  },
+  {
+    "id": "rechazar-invitacion",
+    "category": "Rechazos",
+    "es": {
+      "slug": "como-rechazar-una-invitacion-sin-ofender",
+      "title": "Cómo rechazar una invitación sin ofender a nadie",
+      "meta": "No querés ir a ese evento, cumpleaños o junta pero no sabés cómo decirlo. Generá una respuesta amable y honesta en segundos con EzWrite, gratis.",
+      "h1": "Cómo decir que no a una invitación sin herir a nadie",
+      "intro": "Te invitaron a algo —un cumpleaños, un asado, un evento de trabajo— y simplemente no querés o no podés ir. El miedo a sonar desagradecido o distante muchas veces hace que terminemos inventando excusas raras o, peor, no contestando nada.",
+      "raw": "hola vi la invitacion pero la verdad no tengo ganas de ir, ademas ese dia estoy re cansada, no se como decirte sin que te enojes jaja perdon",
+      "versions": [
+        {
+          "tone": "Empático",
+          "text": "¡Hola! Gracias por invitarme, de verdad lo valoro. Esta vez no voy a poder acompañarte, necesito bajar un cambio ese día, pero quiero que sepas que no es por vos ni por las ganas de verte. ¿Nos juntamos otro día, solo nosotros?"
+        },
+        {
+          "tone": "Diplomático",
+          "text": "Gracias por pensar en mí para esto. Lamentablemente no voy a poder asistir en esta ocasión, pero te deseo que la pases genial. Ojalá podamos coincidir en la próxima."
+        },
+        {
+          "tone": "Directo",
+          "text": "Gracias por la invitación. Esta vez no voy a poder ir, pero espero que sea una excelente reunión. Nos vemos pronto."
+        }
+      ],
+      "cta": "¿Tenés que rechazar una invitación y no encontrás las palabras? Escribí tu mensaje como te salga y EzWrite te da 3 versiones pulidas al instante, gratis y sin cuenta."
+    },
+    "en": {
+      "slug": "how-to-decline-an-invitation-without-offending",
+      "title": "How to Decline an Invitation Without Hurting Feelings",
+      "meta": "Don't want to attend that party, event, or gathering? Get a kind, honest way to say no in seconds — free, no sign-up needed, with EzWrite.",
+      "h1": "How to Turn Down an Invitation Without Offending Anyone",
+      "intro": "You got invited to something — a birthday, a work event, a get-together — and you just don't want to (or can't) go. The fear of sounding ungrateful or distant is usually what makes us freeze, ghost the message, or invent a weird excuse.",
+      "raw": "hey saw the invite but honestly not really feeling it, plus im gonna be wiped that day, idk how to say it without you getting mad lol sorry",
+      "versions": [
+        {
+          "tone": "Empathetic",
+          "text": "Hey! Thank you so much for inviting me, I really mean that. I'm not going to be able to make it this time, I need to take it easy that day, but please know it's not about you or not wanting to see you. Can we grab time just the two of us soon?"
+        },
+        {
+          "tone": "Diplomatic",
+          "text": "Thanks so much for thinking of me for this. Unfortunately I won't be able to make it this time, but I hope it's a great one. Hopefully our schedules line up next time."
+        },
+        {
+          "tone": "Direct",
+          "text": "Thanks for the invite. I won't be able to make it this time, but I hope it goes really well. Talk soon."
+        }
+      ],
+      "cta": "Need to turn down an invitation and can't find the words? Type your message just as it comes out and EzWrite gives you 3 polished versions instantly — free, no account needed."
+    }
+  },
+  {
+    "id": "pedir-reembolso",
+    "category": "Rechazos",
+    "es": {
+      "slug": "como-pedir-un-reembolso-por-escrito",
+      "title": "Cómo pedir un reembolso de forma clara y efectiva",
+      "meta": "Aprendé a redactar un pedido de reembolso firme pero educado, que aumente tus chances de que te digan que sí. Gratis con EzWrite, sin necesidad de cuenta.",
+      "h1": "Cómo pedir un reembolso sin sonar agresivo (ni pasar por tonto)",
+      "intro": "Un producto que llegó roto, un servicio que no cumplió lo prometido, una compra que te arrepentís de haber hecho. Pedir el reembolso está bien, pero cómo lo redactás influye directamente en si te lo dan rápido o te dan vueltas durante semanas.",
+      "raw": "hola compre el producto la semana pasada y llego roto, esto es un desastre quiero mi plata de vuelta ya, no puede ser que pase esto",
+      "versions": [
+        {
+          "tone": "Firme",
+          "text": "Hola, el producto que compré la semana pasada llegó dañado. Adjunto fotos como respaldo. Solicito el reembolso completo del importe y espero una respuesta en los próximos días hábiles para resolver esto."
+        },
+        {
+          "tone": "Profesional",
+          "text": "Buenas tardes. Realicé una compra la semana pasada (adjunto número de orden) y el producto llegó con daños. Les solicito iniciar el proceso de reembolso y quedo atento a los pasos a seguir."
+        },
+        {
+          "tone": "Diplomático",
+          "text": "Hola, quería comentarles que el producto que recibí la semana pasada llegó roto. Entiendo que estas cosas pasan, pero me gustaría gestionar un reembolso. Quedo a la espera de cómo continuar."
+        }
+      ],
+      "cta": "¿Tenés que reclamar un reembolso y no querés sonar ni muy blando ni muy agresivo? Escribí tu mensaje como te sale y EzWrite te da 3 versiones pulidas en segundos, gratis y sin cuenta."
+    },
+    "en": {
+      "slug": "how-to-write-a-refund-request",
+      "title": "How to Ask for a Refund (Email Templates & Tips)",
+      "meta": "Learn how to write a refund request that's firm but polite — and gets results faster. Free, no account needed, with EzWrite.",
+      "h1": "How to Ask for a Refund Without Sounding Rude (or Getting Ignored)",
+      "intro": "A product that arrived broken, a service that didn't deliver, a purchase you regret. Asking for your money back is completely fair — but how you word it decides whether you get a fast yes or weeks of back-and-forth.",
+      "raw": "hi i bought this last week and it arrived broken, this is ridiculous i want my money back now, cant believe this happened",
+      "versions": [
+        {
+          "tone": "Firm",
+          "text": "Hello, the product I purchased last week arrived damaged. I've attached photos as proof. I'm requesting a full refund and would appreciate a response within the next few business days to resolve this."
+        },
+        {
+          "tone": "Professional",
+          "text": "Hi there, I placed an order last week (order number attached) and the item arrived damaged. Could you please start the refund process? I'll follow whatever next steps you need."
+        },
+        {
+          "tone": "Diplomatic",
+          "text": "Hi, I wanted to let you know the item I received last week arrived broken. I understand these things happen, but I'd like to request a refund. Let me know how you'd like to proceed."
+        }
+      ],
+      "cta": "Need to request a refund without sounding too soft or too aggressive? Type your message exactly as it comes to mind and EzWrite gives you 3 polished versions in seconds — free, no account required."
+    }
+  },
+  {
+    "id": "resena-negativa",
+    "category": "Rechazos",
+    "es": {
+      "slug": "como-responder-una-critica-o-resena-negativa",
+      "title": "Cómo responder a una reseña negativa sin perder la calma",
+      "meta": "Una mala reseña puede dañar tu reputación si la respondés mal. Aprendé a contestar con profesionalismo, gratis y en segundos con EzWrite.",
+      "h1": "Cómo responder a una crítica o reseña negativa sin quedar mal",
+      "intro": "Llega esa reseña de una estrella o ese comentario filoso en redes y la primera reacción es defenderte o enojarte. Pero cómo respondas queda a la vista de todos tus futuros clientes, así que vale la pena pensarlo dos veces antes de escribir.",
+      "raw": "esto es mentira, el cliente se quejo de todo desde que llego, nosotros hicimos todo bien, no fue nuestra culpa que se cancelara el vuelo",
+      "versions": [
+        {
+          "tone": "Empático",
+          "text": "Lamentamos mucho que tu experiencia no haya sido la que esperabas. Entendemos que situaciones como el retraso del vuelo generan mucha frustración, y nos hubiera gustado poder ayudarte más en ese momento. Nos encantaría hablar directamente para ver cómo compensarte."
+        },
+        {
+          "tone": "Profesional",
+          "text": "Gracias por tu comentario. Revisamos el caso y, si bien algunos factores estuvieron fuera de nuestro control, queremos entender mejor qué pasó para mejorar en el futuro. Te invitamos a escribirnos por privado para resolverlo."
+        },
+        {
+          "tone": "Diplomático",
+          "text": "Apreciamos que te hayas tomado el tiempo de contarnos tu experiencia. Sentimos que no haya sido positiva y nos gustaría conversarlo con más detalle para encontrar una solución. Quedamos atentos a tu mensaje."
+        }
+      ],
+      "cta": "¿Te llegó una crítica difícil de responder? Escribí lo primero que se te ocurra y dejá que EzWrite te arme 3 respuestas profesionales, gratis y sin necesidad de cuenta."
+    },
+    "en": {
+      "slug": "how-to-respond-to-a-negative-review",
+      "title": "How to Respond to a Negative Review (Without Losing Your Cool)",
+      "meta": "A bad review can hurt your reputation if you respond wrong. Learn how to reply professionally in seconds — free, no account needed, with EzWrite.",
+      "h1": "How to Respond to a Negative Review or Comment Without Making It Worse",
+      "intro": "A one-star review or a sharp comment on social media shows up, and your first instinct is to get defensive or fire back. But your reply is public, and every future customer will read it — so it's worth getting right the first time.",
+      "raw": "this is bs, the customer complained about everything from the start, we did everything right, wasnt our fault the flight got cancelled",
+      "versions": [
+        {
+          "tone": "Empathetic",
+          "text": "We're really sorry your experience didn't meet expectations. We understand how frustrating situations like the flight delay can be, and we wish we could have supported you better in the moment. We'd love to talk directly and see how we can make this right."
+        },
+        {
+          "tone": "Professional",
+          "text": "Thank you for sharing this feedback. We looked into what happened and, while some factors were outside our control, we'd like to better understand your experience to improve going forward. Please reach out to us directly so we can resolve this."
+        },
+        {
+          "tone": "Diplomatic",
+          "text": "We appreciate you taking the time to share your experience. We're sorry it wasn't a positive one and would welcome the chance to discuss it further and find a solution. Looking forward to hearing from you."
+        }
+      ],
+      "cta": "Got a tough review to respond to? Type whatever comes to mind first and let EzWrite turn it into 3 professional replies — free, no account required."
+    }
+  },
+  {
+    "id": "favor-colega",
+    "category": "Rechazos",
+    "es": {
+      "slug": "como-pedir-un-favor-dificil-a-un-companero-de-trabajo",
+      "title": "Cómo pedir un favor incómodo a un colega sin sentir vergüenza",
+      "meta": "¿Necesitás pedirle algo grande a un compañero de trabajo y no sabés cómo plantearlo? Generá el mensaje ideal en segundos, gratis, con EzWrite.",
+      "h1": "Cómo pedirle un favor difícil a un colega sin quedar incómodo",
+      "intro": "Cubrir un turno, cambiar vacaciones, pedir que te ayuden con algo que no les corresponde: hay favores que sabemos que estamos pidiendo de más, y eso hace que nos cueste encontrar las palabras. El mensaje justo puede ser la diferencia entre un sí, no hay drama y una situación tensa.",
+      "raw": "hola disculpa te queria pedir un favor grande, necesito que me cubras el turno del sabado, se que es tu dia libre pero no tengo con quien dejar a mi hijo, entiendo si no podes",
+      "versions": [
+        {
+          "tone": "Empático",
+          "text": "Hola, quería pedirte un favor y sé que te estoy pidiendo bastante: ¿habría alguna chance de que me cubras el turno del sábado? Es tu día libre, así que entiendo perfectamente si no podés. Se me complicó el cuidado de mi hijo y estoy buscando alternativas. Te debo una grande si podés ayudarme."
+        },
+        {
+          "tone": "Diplomático",
+          "text": "Hola, ¿tenés un minuto? Quería consultarte si habría posibilidad de que intercambiemos el turno del sábado. Sé que es tu día libre, así que lo entiendo si no te queda cómodo. Gracias de antemano por considerarlo."
+        },
+        {
+          "tone": "Directo",
+          "text": "Hola, necesito ayuda con el turno del sábado, es tu día libre así que sé que es pedir mucho. ¿Podrías cubrirlo? Si no podés, no hay problema, buscaré otra opción."
+        }
+      ],
+      "cta": "¿Tenés que pedir un favor que te da vergüenza pedir? Escribí tu mensaje tal cual lo pensás y EzWrite te da 3 versiones pulidas en segundos, gratis y sin cuenta."
+    },
+    "en": {
+      "slug": "how-to-ask-a-coworker-for-a-difficult-favor",
+      "title": "How to Ask a Coworker for a Big Favor (Without the Awkwardness)",
+      "meta": "Need to ask a colleague for something big and don't know how to word it? Get the right message in seconds — free, no account needed, with EzWrite.",
+      "h1": "How to Ask a Coworker for a Difficult Favor Without Making It Weird",
+      "intro": "Covering a shift, swapping time off, asking for help with something that isn't really their job — some favors feel like you're asking for too much, and that's exactly what makes them hard to put into words. The right message can be the difference between an easy yes and an awkward moment.",
+      "raw": "hey sorry to ask but i need a huge favor, can you cover my saturday shift, i know its your day off but i have no one to watch my kid, its fine if you cant",
+      "versions": [
+        {
+          "tone": "Empathetic",
+          "text": "Hey, I wanted to ask you a favor and I know it's a big one — is there any chance you could cover my Saturday shift? I know it's your day off, so I completely understand if it doesn't work. My childcare fell through and I'm scrambling for options. I'd really owe you one if you can help."
+        },
+        {
+          "tone": "Diplomatic",
+          "text": "Hi, do you have a minute? I wanted to check if you'd be open to swapping shifts for Saturday. I know it's your day off, so no worries at all if it's not doable. Thanks for even considering it."
+        },
+        {
+          "tone": "Direct",
+          "text": "Hey, I need help covering Saturday's shift — I know it's your day off, so I know it's a lot to ask. Any chance you could take it? If not, no problem, I'll figure something else out."
+        }
+      ],
+      "cta": "Have an awkward favor to ask and don't know where to start? Type your message exactly as you're thinking it and EzWrite gives you 3 polished versions in seconds — free, no account required."
+    }
+  },
+  {
+    "id": "disculpa-pareja",
+    "category": "Personal",
+    "es": {
+      "slug": "pedir-disculpas-pareja-despues-de-una-pelea",
+      "title": "Cómo pedir disculpas a tu pareja tras una pelea",
+      "meta": "¿No sabés cómo pedirle perdón a tu pareja sin sonar forzado? Escribí lo que sentís y EzWrite te da 3 versiones pulidas. Gratis, sin cuenta.",
+      "h1": "Cómo pedirle disculpas a tu pareja después de una pelea (sin sonar falso ni frío)",
+      "intro": "Después de una discusión fuerte, todos sabemos que hay que decir algo, pero las palabras no salen. O suenan a excusa, o suenan a ya fue, sigamos, y ninguna de las dos repara nada. EzWrite te ayuda a poner en palabras lo que realmente sentís, sin quedar como que no te importó ni como que estás sobreactuando.",
+      "raw": "perdon x lo de anoche me pase de la raya, no quise decir eso, estaba caliente y dije cualquier cosa. te amo en serio no quiero que sigamos asi",
+      "versions": [
+        {
+          "tone": "Empático",
+          "text": "Perdón por lo de anoche. Me pasé de la raya y dije cosas que no sentía, solo estaba dolido y las usé para lastimarte, que es lo último que quiero. Sé que las palabras duelen aunque uno no las piense en serio. Te amo y no quiero que esto quede pesando entre nosotros. ¿Hablamos cuando estés lista?"
+        },
+        {
+          "tone": "Directo",
+          "text": "Perdón por lo que dije anoche, me pasé de la raya y no lo pienso en serio. Estaba enojado y descargué mal. Quiero arreglar esto, no que quede así. Te amo."
+        },
+        {
+          "tone": "Diplomático",
+          "text": "Quería pedirte perdón por cómo se dio la discusión de anoche. Dije cosas desde el enojo que no reflejan lo que siento por vos. Me importa mucho arreglar esto y me gustaría que hablemos con más calma cuando puedas."
+        }
+      ],
+      "cta": "Si tenés que escribirle algo parecido ahora mismo, probá con tu propio mensaje en EzWrite: en segundos te da 3 versiones pulidas, gratis y sin necesidad de crear cuenta."
+    },
+    "en": {
+      "slug": "how-to-apologize-to-your-partner-after-a-fight",
+      "title": "How to Apologize to Your Partner After a Fight",
+      "meta": "Don't know what to text after a fight? Write it rough, get 3 polished apology messages instantly with EzWrite. Free, no account needed.",
+      "h1": "How to Apologize to Your Partner After a Fight (Without Sounding Fake or Cold)",
+      "intro": "You know you need to say something after a bad argument, but every draft either sounds like an excuse or like you're brushing it off. EzWrite helps you put what you actually feel into words, so the apology lands as real instead of rehearsed.",
+      "raw": "hey i know i was out of line last night. didnt mean what i said i was just mad and ran my mouth. i love you and dont want this hanging over us",
+      "versions": [
+        {
+          "tone": "Empathetic",
+          "text": "I've been thinking about last night and I owe you a real apology. I was hurt and I said things I didn't mean just to sting — that's on me, not on you. I know words like that stick even when you don't mean them. I love you and I don't want this sitting between us. Can we talk when you're ready?"
+        },
+        {
+          "tone": "Direct",
+          "text": "I'm sorry for what I said last night. I was out of line and it's not how I actually feel — I was just angry and took it out on you. I want to fix this, not let it sit. I love you."
+        },
+        {
+          "tone": "Diplomatic",
+          "text": "I wanted to reach out about how last night went. I said some things out of frustration that don't reflect how I actually feel about you or us. Fixing this matters to me, and I'd like to talk it through properly whenever you're free."
+        }
+      ],
+      "cta": "Need to send something like this right now? Type your own rough message into EzWrite and get 3 polished versions in seconds — free, no account required."
+    }
+  },
+  {
+    "id": "cancelar-reunion",
+    "category": "Personal",
+    "es": {
+      "slug": "cancelar-reunion-o-cita-de-ultimo-momento",
+      "title": "Cómo cancelar una reunión de último momento sin quedar mal",
+      "meta": "¿Tenés que cancelar a último momento y no sabés cómo decirlo? EzWrite te da 3 mensajes pulidos al instante. Gratis, sin necesidad de cuenta.",
+      "h1": "Cómo cancelar una reunión o cita de último momento sin quedar mal",
+      "intro": "Se te cruzó algo, te enfermaste, se te complicó el día, y ahora tenés que avisar que no vas a poder llegar. El problema no es cancelar, es cómo decirlo sin sonar como que no te importa o como que estás inventando una excusa. EzWrite te ayuda a encontrar el tono justo, sea con un cliente, un jefe o un amigo.",
+      "raw": "hola perdon pero no voy a poder llegar a la reunion de hoy se me complico algo, podemos ver otro dia? disculpas por el lio",
+      "versions": [
+        {
+          "tone": "Profesional",
+          "text": "Hola, te escribo porque me surgió un imprevisto y no voy a poder estar en la reunión de hoy. Lamento el aviso a último momento. ¿Te parece si coordinamos otro horario esta semana? Quedo atento a lo que te quede mejor."
+        },
+        {
+          "tone": "Directo",
+          "text": "Hola, no voy a poder llegar a la reunión de hoy, se me complicó algo de último momento. Perdón por el aviso corto. ¿Reprogramamos para otro día?"
+        },
+        {
+          "tone": "Diplomático",
+          "text": "Hola, disculpá que te escriba con tan poco margen: me surgió un imprevisto y no voy a poder acompañarte hoy en la reunión. Entiendo si te genera un inconveniente y quiero encontrar el mejor momento para retomarla, cuando a vos te quede cómodo."
+        }
+      ],
+      "cta": "¿Tenés que avisar algo parecido ahora? Escribí tu mensaje tal cual te sale y probá EzWrite: 3 versiones pulidas en segundos, gratis y sin crear cuenta."
+    },
+    "en": {
+      "slug": "how-to-cancel-a-meeting-last-minute-without-burning-bridges",
+      "title": "How to Cancel a Meeting Last Minute Gracefully",
+      "meta": "Need to cancel a meeting or appointment last minute? EzWrite turns your rough message into 3 polished ones instantly. Free, no account needed.",
+      "h1": "How to Cancel a Meeting or Appointment Last Minute (Without Burning Bridges)",
+      "intro": "Something came up and now you have to bail on a meeting with almost no notice. Canceling isn't the hard part — sounding professional instead of flaky is. EzWrite helps you find the right tone, whether it's a client, a boss, or a friend on the other end.",
+      "raw": "hey so sorry but i cant make todays meeting, something came up last minute. can we push it to another day? sorry for the short notice",
+      "versions": [
+        {
+          "tone": "Professional",
+          "text": "Hi, something unexpected came up and I won't be able to make today's meeting. Apologies for the short notice. Could we find another time this week? Happy to work around whatever's easiest for you."
+        },
+        {
+          "tone": "Direct",
+          "text": "Hi, I'm not going to be able to make today's meeting — something came up last minute. Sorry for the short notice. Can we reschedule for another day?"
+        },
+        {
+          "tone": "Diplomatic",
+          "text": "Hi, I'm sorry to reach out with so little notice — something unexpected came up and I won't be able to join today's meeting. I understand this may be inconvenient, and I'd like to find a time to reconnect that works well for you."
+        }
+      ],
+      "cta": "Need to send a message like this right now? Type it in exactly as it comes out and try EzWrite — 3 polished versions in seconds, free, no account needed."
+    }
+  },
+  {
+    "id": "llegar-tarde",
+    "category": "Personal",
+    "es": {
+      "slug": "pedir-perdon-por-llegar-tarde-o-faltar-a-un-compromiso",
+      "title": "Cómo pedir perdón por llegar tarde o faltar a un compromiso",
+      "meta": "¿Llegaste tarde o faltaste a algo importante y no sabés cómo disculparte? EzWrite te da 3 mensajes pulidos al instante. Gratis, sin cuenta.",
+      "h1": "Cómo pedir perdón por llegar tarde o faltar a un compromiso",
+      "intro": "Llegaste tarde, o directamente no llegaste, y ahora te toca escribir algo que muestre que realmente te importa, no una excusa apurada. EzWrite te ayuda a encontrar las palabras justas para pedir perdón de verdad, sin sonar exagerado ni indiferente.",
+      "raw": "perdon en serio se me paso el horario total no llegue, se q te deje esperando y no esta bueno, mil disculpas, no fue mi intencion",
+      "versions": [
+        {
+          "tone": "Empático",
+          "text": "Perdón de verdad, se me pasó el horario y terminé sin llegar. Sé que te dejé esperando y eso no está bueno de mi parte, más allá de que no fue mi intención. Te agradezco la paciencia y quiero compensarlo, decime cuándo te queda bien para vernos."
+        },
+        {
+          "tone": "Firme",
+          "text": "Te pido disculpas por no haber llegado, fue un error mío y me hago cargo. Sé que te hice perder tiempo esperando. No va a volver a pasar, y si querés reprogramar quedo a tu disposición."
+        },
+        {
+          "tone": "Directo",
+          "text": "Perdón, se me pasó el horario y no llegué. Sé que te dejé esperando, mi error. ¿Vemos otro día para encontrarnos?"
+        }
+      ],
+      "cta": "Si necesitás mandar algo parecido ahora, probá con tu propio mensaje en EzWrite: 3 versiones pulidas en segundos, gratis y sin necesidad de crear cuenta."
+    },
+    "en": {
+      "slug": "how-to-apologize-for-being-late-or-missing-an-appointment",
+      "title": "How to Apologize for Being Late or Missing Plans",
+      "meta": "Showed up late or missed something important? EzWrite turns your rough apology into 3 polished versions instantly. Free, no account needed.",
+      "h1": "How to Apologize for Being Late or Missing an Appointment",
+      "intro": "You were late, or worse, you just didn't show, and now you need to send something that actually sounds like you care instead of a rushed excuse. EzWrite helps you find the right words to apologize properly, without overdoing it or sounding careless.",
+      "raw": "so sorry i totally lost track of time and never made it. i know i left you hanging and that sucks, my bad, wasnt trying to blow you off",
+      "versions": [
+        {
+          "tone": "Empathetic",
+          "text": "I'm really sorry, I lost track of time and ended up not showing at all. I know that left you waiting and that's on me, even though it wasn't my intention. I appreciate you being patient with me, let me know when's good for you and I'll make it up to you."
+        },
+        {
+          "tone": "Firm",
+          "text": "I apologize for not showing up, that was my mistake and I own it. I know I wasted your time waiting. It won't happen again, and I'm happy to reschedule whenever works for you."
+        },
+        {
+          "tone": "Direct",
+          "text": "Sorry, I lost track of time and never made it. I know I left you waiting, my fault. Can we pick another day to meet?"
+        }
+      ],
+      "cta": "Need to send something like this right now? Type your own message into EzWrite and get 3 polished versions in seconds — free, no account required."
+    }
+  }
+]
