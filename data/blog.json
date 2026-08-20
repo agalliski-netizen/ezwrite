@@ -1,0 +1,196 @@
+[
+  {
+    "id": "frases-cliente-enojado",
+    "category": "Atención al cliente",
+    "es": {
+      "slug": "frases-que-evitar-con-un-cliente-enojado",
+      "title": "5 frases que nunca deberías mandarle a un cliente enojado | EzWrite",
+      "meta": "Estas 5 frases hacen que un cliente enojado se enoje todavía más. Te mostramos por qué fallan y qué escribir en su lugar, con ejemplos.",
+      "h1": "5 frases que nunca deberías mandarle a un cliente enojado",
+      "intro": "Cuando un cliente te escribe furioso, lo que respondas en los primeros minutos define si el problema se resuelve o se convierte en una reseña de una estrella. El problema es que ciertas frases, aunque suenen profesionales en tu cabeza, funcionan como gasolina sobre el fuego. Estas son las cinco más comunes, y qué escribir en su lugar.",
+      "blocks": [
+        {
+          "type": "list-item",
+          "n": 1,
+          "phrase": "«Como le comenté anteriormente...»",
+          "why": "Suena a que estás marcándole que no te leyó o no te prestó atención. Un cliente enojado no necesita que le recuerden que ya habló con vos, necesita sentir que lo estás escuchando recién ahora.",
+          "instead": "Retomándolo de dónde quedó: el pedido llegó con la pieza incorrecta. Esto es lo que vamos a hacer para resolverlo hoy mismo."
+        },
+        {
+          "type": "list-item",
+          "n": 2,
+          "phrase": "«Es la política de la empresa.»",
+          "why": "Es una pared, no una respuesta. Al cliente no le importa tu organigrama interno ni tus reglas; le importa su problema. Citar una política sin explicar el porqué suena a que no querés hacer nada.",
+          "instead": "No podemos hacer el cambio después de 30 días porque ahí se vence la garantía del proveedor, pero puedo ofrecerte esto en su lugar."
+        },
+        {
+          "type": "list-item",
+          "n": 3,
+          "phrase": "«Cálmese, por favor.»",
+          "why": "Nunca funcionó. Decirle a alguien enojado que se calme es como decirle a alguien triste que no esté triste: invalida lo que siente y lo enoja más. Es de las frases más efectivas para escalar un reclamo.",
+          "instead": "Entiendo perfectamente la bronca, yo también me hubiera enojado. Vamos a solucionarlo ahora."
+        },
+        {
+          "type": "list-item",
+          "n": 4,
+          "phrase": "«Eso no depende de mí / no es mi área.»",
+          "why": "Es sincero, pero al cliente no le sirve de nada. Lo que escucha es «este es tu problema, no el mío». Si vas a derivarlo, hacelo mostrando que vos seguís a cargo de que se resuelva.",
+          "instead": "Voy a escalarlo al equipo que puede resolverlo hoy y te confirmo personalmente en cuanto tenga novedades."
+        },
+        {
+          "type": "list-item",
+          "n": 5,
+          "phrase": "«Lamentamos las molestias.» (como cierre genérico, sin ninguna acción concreta)",
+          "why": "Es la frase más usada y la que menos dice. Sin una acción específica detrás, suena a plantilla automática, y el cliente lo nota al instante.",
+          "instead": "Te reembolsamos el envío y sale el pedido nuevo mañana con seguimiento prioritario. Cualquier cosa, escribime directo a mí."
+        }
+      ],
+      "closing": "El patrón detrás de las cinco: nombrar el problema en concreto, reconocer cómo se siente el cliente sin sonar a libreto, y cerrar con una acción específica en vez de una disculpa vacía. Es más fácil decirlo que escribirlo bien en caliente, sobre todo cuando el mensaje que recibiste ya te puso a la defensiva.",
+      "cta": "¿Tenés que responderle a un cliente enojado ahora mismo? Pegá tu borrador en EzWrite, elegí el tono y en segundos tenés 3 versiones pulidas para elegir.",
+      "ctaBtn": "Probar con mi propio mensaje",
+      "ctaLinkSlug": "responder-a-un-cliente-enojado"
+    },
+    "en": {
+      "slug": "phrases-to-avoid-with-an-angry-customer",
+      "title": "5 Phrases You Should Never Send an Angry Customer | EzWrite",
+      "meta": "These 5 phrases make an angry customer even angrier. Here's why they backfire and what to write instead, with real examples.",
+      "h1": "5 phrases you should never send an angry customer",
+      "intro": "When a customer emails you furious, what you write in the first few minutes decides whether the issue gets resolved or turns into a one-star review. The problem is that certain phrases, however professional they sound in your head, work like gasoline on a fire. Here are the five most common ones, and what to write instead.",
+      "blocks": [
+        {
+          "type": "list-item",
+          "n": 1,
+          "phrase": "“As I mentioned before...”",
+          "why": "It reads like you're pointing out they didn't read or pay attention. An angry customer doesn't need to be reminded they already reached out, they need to feel heard right now.",
+          "instead": "Picking this back up: the order arrived with the wrong part. Here's what we're doing to fix it today."
+        },
+        {
+          "type": "list-item",
+          "n": 2,
+          "phrase": "“That's our policy.”",
+          "why": "It's a wall, not an answer. The customer doesn't care about your internal rules, they care about their problem. Citing a policy without explaining the why sounds like you don't want to help.",
+          "instead": "We can't process the exchange after 30 days because that's when the supplier's warranty expires, but here's what I can offer instead."
+        },
+        {
+          "type": "list-item",
+          "n": 3,
+          "phrase": "“Please calm down.”",
+          "why": "It has never once worked. Telling an angry person to calm down invalidates what they feel and makes it worse. It's one of the most reliable ways to escalate a complaint.",
+          "instead": "I completely understand the frustration, I'd be upset too. Let's get this fixed right now."
+        },
+        {
+          "type": "list-item",
+          "n": 4,
+          "phrase": "“That's not on me / not my department.”",
+          "why": "It's honest, but useless to the customer. What they hear is “this is your problem, not mine.” If you need to hand it off, do it while showing you're still accountable for the outcome.",
+          "instead": "I'm escalating this to the team that can resolve it today, and I'll personally follow up with you once I hear back."
+        },
+        {
+          "type": "list-item",
+          "n": 5,
+          "phrase": "“We apologize for the inconvenience.” (as a generic close, with no concrete action)",
+          "why": "It's the most-used line in customer service and the one that says the least. Without a specific action behind it, it reads as a template, and customers spot that instantly.",
+          "instead": "We're refunding the shipping and sending a replacement tomorrow with priority tracking. Reach out to me directly if anything comes up."
+        }
+      ],
+      "closing": "The pattern behind all five: name the actual problem, acknowledge how the customer feels without sounding scripted, and close with a specific action instead of an empty apology. It's easier said than written well in the heat of the moment, especially when the message you received already put you on the defensive.",
+      "cta": "Need to reply to an angry customer right now? Paste your draft into EzWrite, pick a tone, and get 3 polished versions to choose from in seconds.",
+      "ctaBtn": "Try it with my own message",
+      "ctaLinkSlug": "how-to-respond-to-an-angry-customer"
+    }
+  },
+  {
+    "id": "ezwrite-vs-chatgpt",
+    "category": "Comparativas",
+    "es": {
+      "slug": "ezwrite-vs-pedirle-a-chatgpt-que-reescriba-tu-mensaje",
+      "title": "EzWrite vs. pedirle a ChatGPT que te reescriba el mensaje | EzWrite",
+      "meta": "¿Conviene usar ChatGPT para reescribir un mensaje difícil o una herramienta hecha para eso? Comparación honesta, sin exagerar para ningún lado.",
+      "h1": "EzWrite vs. pedirle a ChatGPT que te reescriba el mensaje",
+      "intro": "Esta es la pregunta más lógica que te puede surgir: «si ya tengo ChatGPT, ¿para qué necesito otra cosa?». Es justa, y la respuesta honesta es: depende de cuánto tiempo querés invertir en el prompt cada vez que necesitás escribir algo incómodo.",
+      "blocks": [
+        {
+          "type": "h2",
+          "text": "Lo que tenés que hacer vos con ChatGPT"
+        },
+        {
+          "type": "p",
+          "text": "Con ChatGPT, cada vez que necesitás reescribir un mensaje tenés que: abrir el chat, explicarle la situación, decirle qué tono querés (y describirlo bien, porque «profesional» para el modelo puede salir frío o pomposo si no lo aclarás), pedirle que no sea tan formal, pedirle una segunda opción para comparar, y a veces volver a explicarle el contexto porque la primera respuesta se fue por las ramas. Si sos bueno escribiendo prompts, el resultado puede ser excelente. El costo es el tiempo y el ida y vuelta."
+        },
+        {
+          "type": "h2",
+          "text": "Lo que hace EzWrite en su lugar"
+        },
+        {
+          "type": "p",
+          "text": "EzWrite le saca el paso del prompt: pegás el mensaje tal cual te sale, elegís el tono de una lista pensada específicamente para estas situaciones (Profesional, Diplomático, Empático, Firme) y el idioma de salida, y recibís 3 versiones a la vez, no una. Comparás las tres y elegís la que mejor te representa, en vez de negociar con el modelo hasta que te convenza."
+        },
+        {
+          "type": "h2",
+          "text": "Dónde ChatGPT te puede ganar"
+        },
+        {
+          "type": "p",
+          "text": "Si necesitás algo muy específico y fuera de lo común (un mensaje largísimo, con un formato particular, o que mezcle varias tareas a la vez), un chat abierto te da más control fino porque podés iterar sin límite. Para eso, un asistente de propósito general sigue siendo mejor herramienta que cualquier app especializada."
+        },
+        {
+          "type": "h2",
+          "text": "Dónde EzWrite te gana a vos, el que no quiere pensar en el prompt"
+        },
+        {
+          "type": "p",
+          "text": "Si lo que necesitás es resolver rápido un mensaje incómodo puntual, sin login, sin memorizar cómo escribir el prompt perfecto, y viendo 3 alternativas listas para copiar y pegar, ahí es donde EzWrite está pensado para ganar tiempo. No es más inteligente que ChatGPT (de hecho corre sobre Claude), es más rápido para este uso puntual porque ya viene configurado para él."
+        }
+      ],
+      "closing": "La respuesta honesta: si ya sos bueno escribiéndole prompts a una IA, quizás no necesites nada más. Si te da fiaca pensar el prompt cada vez, o simplemente querés ver 3 opciones ya listas en 10 segundos, para eso existe EzWrite.",
+      "cta": "Probá la diferencia con tu propio mensaje: gratis, sin registrarte.",
+      "ctaBtn": "Probar EzWrite gratis",
+      "ctaLinkSlug": null
+    },
+    "en": {
+      "slug": "ezwrite-vs-asking-chatgpt-to-rewrite-your-message",
+      "title": "EzWrite vs. Asking ChatGPT to Rewrite Your Message | EzWrite",
+      "meta": "Should you use ChatGPT to rewrite a difficult message, or a tool built for exactly that? An honest comparison, no exaggeration either way.",
+      "h1": "EzWrite vs. asking ChatGPT to rewrite your message",
+      "intro": "This is the most logical question you could ask: “if I already have ChatGPT, why would I need anything else?” It's a fair question, and the honest answer is: it depends on how much time you want to spend on the prompt every single time you need to write something uncomfortable.",
+      "blocks": [
+        {
+          "type": "h2",
+          "text": "What you have to do yourself with ChatGPT"
+        },
+        {
+          "type": "p",
+          "text": "With ChatGPT, every time you need to rewrite a message you have to: open the chat, explain the situation, tell it what tone you want (and describe it well, because “professional” can come out cold or stiff if you don't clarify), ask it to tone it down, ask for a second option to compare, and sometimes re-explain the context because the first answer went off track. If you're good at writing prompts, the result can be excellent. The cost is time and back-and-forth."
+        },
+        {
+          "type": "h2",
+          "text": "What EzWrite does instead"
+        },
+        {
+          "type": "p",
+          "text": "EzWrite skips the prompt step entirely: paste the message exactly as it comes out, pick a tone from a list built specifically for these situations (Professional, Diplomatic, Empathetic, Firm) and the output language, and get 3 versions at once, not one. You compare all three and pick the one that sounds like you, instead of negotiating with the model until it gets it right."
+        },
+        {
+          "type": "h2",
+          "text": "Where ChatGPT wins"
+        },
+        {
+          "type": "p",
+          "text": "If you need something very specific and out of the ordinary (a very long message, a particular format, or one that mixes several tasks at once), an open chat gives you finer control because you can iterate without limits. For that, a general-purpose assistant is still a better tool than any specialized app."
+        },
+        {
+          "type": "h2",
+          "text": "Where EzWrite wins, if you'd rather not think about the prompt"
+        },
+        {
+          "type": "p",
+          "text": "If what you need is to solve one uncomfortable message quickly, with no login, no memorizing the perfect prompt, and seeing 3 ready-to-paste alternatives, that's where EzWrite is built to save you time. It's not smarter than ChatGPT (it actually runs on Claude), it's faster for this specific job because it already comes configured for it."
+        }
+      ],
+      "closing": "The honest answer: if you're already good at prompting an AI, you might not need anything else. If you can't be bothered to write the prompt every time, or you just want to see 3 ready options in 10 seconds, that's what EzWrite is for.",
+      "cta": "Try the difference with your own message: free, no account needed.",
+      "ctaBtn": "Try EzWrite for free",
+      "ctaLinkSlug": null
+    }
+  }
+]
