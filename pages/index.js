@@ -61,10 +61,12 @@ limitBtnMonthlyLabel: 'Monthly',
 limitBtnAnnualLabel: 'Annual',
 perMonth: 'mo',
 usageLeft: function(n) { return n + ' generation' + (n === 1 ? '' : 's') + ' left today'; },
-shareMsg: 'Invite 5 friends → 5 extra generations',
+shareMsg: 'Liked these versions? Invite 5 friends → 5 extra generations',
 shareBtn: '📲 Share EzWrite',
 shareWhatsappMsg: 'Try EzWrite for free — the AI that gives you 3 polished versions of any message: ',
 shareProgress: function(n) { return n + ' of 5'; },
+copyLinkBtn: 'Copy link',
+linkCopiedLabel: 'Link copied',
 recipientLabel: 'Recipient (optional)',
 recipientOtherPlaceholder: 'Describe the relationship...',
 recipientOptions: ['Boss', 'Client', 'Colleague', 'Friend', 'Partner', 'Other'],
@@ -110,10 +112,12 @@ limitBtnMonthlyLabel: 'Mensual',
 limitBtnAnnualLabel: 'Anual',
 perMonth: 'mes',
 usageLeft: function(n) { return n + (n === 1 ? ' generación restante' : ' generaciones restantes') + ' hoy'; },
-shareMsg: 'Invitá 5 amigos → 5 generaciones extra',
+shareMsg: '¿Te sirvieron estas versiones? Invitá 5 amigos → 5 generaciones extra',
 shareBtn: '📲 Compartir EzWrite',
 shareWhatsappMsg: 'Probá EzWrite gratis — la IA que te da 3 versiones de cualquier mensaje: ',
 shareProgress: function(n) { return n + ' de 5'; },
+copyLinkBtn: 'Copiar link',
+linkCopiedLabel: 'Link copiado',
 recipientLabel: 'Destinatario (opcional)',
 recipientOtherPlaceholder: 'Describi la relación...',
 recipientOptions: ['Jefe/a', 'Cliente', 'Colega', 'Amigo/a', 'Pareja', 'Otro'],
@@ -159,10 +163,12 @@ limitBtnMonthlyLabel: 'Mensal',
 limitBtnAnnualLabel: 'Anual',
 perMonth: 'mês',
 usageLeft: function(n) { return n + (n === 1 ? ' geração restante' : ' gerações restantes') + ' hoje'; },
-shareMsg: 'Convide 5 amigos → 5 gerações extras',
+shareMsg: 'Gostou dessas versões? Convide 5 amigos → 5 gerações extras',
 shareBtn: '📲 Compartilhar EzWrite',
 shareWhatsappMsg: 'Experimente o EzWrite grátis — a IA que te dá 3 versões de qualquer mensagem: ',
 shareProgress: function(n) { return n + ' de 5'; },
+copyLinkBtn: 'Copiar link',
+linkCopiedLabel: 'Link copiado',
 recipientLabel: 'Destinatário (opcional)',
 recipientOtherPlaceholder: 'Descreva o relacionamento...',
 recipientOptions: ['Chefe', 'Cliente', 'Colega', 'Amigo/a', 'Parceiro/a', 'Outro'],
@@ -228,6 +234,7 @@ var s26 = useState(function() { try { return JSON.parse(localStorage.getItem('ez
 var s27 = useState(false); var showHistory = s27[0]; var setShowHistory = s27[1];
 var s28 = useState(function() { try { return JSON.parse(localStorage.getItem('ezw_custom_tones') || '[]'); } catch(e) { return []; } }); var recentCustomTones = s28[0]; var setRecentCustomTones = s28[1];
 var s29 = useState('latam'); var pricingTier = s29[0]; var setPricingTier = s29[1];
+var s30 = useState(false); var linkCopied = s30[0]; var setLinkCopied = s30[1];
 
 var posthog = usePostHog();
 var t = UI[uiLang] || UI['English'];
@@ -408,6 +415,16 @@ setRecentCustomTones(arr);
 } catch(e) {}
 }
 
+async function handleCopyLink() {
+try {
+var url = 'https://ezwrite.app?ref=' + userId;
+await navigator.clipboard.writeText(url);
+if (posthog) posthog.capture('referral_link_copied');
+setLinkCopied(true);
+setTimeout(function() { setLinkCopied(false); }, 2000);
+} catch (e) {}
+}
+
 async function handleCopy(text, idx) {
 try {
 await navigator.clipboard.writeText(text);
@@ -562,8 +579,8 @@ EzWrite
 {showPaywall && (<div style={{ background: isDark ? 'rgba(245,158,11,0.1)' : '#FFF7ED', border: '1px solid '+(isDark ? 'rgba(245,158,11,0.35)' : '#FED7AA'), borderRadius: '10px', padding: '20px', marginTop: '1rem', textAlign: 'center' }}><div style={{ fontSize: '15px', fontWeight: 600, color: isDark ? '#FBBF24' : '#92400E', marginBottom: '6px' }}>{t.limitTitle}</div><div style={{ fontSize: '13px', color: isDark ? '#FCD34D' : '#B45309', marginBottom: '16px', lineHeight: 1.5 }}>{t.limitMsg}</div><div style={{ display: 'flex', gap: '8px', justifyContent: 'center', flexWrap: 'wrap' }}><a href={`https://ezwrite.lemonsqueezy.com/checkout/buy/${CHECKOUT_IDS[pricingTier].monthly}${userId ? "?checkout%5Bcustom%5D%5Buser_id%5D=" + encodeURIComponent(userId) : ""}&checkout%5Bredirect_url%5D=https://ezwrite.app/?activated=1`} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', background: '#F59E0B', color: '#fff', padding: '10px 20px', borderRadius: '8px', fontSize: '14px', fontWeight: 600, textDecoration: 'none' }}>{t.limitBtnMonthlyLabel} → ${PRICES[pricingTier].monthly}/{t.perMonth}</a><a href={`https://ezwrite.lemonsqueezy.com/checkout/buy/${CHECKOUT_IDS[pricingTier].annual}${userId ? "?checkout%5Bcustom%5D%5Buser_id%5D=" + encodeURIComponent(userId) : ""}&checkout%5Bredirect_url%5D=https://ezwrite.app/?activated=1`} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', background: 'transparent', color: isDark ? '#FBBF24' : '#92400E', border: '1.5px solid #F59E0B', padding: '10px 20px', borderRadius: '8px', fontSize: '14px', fontWeight: 600, textDecoration: 'none' }}>{t.limitBtnAnnualLabel} → ${PRICES[pricingTier].annual}/{t.perMonth}</a></div></div>)}
 {error && (<div style={{ background: C.RED_LIGHT, border: '1px solid '+C.RED, color: C.RED, borderRadius: '8px', padding: '12px 14px', fontSize: '13px', marginTop: '1rem' }}>{error}</div>)}
 {versions && (<div className="ph-no-capture"><div style={{ height: '1px', background: C.BORDER, margin: '2rem 0' }}></div>{versions.map(function(v, idx) { var color = VERSION_COLORS[idx] || C.ACCENT; var isCopied = copied === idx; return (<div key={idx} className="ez-card ez-result-card" style={{ background: C.SURFACE, border: '1px solid '+C.BORDER, borderLeft: '3px solid '+color, borderRadius: '14px', padding: '18px', marginBottom: '14px', boxShadow: C.SHADOW, animationDelay: (idx*80)+'ms' }}><div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}><span style={{ fontSize: '12px', fontWeight: 700, padding: '3px 8px', borderRadius: '4px', background: color+'22', color: color }}>{t.versionLabel} {v.label}</span><button className="ez-copy-btn" data-copied={isCopied} onClick={function() { handleCopy(v.text, idx); }} style={{ fontSize: '12px', fontWeight: 500, padding: '5px 12px', borderRadius: '6px', border: isCopied ? '1px solid '+C.GREEN : '1px solid '+C.BORDER, background: isCopied ? C.GREEN_LIGHT : 'transparent', cursor: 'pointer', color: isCopied ? C.GREEN : C.TEXT2, fontFamily: inter.style.fontFamily, display: 'flex', alignItems: 'center', gap: '4px' }}>{isCopied && <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M20 6L9 17l-5-5"/></svg>}{isCopied ? t.copied : t.copy}</button></div><p style={{ fontSize: '15px', lineHeight: 1.7, color: isDark ? C.TEXT2 : C.TEXT, margin: 0, whiteSpace: 'pre-wrap' }}>{v.text}</p></div>); })}</div>)}
-{userId && (<div style={{ marginTop: '2rem', paddingTop: '1.5rem', borderTop: '1px solid '+C.BORDER, textAlign: 'center' }}><div style={{ fontSize: '13px', fontWeight: 600, color: C.TEXT, marginBottom: '6px' }}>{t.shareMsg}</div><div style={{ marginBottom: '14px' }}>{[0,1,2,3,4].map(function(i) { var filled = referralCount > 0 && (i < referralCount % 5 || (referralCount % 5 === 0 && i < 5)); return (<span key={i} style={{ fontSize: '22px', color: filled ? C.GREEN : C.TEXT3 }}>{filled ? '●' : '○'}</span>); })}<span style={{ fontSize: '12px', color: C.TEXT2, marginLeft: '10px' }}>{t.shareProgress(referralCount % 5 === 0 && referralCount > 0 ? 5 : referralCount % 5)}</span></div><button onClick={function() { var url = 'https://ezwrite.app?ref='+userId; var msg = 'Probá EzWrite gratis — la IA que te da 3 versiones pulidas de cualquier mensaje: ' + url; if (posthog) posthog.capture('referral_shared');
-window.open('https://wa.me/?text='+encodeURIComponent(msg), '_blank'); }} style={{ padding: '11px 28px', background: C.GREEN, color: '#fff', border: 'none', borderRadius: '10px', fontSize: '14px', fontWeight: 600, cursor: 'pointer', fontFamily: inter.style.fontFamily, display: 'inline-flex', alignItems: 'center', gap: '8px' }}><svg width='16' height='16' viewBox='0 0 24 24' fill='white'><path d='M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z'/></svg> {t.shareBtn}</button>{bonusGen > 0 && (<div style={{ fontSize: '12px', color: C.GREEN, marginTop: '8px', fontWeight: 500 }}>+{bonusGen} {uiLang === 'Espanol' ? 'generaciones extra desbloqueadas' : uiLang === 'Portugues' ? 'gerações extras desbloqueadas' : 'extra generations unlocked'}</div>)}</div>)}
+{userId && versions && (<div className="ez-card" style={{ marginTop: '1.5rem', padding: '20px', borderRadius: '14px', background: C.ACCENT_SOFT, border: '1px solid '+C.ACCENT_BORDER, textAlign: 'center' }}><div style={{ fontSize: '13px', fontWeight: 600, color: C.TEXT, marginBottom: '6px' }}>{t.shareMsg}</div><div style={{ marginBottom: '14px' }}>{[0,1,2,3,4].map(function(i) { var filled = referralCount > 0 && (i < referralCount % 5 || (referralCount % 5 === 0 && i < 5)); return (<span key={i} style={{ fontSize: '22px', color: filled ? C.GREEN : C.TEXT3 }}>{filled ? '●' : '○'}</span>); })}<span style={{ fontSize: '12px', color: C.TEXT2, marginLeft: '10px' }}>{t.shareProgress(referralCount % 5 === 0 && referralCount > 0 ? 5 : referralCount % 5)}</span></div><div style={{ display: 'flex', gap: '8px', justifyContent: 'center', flexWrap: 'wrap' }}><button onClick={function() { var url = 'https://ezwrite.app?ref='+userId; var msg = 'Probá EzWrite gratis — la IA que te da 3 versiones pulidas de cualquier mensaje: ' + url; if (posthog) posthog.capture('referral_shared');
+window.open('https://wa.me/?text='+encodeURIComponent(msg), '_blank'); }} style={{ padding: '11px 28px', background: C.GREEN, color: '#fff', border: 'none', borderRadius: '10px', fontSize: '14px', fontWeight: 600, cursor: 'pointer', fontFamily: inter.style.fontFamily, display: 'inline-flex', alignItems: 'center', gap: '8px' }}><svg width='16' height='16' viewBox='0 0 24 24' fill='white'><path d='M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z'/></svg> {t.shareBtn}</button><button onClick={handleCopyLink} style={{ padding: '11px 20px', background: 'transparent', color: linkCopied ? C.GREEN : C.TEXT2, border: '1px solid '+(linkCopied ? C.GREEN : C.BORDER_STRONG), borderRadius: '10px', fontSize: '14px', fontWeight: 600, cursor: 'pointer', fontFamily: inter.style.fontFamily, display: 'inline-flex', alignItems: 'center', gap: '6px' }}>{linkCopied ? (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M20 6L9 17l-5-5"/></svg>) : (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>)} {linkCopied ? t.linkCopiedLabel : t.copyLinkBtn}</button></div>{bonusGen > 0 && (<div style={{ fontSize: '12px', color: C.GREEN, marginTop: '10px', fontWeight: 500 }}>+{bonusGen} {uiLang === 'Espanol' ? 'generaciones extra desbloqueadas' : uiLang === 'Portugues' ? 'gerações extras desbloqueadas' : 'extra generations unlocked'}</div>)}</div>)}
 <div style={{ marginTop: '3rem', paddingTop: '1.5rem', borderTop: '1px solid '+C.BORDER, textAlign: 'center', fontSize: '12px', color: C.TEXT3 }}>Made with <span style={{ color: C.ACCENT, fontWeight: 700 }}>EzWrite</span><span style={{ margin: '0 8px', opacity: 0.4 }}>·</span>Powered by <span style={{ color: '#E86A2D', fontWeight: 600 }}>Claude</span></div>
 <div style={{ marginTop: '1rem', display: 'flex', justifyContent: 'center' }}><a href="https://www.producthunt.com/products/ezwrite?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-ezwrite" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '6px 12px', borderRadius: '6px', border: '1px solid '+C.BORDER, fontSize: '12px', color: C.TEXT3, textDecoration: 'none', fontFamily: inter.style.fontFamily }}>🚀 Featured on Product Hunt</a></div>
 </div>
