@@ -1,5 +1,52 @@
 export const config = { maxDuration: 30 };
 
+var FREE_DAILY_LIMIT = 5;
+var IP_DAILY_LIMIT = 40;
+
+function todayKey() {
+  return new Date().toISOString().slice(0, 10);
+}
+
+async function kvGet(key) {
+  try {
+    var url = process.env.KV_REST_API_URL + '/get/' + key;
+    var r = await fetch(url, { headers: { Authorization: 'Bearer ' + process.env.KV_REST_API_TOKEN } });
+    var d = await r.json();
+    return d.result;
+  } catch (e) { return null; }
+}
+
+async function kvScard(key) {
+  try {
+    var url = process.env.KV_REST_API_URL + '/scard/' + key;
+    var r = await fetch(url, { headers: { Authorization: 'Bearer ' + process.env.KV_REST_API_TOKEN } });
+    var d = await r.json();
+    return d.result || 0;
+  } catch (e) { return 0; }
+}
+
+async function kvIncrWithExpire(key, ttlSeconds) {
+  try {
+    var url = process.env.KV_REST_API_URL + '/incr/' + key;
+    var r = await fetch(url, { method: 'POST', headers: { Authorization: 'Bearer ' + process.env.KV_REST_API_TOKEN } });
+    var d = await r.json();
+    var count = typeof d.result === 'number' ? d.result : null;
+    if (count === 1) {
+      var expUrl = process.env.KV_REST_API_URL + '/expire/' + key + '/' + ttlSeconds;
+      await fetch(expUrl, { method: 'POST', headers: { Authorization: 'Bearer ' + process.env.KV_REST_API_TOKEN } });
+    }
+    return count;
+  } catch (e) {
+    return null;
+  }
+}
+
+function getClientIp(req) {
+  var fwd = req.headers['x-forwarded-for'];
+  if (fwd) return fwd.split(',')[0].trim();
+  return (req.socket && req.socket.remoteAddress) || 'unknown';
+}
+
 export default async function handler(req, res) {
 if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 var message = req.body.message;
@@ -7,7 +54,51 @@ var tone = req.body.tone;
 var customTone = req.body.customTone;
 var language = req.body.language;
 var recipient = req.body.recipient || '';
+var uid = req.body.uid || '';
 if (!message || !tone || !language) return res.status(400).json({ error: 'Missing fields' });
+
+// --- Server-side usage enforcement ---
+// El límite gratuito ("5 por día") hasta ahora solo se controlaba en el
+// cliente vía localStorage, algo trivial de saltear. Esto agrega el
+// control real del lado del servidor, respaldado en Upstash.
+try {
+  var ip = getClientIp(req);
+  var day = todayKey();
+
+  var isSubscribed = false;
+  if (uid) {
+    var subVal = await kvGet('subscriber:' + uid);
+    isSubscribed = !!subVal;
+  }
+
+  if (!isSubscribed) {
+    var bonus = 0;
+    if (uid) {
+      var referralCount = await kvScard('refs:' + uid);
+      bonus = Math.floor(referralCount / 5) * 5;
+    }
+    var limit = FREE_DAILY_LIMIT + bonus;
+
+    var usageKey = uid ? ('usage:' + uid + ':' + day) : ('usage:anon:' + ip + ':' + day);
+    var usageCount = await kvIncrWithExpire(usageKey, 172800);
+    if (usageCount !== null && usageCount > limit) {
+      return res.status(429).json({ error: 'Daily limit reached', limitReached: true });
+    }
+
+    // Techo secundario por IP: frena a quien regenera/borra el uid del
+    // cliente para esquivar el límite de arriba. Más laxo a propósito
+    // (oficinas / redes compartidas usan la misma IP).
+    var ipUsageCount = await kvIncrWithExpire('ipusage:' + ip + ':' + day, 172800);
+    if (ipUsageCount !== null && ipUsageCount > IP_DAILY_LIMIT) {
+      return res.status(429).json({ error: 'Daily limit reached', limitReached: true });
+    }
+  }
+} catch (e) {
+  // Si Upstash falla, dejamos pasar el request en vez de romper la app
+  // (mismo criterio que el resto del backend). Se pierde el control en
+  // ese caso puntual, pero no tira la app abajo por un problema de Redis.
+  console.error('Rate limit check error:', e.message);
+}
 
 var toneMap = {
 'Professional': 'professional yet approachable — clear and well-structured without being stiff or bureaucratic',
