@@ -359,7 +359,7 @@ var effectiveRecipient = (function() { var r = recipientOverride !== undefined ?
 var res = await fetch('/api/write', {
 method: 'POST',
 headers: { 'Content-Type': 'application/json' },
-body: JSON.stringify({ message: msg, tone: effectiveTone, customTone: effectiveTone === 'Custom' ? customTone.trim() : undefined, language: language, recipient: effectiveRecipient })
+body: JSON.stringify({ message: msg, tone: effectiveTone, customTone: effectiveTone === 'Custom' ? customTone.trim() : undefined, language: language, recipient: effectiveRecipient, uid: userId })
 ,
 signal: _ctrl.signal
 });
