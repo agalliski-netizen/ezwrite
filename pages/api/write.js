@@ -2,6 +2,7 @@ export const config = { maxDuration: 30 };
 
 var FREE_DAILY_LIMIT = 5;
 var IP_DAILY_LIMIT = 40;
+var MAX_BONUS_GENERATIONS = 50;
 
 function todayKey() {
   return new Date().toISOString().slice(0, 10);
@@ -75,7 +76,7 @@ try {
     var bonus = 0;
     if (uid) {
       var referralCount = await kvScard('refs:' + uid);
-      bonus = Math.floor(referralCount / 5) * 5;
+    bonus = Math.min(Math.floor(referralCount / 5) * 5, MAX_BONUS_GENERATIONS);
     }
     var limit = FREE_DAILY_LIMIT + bonus;
 
