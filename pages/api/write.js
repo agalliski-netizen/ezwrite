@@ -124,7 +124,7 @@ var recipientToneMap = {
 var langMap = {
 'Espanol': 'Spanish',
 'English': 'English',
-'Portugues': 'Brazilian Portuguese'
+'Portugues': 'Portuguese'
 };
 
 var toneDesc;
@@ -136,16 +136,76 @@ if (tone === 'Custom' && customTone && customTone.trim()) {
 var langName = langMap[language] || language;
 var recipientContext = recipientToneMap[recipient] ? ' ' + recipientToneMap[recipient] : (recipient ? ' The message is addressed to: ' + recipient + '.' : '');
 
-var dialectNote = '';
-if (langName === 'Spanish') {
-var country = (req.headers['x-vercel-ip-country'] || '').toUpperCase();
+// --- Variantes regionales por idioma ---
+// Para cada idioma con variantes documentadas, se arma un mapa país→nota de
+// estilo. Por defecto se detecta automáticamente por la IP de quien escribe
+// (útil cuando escribe en su propio idioma, a alguien de su mismo entorno).
+// El frontend puede mandar `dialectOverride` cuando el usuario elige
+// explícitamente una variante (caso "traducción a otro idioma/país"), o
+// 'NEUTRAL' para forzar el default neutro aunque la IP matchee un país.
 var spanishDialectMap = {
 'AR': ' Use Argentine Rioplatense Spanish: "vos" instead of "tú" (vos tenés, vos querés, escribí instead of escribe). This is essential for sounding natural to Argentine readers.',
 'UY': ' Use Argentine/Uruguayan Rioplatense Spanish: "vos" instead of "tú" (vos tenés, vos querés, escribí instead of escribe). This is essential for sounding natural to Uruguayan readers.',
-'ES': ' Use Peninsular Spanish from Spain: "tú" for informal address, "vosotros" for informal plural, and vocabulary typical of Spain (vale, genial, ordenador instead of computadora).'
+'ES': ' Use Peninsular Spanish from Spain: "tú" for informal address, "vosotros" for informal plural, and vocabulary typical of Spain (vale, genial, ordenador instead of computadora).',
+'MX': ' Use Mexican Spanish: "tú" for informal address (not "vos"). "Usted" is used more broadly in professional contexts than in most other Latin American countries — lean toward "usted" for business or formal messages. Use courtesy phrasing typical of Mexican correspondence.'
 };
 var defaultSpanish = ' Use neutral Latin American Spanish: "tú" (not "vos"), with vocabulary broadly understood across Mexico, Colombia, Peru, Chile, Venezuela and other Latin American countries. Avoid regionalisms specific to any single country.';
-dialectNote = spanishDialectMap[country] || defaultSpanish;
+
+var englishDialectMap = {
+'US': ' Use American English spelling and vocabulary (color, favorite, apartment, elevator, cell phone, vacation).',
+'GB': ' Use British English spelling and vocabulary (colour, favourite, flat, lift, mobile phone, holiday). Favor "Kind regards" style closings for formal messages.',
+'IE': ' Use Irish English: British-style spelling (colour, favourite) with a warmer, slightly more personal register typical of Irish correspondence.',
+'AU': ' Use Australian English: British-style spelling (colour, favourite) with a relaxed, friendly register — Australians tend to be less formal even in professional writing.',
+'CA': ' Use Canadian English: mostly American vocabulary with British-style spelling for some words (colour, cheque), and a polite, courteous register.'
+};
+var defaultEnglish = ' Use neutral international English, avoiding spelling or vocabulary specific to any single English-speaking country.';
+
+var germanDialectMap = {
+'DE': ' Use standard German from Germany.',
+'AT': ' Use Austrian German: some distinct vocabulary (e.g. "Jänner" for January, "Sackerl" for bag) and a courteous, slightly more formal register typical of Austrian correspondence.',
+'CH': ' Use Swiss Standard German: never use "ß" — always write "ss" instead (e.g. "Strasse" not "Straße"), and prefer Swiss-specific vocabulary where natural (e.g. "Velo" for bicycle, "Billett" for ticket).'
+};
+var defaultGerman = ' Use standard German from Germany, the most widely understood form.';
+
+var frenchDialectMap = {
+'FR': ' Use standard French from France.',
+'BE': ' Use Belgian French: use "septante" and "nonante" instead of "soixante-dix" and "quatre-vingt-dix".',
+'CH': ' Use Swiss French: use "septante" and "nonante" instead of "soixante-dix" and "quatre-vingt-dix".',
+'CA': ' Use Québécois French: distinct vocabulary and a more direct, warmer register than European French (e.g. "courriel" instead of "e-mail", "magasiner" instead of "faire du shopping").'
+};
+var defaultFrench = ' Use standard French from France, the most widely understood form.';
+
+var portugueseDialectMap = {
+'BR': ' Use Brazilian Portuguese vocabulary, grammar and phrasing.',
+'PT': ' Use European Portuguese from Portugal: distinct vocabulary and grammar from Brazilian Portuguese (e.g. "comboio" instead of "trem" for train, "autocarro" instead of "ônibus" for bus, "tu" used more than "você").'
+};
+var defaultPortuguese = ' Use Brazilian Portuguese, the most widely spoken variant.';
+
+var chineseDialectMap = {
+'CN': ' Write using Simplified Chinese characters, as used in Mainland China.',
+'SG': ' Write using Simplified Chinese characters, as used in Singapore.',
+'TW': ' Write using Traditional Chinese characters and vocabulary conventions typical of Taiwan.',
+'HK': ' Write using Traditional Chinese characters, as used in Hong Kong.'
+};
+var defaultChinese = ' Write using Simplified Chinese characters, the most widely used form.';
+
+var DIALECT_CONFIG = {
+'Spanish': { map: spanishDialectMap, def: defaultSpanish },
+'English': { map: englishDialectMap, def: defaultEnglish },
+'German': { map: germanDialectMap, def: defaultGerman },
+'French': { map: frenchDialectMap, def: defaultFrench },
+'Portuguese': { map: portugueseDialectMap, def: defaultPortuguese },
+'Chinese': { map: chineseDialectMap, def: defaultChinese }
+};
+
+var dialectNote = '';
+var dConf = DIALECT_CONFIG[langName];
+if (dConf) {
+var country = (req.headers['x-vercel-ip-country'] || '').toUpperCase();
+var override = (req.body.dialectOverride || '').toUpperCase();
+if (override === 'NEUTRAL') { dialectNote = dConf.def; }
+else if (override && dConf.map[override]) { dialectNote = dConf.map[override]; }
+else { dialectNote = dConf.map[country] || dConf.def; }
 }
 
 var system = 'You are EzWrite, an AI communication assistant. The user gives you a raw message or idea. Rewrite it into 3 distinct polished versions with a ' + toneDesc + ' tone, written in ' + langName + '.' + dialectNote + recipientContext + ' Important guidelines: Preserve every specific fact from the original message exactly as given (dates, amounts, deadlines, names, numbers, times) - never alter, invent, round, or omit them. Keep each version concise and natural — 2 to 4 sentences is ideal, never more than 5. Use everyday language; avoid flowery, pompous, overly formal or exaggerated phrasing. Write the way a real person would. Each version should vary in structure, opening or phrasing while keeping the same tone and language. Return ONLY valid JSON: {"versions":[{"label":"A","text":"..."},{"label":"B","text":"..."},{"label":"C","text":"..."}]}. No markdown, no preamble, just the JSON object.';
