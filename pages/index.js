@@ -10,6 +10,47 @@ var LANGUAGES = ['Espanol', 'English', 'Portugues'];
 var OUTPUT_LANGUAGES_EXTRA = ['French', 'Italian', 'German', 'Dutch', 'Russian', 'Chinese', 'Japanese', 'Korean', 'Arabic', 'Hindi', 'Turkish', 'Polish', 'Ukrainian', 'Greek', 'Hebrew', 'Swedish', 'Norwegian', 'Danish', 'Finnish', 'Czech', 'Romanian', 'Hungarian', 'Vietnamese', 'Thai', 'Indonesian', 'Filipino'];
 var UI_CODES = { 'Espanol': 'ES', 'English': 'EN', 'Portugues': 'PT' };
 
+// Variantes regionales disponibles por idioma de salida. 'AUTO' (chip
+// implícito, sin código) detecta por IP en el backend; cada código acá
+// corresponde a una entrada del mapa de dialectos de pages/api/write.js.
+var DIALECT_OPTIONS = {
+'Espanol': [
+{ code: 'AR', es: 'Argentina', en: 'Argentina', pt: 'Argentina' },
+{ code: 'MX', es: 'México', en: 'Mexico', pt: 'México' },
+{ code: 'ES', es: 'España', en: 'Spain', pt: 'Espanha' },
+{ code: 'NEUTRAL', es: 'Latam neutro', en: 'Neutral Latam', pt: 'Latam neutro' }
+],
+'English': [
+{ code: 'US', es: 'EE. UU.', en: 'United States', pt: 'EUA' },
+{ code: 'GB', es: 'Reino Unido', en: 'United Kingdom', pt: 'Reino Unido' },
+{ code: 'IE', es: 'Irlanda', en: 'Ireland', pt: 'Irlanda' },
+{ code: 'AU', es: 'Australia', en: 'Australia', pt: 'Austrália' },
+{ code: 'CA', es: 'Canadá', en: 'Canada', pt: 'Canadá' }
+],
+'Portugues': [
+{ code: 'BR', es: 'Brasil', en: 'Brazil', pt: 'Brasil' },
+{ code: 'PT', es: 'Portugal', en: 'Portugal', pt: 'Portugal' }
+],
+'German': [
+{ code: 'DE', es: 'Alemania', en: 'Germany', pt: 'Alemanha' },
+{ code: 'AT', es: 'Austria', en: 'Austria', pt: 'Áustria' },
+{ code: 'CH', es: 'Suiza', en: 'Switzerland', pt: 'Suíça' }
+],
+'French': [
+{ code: 'FR', es: 'Francia', en: 'France', pt: 'França' },
+{ code: 'BE', es: 'Bélgica', en: 'Belgium', pt: 'Bélgica' },
+{ code: 'CH', es: 'Suiza', en: 'Switzerland', pt: 'Suíça' },
+{ code: 'CA', es: 'Canadá (Quebec)', en: 'Canada (Quebec)', pt: 'Canadá (Quebec)' }
+],
+'Chinese': [
+{ code: 'CN', es: 'China (simpl.)', en: 'China (simpl.)', pt: 'China (simpl.)' },
+{ code: 'TW', es: 'Taiwán (trad.)', en: 'Taiwan (trad.)', pt: 'Taiwan (trad.)' },
+{ code: 'HK', es: 'Hong Kong (trad.)', en: 'Hong Kong (trad.)', pt: 'Hong Kong (trad.)' },
+{ code: 'SG', es: 'Singapur (simpl.)', en: 'Singapore (simpl.)', pt: 'Singapura (simpl.)' }
+]
+};
+var DIALECT_LANG_KEY = { 'Espanol': 'es', 'English': 'en', 'Portugues': 'pt' };
+
 var EXAMPLES = {
 'Espanol': [
 { label: 'Pedir un aumento', text: 'necesito hablar de mi sueldo llevo 2 años sin aumento y creo que me lo merezco por todo lo que hice', tone: 'Diplomatic', recipient: 'Jefe/a' },
@@ -78,6 +119,8 @@ historyEmpty: 'No messages yet',
 historyUse: 'View again',
 historyClear: 'Clear history',
 versionLabel: 'Version',
+variantLabel: 'Variant',
+variantAuto: 'Automatic',
 langs: { 'Espanol': 'Spanish', 'English': 'English', 'Portugues': 'Portuguese' }
 },
 'Espanol': {
@@ -129,6 +172,8 @@ historyEmpty: 'Todavía no hay mensajes',
 historyUse: 'Ver de nuevo',
 historyClear: 'Borrar historial',
 versionLabel: 'Versión',
+variantLabel: 'Variante',
+variantAuto: 'Automática',
 langs: { 'Espanol': 'Español', 'English': 'English', 'Portugues': 'Portugués', 'French': 'Francés', 'Italian': 'Italiano', 'German': 'Alemán', 'Dutch': 'Holandés', 'Russian': 'Ruso', 'Chinese': 'Chino', 'Japanese': 'Japonés', 'Korean': 'Coreano', 'Arabic': 'Árabe', 'Hindi': 'Hindi', 'Turkish': 'Turco', 'Polish': 'Polaco', 'Ukrainian': 'Ucraniano', 'Greek': 'Griego', 'Hebrew': 'Hebreo', 'Swedish': 'Sueco', 'Norwegian': 'Noruego', 'Danish': 'Danés', 'Finnish': 'Finlandés', 'Czech': 'Checo', 'Romanian': 'Rumano', 'Hungarian': 'Húngaro', 'Vietnamese': 'Vietnamita', 'Thai': 'Tailandés', 'Indonesian': 'Indonesio', 'Filipino': 'Filipino' }
 },
 'Portugues': {
@@ -180,6 +225,8 @@ historyEmpty: 'Ainda nao ha mensagens',
 historyUse: 'Ver novamente',
 historyClear: 'Limpar historico',
 versionLabel: 'Versão',
+variantLabel: 'Variante',
+variantAuto: 'Automática',
 langs: { 'Espanol': 'Espanhol', 'English': 'Ingles', 'Portugues': 'Portugues', 'French': 'Frances', 'Italian': 'Italiano', 'German': 'Alemao', 'Dutch': 'Holandes', 'Russian': 'Russo', 'Chinese': 'Chines', 'Japanese': 'Japones', 'Korean': 'Coreano', 'Arabic': 'Arabe', 'Hindi': 'Hindi', 'Turkish': 'Turco', 'Polish': 'Polones', 'Ukrainian': 'Ucraniano', 'Greek': 'Grego', 'Hebrew': 'Hebraico', 'Swedish': 'Sueco', 'Norwegian': 'Norueguês', 'Danish': 'Dinamarques', 'Finnish': 'Finlandes', 'Czech': 'Tcheco', 'Romanian': 'Romeno', 'Hungarian': 'Hungaro', 'Vietnamese': 'Vietnamita', 'Thai': 'Tailandes', 'Indonesian': 'Indonesio', 'Filipino': 'Filipino' }
 }
 };
@@ -235,6 +282,7 @@ var s27 = useState(false); var showHistory = s27[0]; var setShowHistory = s27[1]
 var s28 = useState(function() { try { return JSON.parse(localStorage.getItem('ezw_custom_tones') || '[]'); } catch(e) { return []; } }); var recentCustomTones = s28[0]; var setRecentCustomTones = s28[1];
 var s29 = useState('latam'); var pricingTier = s29[0]; var setPricingTier = s29[1];
 var s30 = useState(false); var linkCopied = s30[0]; var setLinkCopied = s30[1];
+var s31 = useState(''); var dialectOverride = s31[0]; var setDialectOverride = s31[1];
 
 var posthog = usePostHog();
 var t = UI[uiLang] || UI['English'];
@@ -350,7 +398,7 @@ var effectiveTone = toneOverride || tone;
 if ((effectiveTone === 'Custom') && !customTone.trim()) return;
 var usage = getUsage();
 if (!isExample && !isSubscribed && usage.count >= DAILY_LIMIT + bonusGen) { setUsageLeft(0); return; }
-if (posthog) posthog.capture('generate_clicked', { tone: effectiveTone, language: language, recipient: recipientOverride !== undefined ? recipientOverride : recipient, message_length: msg.trim().length, is_example: !!isExample });
+if (posthog) posthog.capture('generate_clicked', { tone: effectiveTone, language: language, dialect: dialectOverride || 'auto', recipient: recipientOverride !== undefined ? recipientOverride : recipient, message_length: msg.trim().length, is_example: !!isExample });
 setLoading(true); setError(''); setVersions(null);
 var _ctrl = new AbortController();
 var _tout = setTimeout(function() { _ctrl.abort(); }, 25000);
@@ -359,7 +407,7 @@ var effectiveRecipient = (function() { var r = recipientOverride !== undefined ?
 var res = await fetch('/api/write', {
 method: 'POST',
 headers: { 'Content-Type': 'application/json' },
-body: JSON.stringify({ message: msg, tone: effectiveTone, customTone: effectiveTone === 'Custom' ? customTone.trim() : undefined, language: language, recipient: effectiveRecipient, uid: userId })
+body: JSON.stringify({ message: msg, tone: effectiveTone, customTone: effectiveTone === 'Custom' ? customTone.trim() : undefined, language: language, dialectOverride: dialectOverride || undefined, recipient: effectiveRecipient, uid: userId })
 ,
 signal: _ctrl.signal
 });
@@ -371,7 +419,7 @@ usage.count += 1;
 saveUsage(usage);
 setUsageLeft((DAILY_LIMIT + bonusGen) - usage.count);
 }
-addToHistory({ id: Date.now(), message: msg, tone: effectiveTone, customTone: effectiveTone === 'Custom' ? customTone.trim() : '', language: language, recipient: effectiveRecipient, versions: data.versions });
+addToHistory({ id: Date.now(), message: msg, tone: effectiveTone, customTone: effectiveTone === 'Custom' ? customTone.trim() : '', language: language, dialectOverride: dialectOverride || '', recipient: effectiveRecipient, versions: data.versions });
 if (effectiveTone === 'Custom' && customTone.trim()) { addCustomToneToRecent(customTone.trim()); }
 }
 } catch (e) { clearTimeout(_tout); setError(e.name === 'AbortError' ? t.err : t.connErr); }
@@ -383,6 +431,7 @@ setMessage(entry.message);
 setTone(entry.tone);
 if (entry.tone === 'Custom') setCustomTone(entry.customTone || '');
 setLanguage(entry.language);
+setDialectOverride(entry.dialectOverride || '');
 setRecipient(entry.recipient || '');
 setVersions(entry.versions);
 setShowHistory(false);
@@ -562,13 +611,20 @@ EzWrite
 <div style={{ marginBottom: '1.75rem' }}>
 <span style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.09em', textTransform: 'uppercase', color: C.TEXT3, marginBottom: '10px', display: 'block' }}>{t.langLabel}</span>
 <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
-{LANGUAGES.map(function(l) { var active = language === l; return (<button key={l} onClick={function() { setLanguage(l); setShowMoreLanguages(false); }} style={{ padding: '8px 15px', borderRadius: '8px', border: active ? '1.5px solid '+C.ACCENT_BORDER : '1px solid '+C.BORDER, background: active ? C.ACCENT_SOFT : 'transparent', color: active ? C.ACCENT : C.TEXT2, fontSize: '13.5px', fontWeight: active ? 600 : 500, cursor: 'pointer', fontFamily: inter.style.fontFamily, transition: 'all .15s ease' }}>{t.langs[l] || l}</button>); })}
+{LANGUAGES.map(function(l) { var active = language === l; return (<button key={l} onClick={function() { setLanguage(l); setDialectOverride(''); setShowMoreLanguages(false); }} style={{ padding: '8px 15px', borderRadius: '8px', border: active ? '1.5px solid '+C.ACCENT_BORDER : '1px solid '+C.BORDER, background: active ? C.ACCENT_SOFT : 'transparent', color: active ? C.ACCENT : C.TEXT2, fontSize: '13.5px', fontWeight: active ? 600 : 500, cursor: 'pointer', fontFamily: inter.style.fontFamily, transition: 'all .15s ease' }}>{t.langs[l] || l}</button>); })}
 {(function() { var isExtraActive = OUTPUT_LANGUAGES_EXTRA.indexOf(language) !== -1; return (<button onClick={function() { setShowMoreLanguages(!showMoreLanguages); }} style={{ padding: '8px 15px', borderRadius: '8px', border: isExtraActive ? '1.5px solid '+C.ACCENT_BORDER : '1px dashed '+C.BORDER, background: isExtraActive ? C.ACCENT_SOFT : 'transparent', color: isExtraActive ? C.ACCENT : C.TEXT2, fontSize: '13.5px', fontWeight: isExtraActive ? 600 : 500, cursor: 'pointer', fontFamily: inter.style.fontFamily }}>{isExtraActive ? (t.langs[language] || language) : t.moreLanguages}</button>); })()}
 </div>
 {showMoreLanguages && (<div style={{ marginTop: '10px', padding: '12px', border: '1px solid '+C.BORDER, borderRadius: '10px', background: C.SURFACE2 }}>
 <input type="text" value={langSearch} onChange={function(e) { setLangSearch(e.target.value); }} placeholder={t.searchLanguagePlaceholder} style={{ width: '100%', padding: '8px 10px', border: '1px solid '+C.BORDER, borderRadius: '6px', fontSize: '13px', color: C.TEXT, background: C.SURFACE, fontFamily: inter.style.fontFamily, boxSizing: 'border-box', outline: 'none', marginBottom: '10px' }} />
 <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', maxHeight: '180px', overflowY: 'auto' }}>
-{OUTPUT_LANGUAGES_EXTRA.filter(function(l) { return (t.langs[l] || l).toLowerCase().indexOf(langSearch.toLowerCase()) !== -1; }).map(function(l) { var active = language === l; return (<button key={l} onClick={function() { setLanguage(l); setShowMoreLanguages(false); setLangSearch(''); }} style={{ padding: '6px 12px', borderRadius: '6px', border: active ? '1.5px solid '+C.ACCENT_BORDER : '1px solid '+C.BORDER, background: active ? C.ACCENT_SOFT : 'transparent', color: active ? C.ACCENT : C.TEXT2, fontSize: '13px', fontWeight: active ? 600 : 400, cursor: 'pointer', fontFamily: inter.style.fontFamily }}>{t.langs[l] || l}</button>); })}
+{OUTPUT_LANGUAGES_EXTRA.filter(function(l) { return (t.langs[l] || l).toLowerCase().indexOf(langSearch.toLowerCase()) !== -1; }).map(function(l) { var active = language === l; return (<button key={l} onClick={function() { setLanguage(l); setDialectOverride(''); setShowMoreLanguages(false); setLangSearch(''); }} style={{ padding: '6px 12px', borderRadius: '6px', border: active ? '1.5px solid '+C.ACCENT_BORDER : '1px solid '+C.BORDER, background: active ? C.ACCENT_SOFT : 'transparent', color: active ? C.ACCENT : C.TEXT2, fontSize: '13px', fontWeight: active ? 600 : 400, cursor: 'pointer', fontFamily: inter.style.fontFamily }}>{t.langs[l] || l}</button>); })}
+</div>
+</div>)}
+{DIALECT_OPTIONS[language] && (<div style={{ marginTop: '10px' }}>
+<span style={{ fontSize: '11px', color: C.TEXT3, marginBottom: '6px', display: 'block' }}>{t.variantLabel}</span>
+<div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
+<button onClick={function() { setDialectOverride(''); }} style={{ padding: '6px 12px', borderRadius: '6px', border: !dialectOverride ? '1.5px solid '+C.ACCENT_BORDER : '1px solid '+C.BORDER, background: !dialectOverride ? C.ACCENT_SOFT : 'transparent', color: !dialectOverride ? C.ACCENT : C.TEXT2, fontSize: '12.5px', fontWeight: !dialectOverride ? 600 : 400, cursor: 'pointer', fontFamily: inter.style.fontFamily }}>{t.variantAuto}</button>
+{DIALECT_OPTIONS[language].map(function(d) { var active = dialectOverride === d.code; var lk = DIALECT_LANG_KEY[uiLang] || 'en'; return (<button key={d.code} onClick={function() { setDialectOverride(d.code); }} style={{ padding: '6px 12px', borderRadius: '6px', border: active ? '1.5px solid '+C.ACCENT_BORDER : '1px solid '+C.BORDER, background: active ? C.ACCENT_SOFT : 'transparent', color: active ? C.ACCENT : C.TEXT2, fontSize: '12.5px', fontWeight: active ? 600 : 400, cursor: 'pointer', fontFamily: inter.style.fontFamily }}>{d[lk]}</button>); })}
 </div>
 </div>)}
 </div>
