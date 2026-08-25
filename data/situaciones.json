@@ -898,5 +898,105 @@
       ],
       "cta": "Need to send something like this right now? Type your own message into EzWrite and get 3 polished versions in seconds — free, no account required."
     }
+  },
+  {
+    "id": "cliente-en-otro-idioma",
+    "category": "Idiomas",
+    "es": {
+      "slug": "como-escribirle-a-un-cliente-en-otro-idioma",
+      "title": "Cómo escribirle a un cliente en otro idioma sin que se note que usaste el traductor | EzWrite",
+      "meta": "¿Te llegó un cliente que no habla inglés ni español? Escribile en su idioma, con el tono justo, en segundos y gratis.",
+      "h1": "Cómo escribirle a un cliente en otro idioma (sin que se note que usaste el traductor)",
+      "intro": "Como freelancer, seguro ya te pasó: te escribe un cliente que no habla inglés ni español, y terminás pegando el mensaje en el traductor cruzando los dedos para que no suene raro. La mayoría de los freelancers de habla hispana solo apunta a clientes que hablan inglés, dejando afuera mercados enteros en alemán, francés, portugués, italiano y muchos idiomas más.",
+      "raw": "hola! vi tu mensaje sobre el logo, me interesa el proyecto pero tengo que ser sincero, no hablo aleman y no se si mi ingles alcanza para explicarte bien la propuesta, decime como preferis que sigamos",
+      "versions": [
+        {
+          "tone": "En inglés",
+          "text": "Hi [Name], thanks for reaching out about the logo project — I'd love to work on it. I'd like to learn a bit more about your brand and what you have in mind. Could you share any references or examples of styles you like? Happy to jump on a quick call this week if that's easier."
+        },
+        {
+          "tone": "En alemán",
+          "text": "Hallo [Name], vielen Dank für Ihre Nachricht zum Logo-Projekt — ich würde sehr gerne daran arbeiten. Ich würde gerne mehr über Ihre Marke erfahren und was Sie sich vorstellen. Könnten Sie mir ein paar Referenzen oder Beispiele schicken, die Ihnen gefallen? Gerne vereinbaren wir auch diese Woche ein kurzes Gespräch."
+        },
+        {
+          "tone": "En portugués",
+          "text": "Olá [Nome], obrigado pelo contato sobre o projeto de logo — tenho muito interesse em participar. Gostaria de entender melhor a marca e o que você tem em mente. Você poderia me enviar algumas referências ou exemplos de estilos que gosta? Também posso agendar uma breve chamada esta semana, se for mais prático."
+        }
+      ],
+      "cta": "No hace falta hablar el idioma de tu cliente para sonar profesional. EzWrite traduce tu mensaje a más de 26 idiomas manteniendo el tono que elijas — probalo gratis, sin crear cuenta."
+    },
+    "en": {
+      "slug": "how-to-write-to-a-client-in-another-language",
+      "title": "How to Write to a Client in Another Language Without It Sounding Like Google Translate | EzWrite",
+      "meta": "Got a client who doesn't speak English? Write to them in their language, with the right tone, in seconds — free.",
+      "h1": "How to Write to a Client in Another Language (Without It Sounding Like Google Translate)",
+      "intro": "As a freelancer, you've probably had this happen: a client reaches out who doesn't speak English, and you end up pasting your message into a translator and hoping it doesn't sound off. Most English-speaking freelancers only pitch clients in English-speaking countries, which leaves out entire markets in German, French, Portuguese, Italian, and dozens of other languages.",
+      "raw": "hi! saw your message about the logo project, im interested but i have to be honest, i dont speak german and im not sure my english is enough to walk you through the proposal properly, let me know how youd like to move forward",
+      "versions": [
+        {
+          "tone": "In German",
+          "text": "Hallo [Name], vielen Dank für Ihre Nachricht zum Logo-Projekt — ich würde sehr gerne daran arbeiten. Ich würde gerne mehr über Ihre Marke erfahren und was Sie sich vorstellen. Könnten Sie mir ein paar Referenzen oder Beispiele schicken, die Ihnen gefallen? Gerne vereinbaren wir auch diese Woche ein kurzes Gespräch."
+        },
+        {
+          "tone": "In Portuguese",
+          "text": "Olá [Nome], obrigado pelo contato sobre o projeto de logo — tenho muito interesse em participar. Gostaria de entender melhor a marca e o que você tem em mente. Você poderia me enviar algumas referências ou exemplos de estilos que gosta? Também posso agendar uma breve chamada esta semana, se for mais prático."
+        },
+        {
+          "tone": "In Spanish",
+          "text": "Hola [Nombre], gracias por escribirme sobre el proyecto de logo — me interesa mucho participar. Me gustaría conocer un poco más sobre la marca y lo que tenés en mente. ¿Podrías compartirme algunas referencias o ejemplos de estilos que te gusten? También puedo coordinar una llamada corta esta semana si te resulta más práctico."
+        }
+      ],
+      "cta": "You don't need to speak your client's language to sound professional. EzWrite translates your message into 26+ languages while keeping the tone you choose — try it free, no account needed."
+    }
+  },
+  {
+    "id": "expat-tramite-idioma",
+    "category": "Idiomas",
+    "es": {
+      "slug": "como-escribirle-al-casero-o-hacer-un-tramite-en-otro-idioma",
+      "title": "Cómo escribirle al casero o hacer un trámite en otro idioma sin sonar inseguro | EzWrite",
+      "meta": "¿Vivís en el exterior y tenés que resolver algo importante en un idioma que no dominás del todo? Conseguí 3 versiones pulidas en segundos, gratis.",
+      "h1": "Cómo escribirle al casero (o hacer cualquier trámite) en un idioma que no dominás del todo",
+      "intro": "Vivir en el exterior tiene sus desafíos, y uno de los más frustrantes es tener que resolver algo importante — un problema con el alquiler, un trámite, una consulta médica — en un idioma que todavía no manejás con total soltura. Terminás escribiendo un mensaje demasiado simple, demasiado tímido, o que no logra transmitir la urgencia real de lo que necesitás.",
+      "raw": "hola soy del depto 4B el calefactor no anda hace una semana y ya escribi dos veces y nadie me contesto necesito que lo arreglen porque hace mucho frio gracias",
+      "versions": [
+        {
+          "tone": "Firme",
+          "text": "Hi, this is apartment 4B. The heater has been out for a week now, and I've reached out twice with no response. I need this fixed as soon as possible since it's gotten quite cold — please let me know when someone can come by."
+        },
+        {
+          "tone": "Diplomático",
+          "text": "Hi, I hope you're doing well. I wanted to follow up again about apartment 4B — the heater has been out for about a week and I haven't heard back from my last two messages. I understand you're busy, but it's gotten quite cold, so I'd really appreciate it if someone could take a look soon."
+        },
+        {
+          "tone": "Profesional",
+          "text": "Hello, I'm writing regarding apartment 4B. The heating unit hasn't been working for about a week, and I haven't received a response to my previous two messages. Could you let me know when a technician might be available? I'd appreciate it, given the current temperatures."
+        }
+      ],
+      "cta": "Vivir en un país donde no dominás del todo el idioma no tiene por qué hacerte sonar menos seguro. Escribí tu mensaje como te salga natural y EzWrite te da 3 versiones pulidas en el idioma que necesites, gratis y sin crear cuenta."
+    },
+    "en": {
+      "slug": "how-to-write-to-your-landlord-or-handle-paperwork-in-another-language",
+      "title": "How to Write to Your Landlord (or Handle Paperwork) in a Language You Don't Fully Speak | EzWrite",
+      "meta": "Living abroad and need to handle something important in a language you're not fully comfortable in? Get 3 polished versions in seconds, free.",
+      "h1": "How to Write to Your Landlord (or Handle Any Paperwork) in a Language You Don't Fully Speak",
+      "intro": "Living abroad comes with real challenges, and one of the most frustrating is having to handle something important — a housing issue, paperwork, a doctor's appointment — in a language you're still not fully comfortable in. You end up writing something too simple, too timid, or one that doesn't convey the actual urgency.",
+      "raw": "hi this is apt 4b the heater hasnt worked for a week ive messaged twice already and nobody replied need this fixed asap because its cold thanks",
+      "versions": [
+        {
+          "tone": "Firm",
+          "text": "Hola, soy del departamento 4B. Hace una semana que el calefactor no funciona y ya escribí dos veces sin respuesta. Necesito que lo solucionen cuanto antes, porque ya hace bastante frío. Quedo atento/a a la brevedad."
+        },
+        {
+          "tone": "Diplomatic",
+          "text": "Hola, espero que estén bien. Quería volver a consultar por el departamento 4B: el calefactor sigue sin funcionar desde hace una semana y todavía no tuve respuesta a mis dos mensajes anteriores. Entiendo que deben estar con mucho trabajo, pero hace bastante frío y necesitaría que alguien pueda revisarlo pronto."
+        },
+        {
+          "tone": "Professional",
+          "text": "Hola, les escribo por el departamento 4B. La calefacción no funciona desde hace aproximadamente una semana y no he recibido respuesta a mis mensajes anteriores. ¿Podrían indicarme cuándo podría pasar un técnico? Se los agradecería, dado el frío actual."
+        }
+      ],
+      "cta": "Living somewhere you don't fully speak the language shouldn't make you sound less confident. Write your message however it comes out naturally, and EzWrite gives you 3 polished versions in the language you need, free, no account required."
+    }
   }
 ]
