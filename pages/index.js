@@ -96,12 +96,12 @@ iosStep1: 'Tap the Share icon',
 iosStep2: 'Scroll down and tap "Add to Home Screen"',
 iosStep3: 'Tap "Add" to confirm',
 installDismiss: 'Not now',
-limitTitle: 'Daily limit reached',
-limitMsg: 'You\'ve used your 5 free generations for today. Upgrade to keep writing.',
+limitTitle: 'Weekly limit reached',
+limitMsg: 'You\'ve used your 5 free generations for this week. Upgrade to keep writing.',
 limitBtnMonthlyLabel: 'Monthly',
 limitBtnAnnualLabel: 'Annual',
 perMonth: 'mo',
-usageLeft: function(n) { return n + ' generation' + (n === 1 ? '' : 's') + ' left today'; },
+usageLeft: function(n) { return n + ' generation' + (n === 1 ? '' : 's') + ' left this week'; },
 shareMsg: 'Liked these versions? Invite 5 friends → 5 extra generations',
 shareBtn: '📲 Share EzWrite',
 shareWhatsappMsg: 'Try EzWrite for free — the AI that gives you 3 polished versions of any message: ',
@@ -149,12 +149,12 @@ iosStep1: 'Tocá el ícono de compartir',
 iosStep2: 'Deslizá y tocá "Agregar a pantalla de inicio"',
 iosStep3: 'Tocá "Agregar" para confirmar',
 installDismiss: 'Ahora no',
-limitTitle: 'Límite diario alcanzado',
-limitMsg: 'Usaste tus 5 generaciones gratuitas de hoy. Suscribíte para seguir escribiendo.',
+limitTitle: 'Límite semanal alcanzado',
+limitMsg: 'Usaste tus 5 generaciones gratuitas de esta semana. Suscribíte para seguir escribiendo.',
 limitBtnMonthlyLabel: 'Mensual',
 limitBtnAnnualLabel: 'Anual',
 perMonth: 'mes',
-usageLeft: function(n) { return n + (n === 1 ? ' generación restante' : ' generaciones restantes') + ' hoy'; },
+usageLeft: function(n) { return n + (n === 1 ? ' generación restante' : ' generaciones restantes') + ' esta semana'; },
 shareMsg: '¿Te sirvieron estas versiones? Invitá 5 amigos → 5 generaciones extra',
 shareBtn: '📲 Compartir EzWrite',
 shareWhatsappMsg: 'Probá EzWrite gratis — la IA que te da 3 versiones de cualquier mensaje: ',
@@ -202,12 +202,12 @@ iosStep1: 'Toque no ícone de compartilhar',
 iosStep2: 'Deslize e toque em "Adicionar à Tela de Início"',
 iosStep3: 'Toque em "Adicionar" para confirmar',
 installDismiss: 'Agora não',
-limitTitle: 'Limite diário atingido',
-limitMsg: 'Você usou suas 5 gerações gratuitas de hoje. Assine para continuar escrevendo.',
+limitTitle: 'Limite semanal atingido',
+limitMsg: 'Você usou suas 5 gerações gratuitas desta semana. Assine para continuar escrevendo.',
 limitBtnMonthlyLabel: 'Mensal',
 limitBtnAnnualLabel: 'Anual',
 perMonth: 'mês',
-usageLeft: function(n) { return n + (n === 1 ? ' geração restante' : ' gerações restantes') + ' hoje'; },
+usageLeft: function(n) { return n + (n === 1 ? ' geração restante' : ' gerações restantes') + ' esta semana'; },
 shareMsg: 'Gostou dessas versões? Convide 5 amigos → 5 gerações extras',
 shareBtn: '📲 Compartilhar EzWrite',
 shareWhatsappMsg: 'Experimente o EzWrite grátis — a IA que te dá 3 versões de qualquer mensagem: ',
@@ -258,10 +258,14 @@ var s7 = useState(null); var copied = s7[0]; var setCopied = s7[1];
 var s8 = useState(function() { var lang = (navigator.language || navigator.userLanguage || 'en').toLowerCase(); if (lang.startsWith('es')) return 'Espanol'; if (lang.startsWith('pt')) return 'Portugues'; return 'English'; }); var uiLang = s8[0]; var setUiLang = s8[1];
 var s9 = useState(false); var isListening = s9[0]; var setIsListening = s9[1];
 var recognitionRef = useRef(null);
-var DAILY_LIMIT = 5;
-function getUsage() { try { var u = JSON.parse(localStorage.getItem('ezw_usage') || 'null'); var today = new Date().toDateString(); if (!u || u.date !== today) { return { date: today, count: 0 }; } return u; } catch(e) { return { date: new Date().toDateString(), count: 0 }; } }
+var FREE_WEEKLY_LIMIT = 5;
+// Identificador estable de la semana en curso (lunes de esa semana en UTC),
+// mismo criterio que el backend en write.js — el límite pasó de resetear
+// por día a resetear por semana (25/8).
+function getWeekKey() { var d = new Date(); var utcDay = d.getUTCDay(); var diffToMonday = utcDay === 0 ? 6 : utcDay - 1; var monday = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate() - diffToMonday)); return monday.toISOString().slice(0, 10); }
+function getUsage() { try { var u = JSON.parse(localStorage.getItem('ezw_usage') || 'null'); var week = getWeekKey(); if (!u || u.week !== week) { return { week: week, count: 0 }; } return u; } catch(e) { return { week: getWeekKey(), count: 0 }; } }
 function saveUsage(u) { try { localStorage.setItem('ezw_usage', JSON.stringify(u)); } catch(e) {} }
-var s10 = useState(function() { return DAILY_LIMIT - getUsage().count; }); var usageLeft = s10[0]; var setUsageLeft = s10[1];
+var s10 = useState(function() { return FREE_WEEKLY_LIMIT - getUsage().count; }); var usageLeft = s10[0]; var setUsageLeft = s10[1];
 var s11 = useState(''); var recipient = s11[0]; var setRecipient = s11[1];
 var s12 = useState(''); var recipientOther = s12[0]; var setRecipientOther = s12[1];
 var s13 = useState(null); var deferredInstallPrompt = s13[0]; var setDeferredInstallPrompt = s13[1];
@@ -283,6 +287,8 @@ var s28 = useState(function() { try { return JSON.parse(localStorage.getItem('ez
 var s29 = useState('latam'); var pricingTier = s29[0]; var setPricingTier = s29[1];
 var s30 = useState(false); var linkCopied = s30[0]; var setLinkCopied = s30[1];
 var s31 = useState(''); var dialectOverride = s31[0]; var setDialectOverride = s31[1];
+var s32 = useState(false); var showRecipientPicker = s32[0]; var setShowRecipientPicker = s32[1];
+var s33 = useState(false); var showVariantPicker = s33[0]; var setShowVariantPicker = s33[1];
 
 var posthog = usePostHog();
 var t = UI[uiLang] || UI['English'];
@@ -337,7 +343,7 @@ setUserId(uid);
 if (posthog) posthog.identify(uid);
 var ref = new URLSearchParams(window.location.search).get('ref');
 if (ref && ref !== uid) { fetch('/api/refer', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ referrerId: ref, referralId: uid }) }).catch(function(){}); }
-fetch('/api/refer?uid=' + uid).then(function(r) { return r.json(); }).then(function(d) { var rc = d.referralCount || 0; var bg = d.bonusGenerations || 0; var sub = d.isSubscribed || false; setReferralCount(rc); setBonusGen(bg); setIsSubscribed(sub); setUsageLeft(function() { return sub ? 9999 : (DAILY_LIMIT + bg) - getUsage().count; }); }).catch(function(){});
+fetch('/api/refer?uid=' + uid).then(function(r) { return r.json(); }).then(function(d) { var rc = d.referralCount || 0; var bg = d.bonusGenerations || 0; var sub = d.isSubscribed || false; setReferralCount(rc); setBonusGen(bg); setIsSubscribed(sub); setUsageLeft(function() { return sub ? 9999 : (FREE_WEEKLY_LIMIT + bg) - getUsage().count; }); }).catch(function(){});
 } catch(e) {}
 }, []);
 
@@ -397,7 +403,7 @@ if (!msg.trim()) return;
 var effectiveTone = toneOverride || tone;
 if ((effectiveTone === 'Custom') && !customTone.trim()) return;
 var usage = getUsage();
-if (!isExample && !isSubscribed && usage.count >= DAILY_LIMIT + bonusGen) { setUsageLeft(0); return; }
+if (!isExample && !isSubscribed && usage.count >= FREE_WEEKLY_LIMIT + bonusGen) { setUsageLeft(0); return; }
 if (posthog) posthog.capture('generate_clicked', { tone: effectiveTone, language: language, dialect: dialectOverride || 'auto', recipient: recipientOverride !== undefined ? recipientOverride : recipient, message_length: msg.trim().length, is_example: !!isExample });
 setLoading(true); setError(''); setVersions(null);
 var _ctrl = new AbortController();
@@ -417,7 +423,7 @@ setVersions(data.versions);
 if (!isExample) {
 usage.count += 1;
 saveUsage(usage);
-setUsageLeft((DAILY_LIMIT + bonusGen) - usage.count);
+setUsageLeft((FREE_WEEKLY_LIMIT + bonusGen) - usage.count);
 }
 addToHistory({ id: Date.now(), message: msg, tone: effectiveTone, customTone: effectiveTone === 'Custom' ? customTone.trim() : '', language: language, dialectOverride: dialectOverride || '', recipient: effectiveRecipient, versions: data.versions });
 if (effectiveTone === 'Custom' && customTone.trim()) { addCustomToneToRecent(customTone.trim()); }
@@ -511,8 +517,10 @@ return (
 .ez-generate-btn:not(:disabled):active { background: ${C.ACCENT_ACTIVE}; transform: scale(0.98); }
 .ez-card { transition: box-shadow 0.15s ease, border-color 0.15s ease; }
 .ez-card:hover { box-shadow: ${C.SHADOW_HOVER}; }
-.ez-example-chip { transition: border-color .15s ease, background .15s ease, transform .1s ease, color .15s ease; }
-.ez-example-chip:hover { border-color: ${C.ACCENT_BORDER} !important; background: ${C.ACCENT_SOFT} !important; color: ${C.TEXT} !important; transform: translateY(-1px); }
+.ez-example-link { transition: color .15s ease; }
+.ez-example-link:hover { color: ${C.ACCENT} !important; }
+.ez-collapsible-toggle { transition: border-color .15s ease, background .15s ease, color .15s ease; }
+.ez-collapsible-toggle:hover { border-color: ${C.ACCENT_BORDER} !important; }
 .ez-theme-toggle { transition: background 0.15s ease; }
 .ez-theme-toggle:hover { background: ${C.SURFACE2} !important; }
 .ez-theme-toggle svg { transition: transform .3s ease; }
@@ -572,9 +580,9 @@ EzWrite
 </ol>)}
 </div>)}
 {!versions && !loading && (<div style={{ marginBottom: '1.75rem' }}>
-<span style={{ fontSize: '12px', color: C.TEXT3, marginBottom: '8px', display: 'block' }}>{t.tryExample}</span>
-<div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-{examples.map(function(ex, i) { return (<button key={i} className="ez-example-chip" onClick={function() { handleExampleClick(ex); }} style={{ padding: '9px 16px', borderRadius: '10px', border: '1px solid '+C.BORDER, background: 'transparent', color: C.TEXT2, fontSize: '13.5px', fontWeight: 500, cursor: 'pointer', fontFamily: inter.style.fontFamily }}>{ex.label}</button>); })}
+<span style={{ fontSize: '12px', color: C.TEXT3, marginBottom: '7px', display: 'block' }}>{t.tryExample}</span>
+<div style={{ display: 'flex', gap: '4px 16px', flexWrap: 'wrap' }}>
+{examples.map(function(ex, i) { return (<button key={i} className="ez-example-link" onClick={function() { handleExampleClick(ex); }} style={{ padding: '2px 0', border: 'none', background: 'transparent', color: C.TEXT3, fontSize: '13px', fontWeight: 500, cursor: 'pointer', fontFamily: inter.style.fontFamily, textDecoration: 'underline', textDecorationColor: isDark ? 'rgba(161,166,176,0.35)' : 'rgba(86,92,102,0.3)', textUnderlineOffset: '3px' }}>{ex.label}</button>); })}
 </div>
 </div>)}
 <div style={{ marginBottom: '1.75rem' }}>
@@ -589,11 +597,18 @@ EzWrite
 <textarea className="ez-textarea-input" style={{ width: '100%', minHeight: '130px', padding: '16px 18px', border: isListening ? '1.5px solid '+C.RED : '1px solid '+C.BORDER, borderRadius: '14px', fontSize: '15px', color: C.TEXT, background: isListening ? C.RED_LIGHT : C.SURFACE, resize: 'vertical', fontFamily: inter.style.fontFamily, lineHeight: 1.65, boxSizing: 'border-box', boxShadow: C.SHADOW }} placeholder={t.placeholder} value={message} onChange={function(e) { setMessage(e.target.value); }} />
 </div>
 <div style={{ marginBottom: '1.75rem' }}>
-<span style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.09em', textTransform: 'uppercase', color: C.TEXT3, marginBottom: '10px', display: 'block' }}>{t.recipientLabel}</span>
+{(function() {
+var isOtherSel = recipient === 'Other' || recipient === 'Otro' || recipient === 'Outro';
+var summary = recipient ? (isOtherSel && recipientOther.trim() ? recipientOther.trim() : recipient) : null;
+var toggleLabel = summary ? (t.recipientLabel.replace(/\s*\(.*\)/, '') + ': ' + summary) : ('+ ' + t.recipientLabel);
+return (<button className="ez-collapsible-toggle" onClick={function() { setShowRecipientPicker(!showRecipientPicker); }} style={{ padding: '8px 15px', borderRadius: '8px', border: recipient ? '1.5px solid '+C.ACCENT_BORDER : '1px dashed '+C.BORDER, background: recipient ? C.ACCENT_SOFT : 'transparent', color: recipient ? C.ACCENT : C.TEXT3, fontSize: '13.5px', fontWeight: recipient ? 600 : 500, cursor: 'pointer', fontFamily: inter.style.fontFamily, display: 'inline-flex', alignItems: 'center', gap: '6px' }}>{toggleLabel}<span style={{ opacity: 0.6, fontSize: '10px' }}>{showRecipientPicker ? '▴' : '▾'}</span></button>);
+})()}
+{showRecipientPicker && (<div style={{ marginTop: '8px' }}>
 <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', marginBottom: recipient === 'Other' || recipient === 'Otro' || recipient === 'Outro' ? '8px' : '0' }}>
-{t.recipientOptions.map(function(r) { var active = recipient === r; return (<button key={r} onClick={function() { setRecipient(active ? '' : r); if (!active) setRecipientOther(''); }} style={{ padding: '8px 15px', borderRadius: '8px', border: active ? '1.5px solid '+C.ACCENT_BORDER : '1px solid '+C.BORDER, background: active ? C.ACCENT_SOFT : 'transparent', color: active ? C.ACCENT : C.TEXT2, fontSize: '13.5px', fontWeight: active ? 600 : 500, cursor: 'pointer', fontFamily: inter.style.fontFamily, transition: 'all .15s ease' }}>{r}</button>); })}
+{t.recipientOptions.map(function(r) { var active = recipient === r; var isOtherLabel = r === 'Other' || r === 'Otro' || r === 'Outro'; return (<button key={r} onClick={function() { var next = active ? '' : r; setRecipient(next); if (!active) setRecipientOther(''); if (!(next && isOtherLabel)) setShowRecipientPicker(false); }} style={{ padding: '8px 15px', borderRadius: '8px', border: active ? '1.5px solid '+C.ACCENT_BORDER : '1px solid '+C.BORDER, background: active ? C.ACCENT_SOFT : 'transparent', color: active ? C.ACCENT : C.TEXT2, fontSize: '13.5px', fontWeight: active ? 600 : 500, cursor: 'pointer', fontFamily: inter.style.fontFamily, transition: 'all .15s ease' }}>{r}</button>); })}
 </div>
 {(recipient === 'Other' || recipient === 'Otro' || recipient === 'Outro') && (<input type="text" value={recipientOther} onChange={function(e) { setRecipientOther(e.target.value); }} placeholder={t.recipientOtherPlaceholder} style={{ width: '100%', padding: '10px 14px', border: '1px solid '+C.BORDER, borderRadius: '8px', fontSize: '14px', color: C.TEXT, background: C.SURFACE, fontFamily: inter.style.fontFamily, boxSizing: 'border-box', outline: 'none' }} />)}
+</div>)}
 </div>
 <div style={{ marginBottom: '1.75rem' }}>
 <span style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.09em', textTransform: 'uppercase', color: C.TEXT3, marginBottom: '10px', display: 'block' }}>{t.toneLabel}</span>
@@ -611,25 +626,30 @@ EzWrite
 <div style={{ marginBottom: '1.75rem' }}>
 <span style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.09em', textTransform: 'uppercase', color: C.TEXT3, marginBottom: '10px', display: 'block' }}>{t.langLabel}</span>
 <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
-{LANGUAGES.map(function(l) { var active = language === l; return (<button key={l} onClick={function() { setLanguage(l); setDialectOverride(''); setShowMoreLanguages(false); }} style={{ padding: '8px 15px', borderRadius: '8px', border: active ? '1.5px solid '+C.ACCENT_BORDER : '1px solid '+C.BORDER, background: active ? C.ACCENT_SOFT : 'transparent', color: active ? C.ACCENT : C.TEXT2, fontSize: '13.5px', fontWeight: active ? 600 : 500, cursor: 'pointer', fontFamily: inter.style.fontFamily, transition: 'all .15s ease' }}>{t.langs[l] || l}</button>); })}
+{LANGUAGES.map(function(l) { var active = language === l; return (<button key={l} onClick={function() { setLanguage(l); setDialectOverride(''); setShowMoreLanguages(false); setShowVariantPicker(false); }} style={{ padding: '8px 15px', borderRadius: '8px', border: active ? '1.5px solid '+C.ACCENT_BORDER : '1px solid '+C.BORDER, background: active ? C.ACCENT_SOFT : 'transparent', color: active ? C.ACCENT : C.TEXT2, fontSize: '13.5px', fontWeight: active ? 600 : 500, cursor: 'pointer', fontFamily: inter.style.fontFamily, transition: 'all .15s ease' }}>{t.langs[l] || l}</button>); })}
 {(function() { var isExtraActive = OUTPUT_LANGUAGES_EXTRA.indexOf(language) !== -1; return (<button onClick={function() { setShowMoreLanguages(!showMoreLanguages); }} style={{ padding: '8px 15px', borderRadius: '8px', border: isExtraActive ? '1.5px solid '+C.ACCENT_BORDER : '1px dashed '+C.BORDER, background: isExtraActive ? C.ACCENT_SOFT : 'transparent', color: isExtraActive ? C.ACCENT : C.TEXT2, fontSize: '13.5px', fontWeight: isExtraActive ? 600 : 500, cursor: 'pointer', fontFamily: inter.style.fontFamily }}>{isExtraActive ? (t.langs[language] || language) : t.moreLanguages}</button>); })()}
 </div>
 {showMoreLanguages && (<div style={{ marginTop: '10px', padding: '12px', border: '1px solid '+C.BORDER, borderRadius: '10px', background: C.SURFACE2 }}>
 <input type="text" value={langSearch} onChange={function(e) { setLangSearch(e.target.value); }} placeholder={t.searchLanguagePlaceholder} style={{ width: '100%', padding: '8px 10px', border: '1px solid '+C.BORDER, borderRadius: '6px', fontSize: '13px', color: C.TEXT, background: C.SURFACE, fontFamily: inter.style.fontFamily, boxSizing: 'border-box', outline: 'none', marginBottom: '10px' }} />
 <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', maxHeight: '180px', overflowY: 'auto' }}>
-{OUTPUT_LANGUAGES_EXTRA.filter(function(l) { return (t.langs[l] || l).toLowerCase().indexOf(langSearch.toLowerCase()) !== -1; }).map(function(l) { var active = language === l; return (<button key={l} onClick={function() { setLanguage(l); setDialectOverride(''); setShowMoreLanguages(false); setLangSearch(''); }} style={{ padding: '6px 12px', borderRadius: '6px', border: active ? '1.5px solid '+C.ACCENT_BORDER : '1px solid '+C.BORDER, background: active ? C.ACCENT_SOFT : 'transparent', color: active ? C.ACCENT : C.TEXT2, fontSize: '13px', fontWeight: active ? 600 : 400, cursor: 'pointer', fontFamily: inter.style.fontFamily }}>{t.langs[l] || l}</button>); })}
+{OUTPUT_LANGUAGES_EXTRA.filter(function(l) { return (t.langs[l] || l).toLowerCase().indexOf(langSearch.toLowerCase()) !== -1; }).map(function(l) { var active = language === l; return (<button key={l} onClick={function() { setLanguage(l); setDialectOverride(''); setShowMoreLanguages(false); setLangSearch(''); setShowVariantPicker(false); }} style={{ padding: '6px 12px', borderRadius: '6px', border: active ? '1.5px solid '+C.ACCENT_BORDER : '1px solid '+C.BORDER, background: active ? C.ACCENT_SOFT : 'transparent', color: active ? C.ACCENT : C.TEXT2, fontSize: '13px', fontWeight: active ? 600 : 400, cursor: 'pointer', fontFamily: inter.style.fontFamily }}>{t.langs[l] || l}</button>); })}
 </div>
 </div>)}
 {DIALECT_OPTIONS[language] && (<div style={{ marginTop: '10px' }}>
-<span style={{ fontSize: '11px', color: C.TEXT3, marginBottom: '6px', display: 'block' }}>{t.variantLabel}</span>
-<div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
-<button onClick={function() { setDialectOverride(''); }} style={{ padding: '6px 12px', borderRadius: '6px', border: !dialectOverride ? '1.5px solid '+C.ACCENT_BORDER : '1px solid '+C.BORDER, background: !dialectOverride ? C.ACCENT_SOFT : 'transparent', color: !dialectOverride ? C.ACCENT : C.TEXT2, fontSize: '12.5px', fontWeight: !dialectOverride ? 600 : 400, cursor: 'pointer', fontFamily: inter.style.fontFamily }}>{t.variantAuto}</button>
-{DIALECT_OPTIONS[language].map(function(d) { var active = dialectOverride === d.code; var lk = DIALECT_LANG_KEY[uiLang] || 'en'; return (<button key={d.code} onClick={function() { setDialectOverride(d.code); }} style={{ padding: '6px 12px', borderRadius: '6px', border: active ? '1.5px solid '+C.ACCENT_BORDER : '1px solid '+C.BORDER, background: active ? C.ACCENT_SOFT : 'transparent', color: active ? C.ACCENT : C.TEXT2, fontSize: '12.5px', fontWeight: active ? 600 : 400, cursor: 'pointer', fontFamily: inter.style.fontFamily }}>{d[lk]}</button>); })}
-</div>
+{(function() {
+var lk = DIALECT_LANG_KEY[uiLang] || 'en';
+var selectedOpt = dialectOverride ? DIALECT_OPTIONS[language].filter(function(d) { return d.code === dialectOverride; })[0] : null;
+var toggleLabel = t.variantLabel + ': ' + (selectedOpt ? selectedOpt[lk] : t.variantAuto);
+return (<button className="ez-collapsible-toggle" onClick={function() { setShowVariantPicker(!showVariantPicker); }} style={{ padding: '6px 12px', borderRadius: '6px', border: dialectOverride ? '1.5px solid '+C.ACCENT_BORDER : '1px dashed '+C.BORDER, background: dialectOverride ? C.ACCENT_SOFT : 'transparent', color: dialectOverride ? C.ACCENT : C.TEXT3, fontSize: '12.5px', fontWeight: dialectOverride ? 600 : 500, cursor: 'pointer', fontFamily: inter.style.fontFamily, display: 'inline-flex', alignItems: 'center', gap: '5px' }}>{toggleLabel}<span style={{ opacity: 0.6, fontSize: '10px' }}>{showVariantPicker ? '▴' : '▾'}</span></button>);
+})()}
+{showVariantPicker && (<div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', marginTop: '8px' }}>
+<button onClick={function() { setDialectOverride(''); setShowVariantPicker(false); }} style={{ padding: '6px 12px', borderRadius: '6px', border: !dialectOverride ? '1.5px solid '+C.ACCENT_BORDER : '1px solid '+C.BORDER, background: !dialectOverride ? C.ACCENT_SOFT : 'transparent', color: !dialectOverride ? C.ACCENT : C.TEXT2, fontSize: '12.5px', fontWeight: !dialectOverride ? 600 : 400, cursor: 'pointer', fontFamily: inter.style.fontFamily }}>{t.variantAuto}</button>
+{DIALECT_OPTIONS[language].map(function(d) { var active = dialectOverride === d.code; var lk = DIALECT_LANG_KEY[uiLang] || 'en'; return (<button key={d.code} onClick={function() { setDialectOverride(d.code); setShowVariantPicker(false); }} style={{ padding: '6px 12px', borderRadius: '6px', border: active ? '1.5px solid '+C.ACCENT_BORDER : '1px solid '+C.BORDER, background: active ? C.ACCENT_SOFT : 'transparent', color: active ? C.ACCENT : C.TEXT2, fontSize: '12.5px', fontWeight: active ? 600 : 400, cursor: 'pointer', fontFamily: inter.style.fontFamily }}>{d[lk]}</button>); })}
+</div>)}
 </div>)}
 </div>
 <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '6px' }}>
-{usageLeft > 0 && usageLeft < (DAILY_LIMIT + bonusGen) && <span style={{ fontSize: '11px', color: usageLeft === 1 ? C.RED : C.TEXT3 }}>{t.usageLeft(usageLeft)}</span>}
+{usageLeft > 0 && usageLeft < (FREE_WEEKLY_LIMIT + bonusGen) && <span style={{ fontSize: '11px', color: usageLeft === 1 ? C.RED : C.TEXT3 }}>{t.usageLeft(usageLeft)}</span>}
 </div>
 <button className="ez-generate-btn" style={{ width: '100%', padding: '16px', background: isDisabled ? C.BORDER : C.ACCENT, color: isDisabled ? C.TEXT3 : '#fff', border: 'none', borderRadius: '12px', fontSize: '15px', fontWeight: 600, letterSpacing: '-0.01em', cursor: isDisabled ? 'not-allowed' : 'pointer', fontFamily: inter.style.fontFamily, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }} onClick={handleGenerate} disabled={isDisabled}>
 {loading ? (<span>{t.writing}<span className="loading-dots"><span style={{ display: 'inline-block', width: '4px', height: '4px', borderRadius: '50%', background: 'currentColor', margin: '0 1px', animation: 'dot-bounce 1.1s infinite ease-in-out' }}></span><span style={{ display: 'inline-block', width: '4px', height: '4px', borderRadius: '50%', background: 'currentColor', margin: '0 1px', animation: 'dot-bounce 1.1s infinite ease-in-out .15s' }}></span><span style={{ display: 'inline-block', width: '4px', height: '4px', borderRadius: '50%', background: 'currentColor', margin: '0 1px', animation: 'dot-bounce 1.1s infinite ease-in-out .3s' }}></span></span></span>) : t.btn}
