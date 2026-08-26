@@ -1,11 +1,23 @@
 export const config = { maxDuration: 30 };
 
-var FREE_DAILY_LIMIT = 5;
+var FREE_WEEKLY_LIMIT = 5;
 var IP_DAILY_LIMIT = 40;
 var MAX_BONUS_GENERATIONS = 50;
 
 function todayKey() {
   return new Date().toISOString().slice(0, 10);
+}
+
+// Identificador estable de la semana en curso (lunes de esa semana en UTC).
+// Se usa para el límite gratuito, que pasó de resetear por día a resetear
+// por semana (25/8: ver estrategia-crecimiento, el reset diario nunca
+// generaba fricción real — nadie llegaba a tocar el techo).
+function weekKey() {
+  var d = new Date();
+  var utcDay = d.getUTCDay();
+  var diffToMonday = utcDay === 0 ? 6 : utcDay - 1;
+  var monday = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate() - diffToMonday));
+  return monday.toISOString().slice(0, 10);
 }
 
 async function kvGet(key) {
@@ -59,12 +71,13 @@ var uid = req.body.uid || '';
 if (!message || !tone || !language) return res.status(400).json({ error: 'Missing fields' });
 
 // --- Server-side usage enforcement ---
-// El límite gratuito ("5 por día") hasta ahora solo se controlaba en el
+// El límite gratuito ("5 por semana") hasta ahora solo se controlaba en el
 // cliente vía localStorage, algo trivial de saltear. Esto agrega el
 // control real del lado del servidor, respaldado en Upstash.
 try {
   var ip = getClientIp(req);
   var day = todayKey();
+  var week = weekKey();
 
   var isSubscribed = false;
   if (uid) {
@@ -78,17 +91,20 @@ try {
       var referralCount = await kvScard('refs:' + uid);
     bonus = Math.min(Math.floor(referralCount / 5) * 5, MAX_BONUS_GENERATIONS);
     }
-    var limit = FREE_DAILY_LIMIT + bonus;
+    var limit = FREE_WEEKLY_LIMIT + bonus;
 
-    var usageKey = uid ? ('usage:' + uid + ':' + day) : ('usage:anon:' + ip + ':' + day);
-    var usageCount = await kvIncrWithExpire(usageKey, 172800);
+    // TTL de 8 días: cubre de sobra la ventana de la semana (el key ya
+    // cambia solo al pasar el lunes) y evita que quede colgado en Redis.
+    var usageKey = uid ? ('usage:' + uid + ':' + week) : ('usage:anon:' + ip + ':' + week);
+    var usageCount = await kvIncrWithExpire(usageKey, 691200);
     if (usageCount !== null && usageCount > limit) {
-      return res.status(429).json({ error: 'Daily limit reached', limitReached: true });
+      return res.status(429).json({ error: 'Weekly limit reached', limitReached: true });
     }
 
     // Techo secundario por IP: frena a quien regenera/borra el uid del
-    // cliente para esquivar el límite de arriba. Más laxo a propósito
-    // (oficinas / redes compartidas usan la misma IP).
+    // cliente para esquivar el límite de arriba. Se mantiene por día
+    // (es un techo anti-abuso, no la política de producto) y más laxo
+    // a propósito (oficinas / redes compartidas usan la misma IP).
     var ipUsageCount = await kvIncrWithExpire('ipusage:' + ip + ':' + day, 172800);
     if (ipUsageCount !== null && ipUsageCount > IP_DAILY_LIMIT) {
       return res.status(429).json({ error: 'Daily limit reached', limitReached: true });
