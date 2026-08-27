@@ -15,7 +15,7 @@ const UI = {
     title: 'Privacidad — EzWrite',
     back: '← Volver a EzWrite',
     h1: 'Política de privacidad',
-    updated: 'Última actualización: 26 de agosto de 2026',
+    updated: 'Última actualización: 27 de agosto de 2026',
     intro: 'Esta página explica, en criollo, qué pasa con lo que escribís en EzWrite. Nada de letra chica: si algo no está acá, probablemente no lo hacemos.',
     sections: [
       {
@@ -44,7 +44,7 @@ const UI = {
       },
       {
         h: 'Contacto',
-        p: 'Si tenés dudas sobre esto, escribinos por Instagram (@ezwrite.app) o X (@Polaco23456) — por ahora es el canal más directo que tenemos.',
+        p: 'Si tenés dudas sobre esto, escribinos a ezwrite.app@gmail.com o por Instagram (@ezwrite.app) o X (@Polaco23456).',
       },
     ],
   },
@@ -52,7 +52,7 @@ const UI = {
     title: 'Privacy — EzWrite',
     back: '← Back to EzWrite',
     h1: 'Privacy policy',
-    updated: 'Last updated: August 26, 2026',
+    updated: 'Last updated: August 27, 2026',
     intro: 'This page explains, in plain language, what happens to what you write in EzWrite. No fine print: if it\'s not listed here, we probably don\'t do it.',
     sections: [
       {
@@ -81,7 +81,7 @@ const UI = {
       },
       {
         h: 'Contact',
-        p: 'If you have questions about this, reach out on Instagram (@ezwrite.app) or X (@Polaco23456) — for now that\'s the most direct channel we have.',
+        p: 'If you have questions about this, email us at ezwrite.app@gmail.com or reach out on Instagram (@ezwrite.app) or X (@Polaco23456).',
       },
     ],
   },
