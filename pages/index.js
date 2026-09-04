@@ -506,7 +506,6 @@ return (
 {showManifest && <link rel="manifest" href="/manifest.json" />}
 <meta name="theme-color" content={isDark ? '#08090C' : '#FAFAFB'} />
 <meta name="description" content={t.tagline} />
-<meta name="google-site-verification" content="G_n0ZxvwGFpz1YsM9kfjmHlmtdGv1ZQy9Wn1S0lawFU" />
 </Head>
 <style>{`
 @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
