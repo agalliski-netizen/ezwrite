@@ -1,4 +1,5 @@
 import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { useEffect } from 'react';
 import posthog from 'posthog-js';
 import { PostHogProvider } from 'posthog-js/react';
@@ -16,6 +17,7 @@ export default function MyApp({ Component, pageProps }) {
         <PostHogProvider client={posthog}>
           <Component {...pageProps} />
         <Analytics />
+        <SpeedInsights />
     </PostHogProvider>
     );
 }
